@@ -1,9 +1,10 @@
 # Weapon module
-
+- dashboard
+  - report by number of weapon type registered
 - auth
-	- login
-	- logout
-	- change password
+  - login
+  - logout
+  - change password
 	
 
 - get users information from HR
@@ -25,7 +26,7 @@
   - time limit
 
 - weapon
-  - actors
+  - **actors**
   - directorates
     - privileges
       - request weapon
@@ -54,7 +55,7 @@
   - in mass / single (serial number)
 
 
-## Notify Weapon [x]
+## Notify Weapon
   - type
   - quantity
   - desc
