@@ -2,9 +2,9 @@
 - dashboard
   - report by number of weapon type registered
 - auth
-  - login
-  - logout
-  - change password
+  - [ ] login
+  - [ ] logout
+  - [ ] [ change password ]
 	
 
 - get users information from HR
@@ -122,3 +122,54 @@
   - same [distribute]
 
 ## ER diagram ??
+
+
+## pages
+### authentication page
+  - /auth/login  ----------> for login page
+### Admin Page
+  - /admin
+    - /admin/dashboard [multi-dashboard] ------> 
+    - /admin/Notify
+      - [ ]  /admin/notify/request
+      - [ ]  /admin/notify/list
+      - [ ]  /admin/notify/list/{id}
+      - [ ]  /admin/notify/list/{id}/edit
+      - 
+    - /admin/request-weapon
+      - [ ]  /admin/request-weapon/list
+      - [ ]  /admin/request-weapon/list/{id}
+      - [ ]  /admin/request-weapon/list/{id}/edit
+      - [ ]  /admin/request-weapon/create
+      - [ ]  /admin/request-weapon/return
+      - [ ]  /admin/request-weapon/damaged
+      - 
+    - /admin/inventory
+      - [ ]  /admin/inventory/create
+      - [ ]  /admin/inventory/list
+        - filter [category, date, ...]
+      - [ ]  /admin/inventory/list/{id}/edit
+      - [ ]  /admin/inventory/list/{id}
+      - [ ] /admin/inventory/distribute
+    
+    - /admin/users
+      - [ ] /admin/users
+        - [filter, ....]
+      - [ ] /admin/users/register
+      - [ ] /admin/users/reset-password
+  
+    - /admin/
+
+-> SMS application
+-> user -> forgot-password -> phone number -> 6 digit generate -> application -> send sms -> user enters the 6 digit to provided input
+-> [ new password & confirm passoword ]
+
+          ------ 2FA ---------
+username, password -> login -> code -> 
+
+--- LOG table
+- table name
+- request
+- created_by
+- response
+- date
