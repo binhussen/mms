@@ -1,0 +1,23 @@
+.sidenav-dropdown-indicator {
+  transition: transform .25s;
+  &.indicateOpen {
+    transform: rotate(180deg);
+  }
+}
+mat-nav-list {
+  overflow: hidden;
+  padding-top: 0;
+
+}
+.primary{
+  transition: max-height .4s cubic-bezier(.35, 0, .25, 1);
+  padding-top: 0;
+}
+.secondaryMenu {
+  background: #102846;
+  transition: max-height .4s cubic-bezier(.35, 0, .25, 1);
+  padding-top: 0;
+}
+.mat-nav-list .mat-list-item {
+  font-size: 14px;
+}

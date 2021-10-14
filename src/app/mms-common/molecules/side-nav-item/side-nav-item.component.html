@@ -1,0 +1,20 @@
+<mat-nav-list
+  [style.maxHeight]="(menu.open)?'500px':'48px'"
+  [ngClass]="{'secondaryMenu': secondaryMenu, 'primary': !secondaryMenu}"
+>
+  <mat-list-item *ngIf="menu.link"  style="color: #D1B87E">
+    <mat-icon matListIcon>{{menu.icon}}</mat-icon>
+    <h3 matLine>{{menu.name}}</h3>
+  </mat-list-item>
+
+  <mat-list-item *ngIf="!menu.link"  style="color: #D1B87E" (click)="menu.open = !menu.open">
+    <mat-icon matListIcon>{{menu.icon}}</mat-icon>
+    <h3 matLine>{{menu.name}}</h3>
+    <mat-icon *ngIf="menu.sub" class="sidenav-dropdown-indicator rotate " [ngClass]="{'indicateOpen':menu.open}"> expand_more</mat-icon>
+  </mat-list-item>
+
+  <app-side-nav-item
+    *ngFor="let subMenu of menu.sub"
+    [menu]="subMenu" [secondaryMenu]="true">
+  </app-side-nav-item>
+</mat-nav-list>
