@@ -1,0 +1,26 @@
+.mat-toolbar-custom {
+  display: flex;
+  margin-bottom: 16px;
+  width: 100%;
+}
+.title {
+  flex-grow: 1;
+}
+.close-button{
+  position: relative;
+  top: -32px;
+  right: -32px;
+  z-index: 99999999999999;
+  justify-self: flex-end;
+}
+.close-button:hover {
+  background-color: #102846;
+  color: white;
+}
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}
+.mobile-label{
+
+}

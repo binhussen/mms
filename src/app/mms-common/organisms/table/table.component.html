@@ -1,0 +1,50 @@
+<mat-toolbar class="mat-elevation-z1 table-header">
+  <button mat-icon-button
+          matTooltip="Filter"
+          aria-label="Filter the table"
+          color="primary">
+    <mat-icon>filter_list</mat-icon>
+  </button>
+  <button mat-button color="primary" (click)="openDialog()">
+    <mat-icon>add</mat-icon>
+    Create New
+  </button>
+</mat-toolbar>
+<div *ngIf="loading" style="display: flex; justify-content: center; padding: 24px">
+  <mat-progress-spinner
+    strokeWidth="3"
+    diameter="50"
+    mode="indeterminate"></mat-progress-spinner>
+</div>
+<mat-table *ngIf="!loading" #table [dataSource]="dataSource" class="mat-elevation-z1">
+  <ng-container *ngFor="let column of columns;" [cdkColumnDef]="column.columnDef">
+    <mat-header-cell *cdkHeaderCellDef>{{ column.header }}</mat-header-cell>
+    <mat-cell *cdkCellDef="let row; let i = index">
+      <span class="mobile-label">{{ column.header }}:</span>
+      <ng-container *ngIf="column.cell(row)">
+        {{column.cell(row)}}
+      </ng-container>
+
+      <ng-container *ngIf="!column.cell(row) && column.columnDef == 'No'">
+        {{(i + 1)}}
+      </ng-container>
+
+      <ng-container *ngIf="!column.cell(row) && column.columnDef == ' '">
+        <button mat-icon-button color="primary" [matMenuTriggerFor]="menu">
+          <mat-icon>more_horiz</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" xPosition="before">
+          <button mat-menu-item>Expand</button>
+          <button mat-menu-item>Remove</button>
+        </mat-menu>
+      </ng-container>
+    </mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row [ngClass.gt-sm]="{'clickable-mat-row': isColumnClickable}" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+<mat-paginator [pageSizeOptions]="[5, 10, 20]"
+               (page)="pageChange($event)"
+               showFirstLastButtons
+               aria-label="Select page">
+</mat-paginator>

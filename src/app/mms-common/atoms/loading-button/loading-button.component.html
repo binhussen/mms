@@ -1,0 +1,9 @@
+<button mat-raised-button>
+  <div style="width: 100%; display: flex;
+   justify-content: space-between; align-items: center">
+    <p style="margin: 0 12px 0 0;">
+      <ng-content></ng-content>
+    </p>
+    <mat-spinner *ngIf="isLoading" [diameter]="24" color="primary"></mat-spinner>
+  </div>
+</button>

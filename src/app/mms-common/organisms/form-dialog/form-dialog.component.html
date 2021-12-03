@@ -1,0 +1,15 @@
+<mat-toolbar class="mat-toolbar-custom">
+  <h3 class="title">{{form.title}}</h3>
+</mat-toolbar>
+<mat-dialog-content>
+  <app-form [actionTitle]="actionTitle" [form]="form" #formComponent></app-form>
+</mat-dialog-content>
+<mat-dialog-actions class="actions">
+  <button mat-button type="submit"
+          [disabled]="formComponent.mmsForm.invalid"
+          (click)="formComponent.submit()">
+    <mat-icon>save</mat-icon>
+    {{actionTitle}}
+  </button>
+  <button mat-button type="button" mat-dialog-close tabindex="1">Cancel</button>
+</mat-dialog-actions>
