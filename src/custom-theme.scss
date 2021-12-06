@@ -2,18 +2,41 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use '~@angular/material' as mat;
+@use './src/app/mms-common/templates/layout/layout.component' as layout;
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
 @include mat.core();
-
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$mms-primary: mat.define-palette(mat.$blue-palette);
+
+// define custom primary color
+// #000F2D - dark
+// #102846 - main
+$mms-primary-palette: (
+  50: #e8eaf6,
+  100: #c5cae9,
+  200: #9fa8da,
+  300: #7986cb,
+  500: #102846,
+  700: #0E223B,
+  900: #000F2D,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: white,
+    500: white
+    // ... continues to 900
+  )
+);
+$mms-primary: mat.define-palette($mms-primary-palette);
 $mms-accent: mat.define-palette(mat.$lime-palette, 600, 700, 800);
+
+
 
 // The warn palette is optional (defaults to red).
 $mms-warn: mat.define-palette(mat.$red-palette);
@@ -32,4 +55,5 @@ $mms-theme: mat.define-light-theme((
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include mat.all-component-themes($mms-theme);
-
+@include mat.core-color($mms-theme);
+@include layout.app-layout($mms-theme);
