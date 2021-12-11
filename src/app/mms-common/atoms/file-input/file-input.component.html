@@ -3,7 +3,7 @@
     <mat-grid-tile-header>
       {{title}}
     </mat-grid-tile-header>
-    <div class="upload-box" (click)="f_input.click()">
+    <div class="upload-box" (click)="f_input.click()"  appDnd (fileDropped)="handleFileInputChange($event)">
       <input
         type="file"
         multiple

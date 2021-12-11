@@ -14,7 +14,7 @@ import {
   ViewEncapsulation,
   Directive,
   ContentChild,
-  OnInit, VERSION
+  OnInit, VERSION, EventEmitter, Output
 } from '@angular/core';
 import {
   AbstractControl,
@@ -32,7 +32,7 @@ import {forkJoin, Observable, of, ReplaySubject, Subject, Subscription} from 'rx
 import {MatFormFieldControl} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {concatMap, finalize, map, mergeMap, tap} from "rxjs/operators";
-import {HttpClient, HttpEventType, HttpProgressEvent} from "@angular/common/http";
+import {HttpClient, HttpEventType, HttpProgressEvent, HttpResponse} from "@angular/common/http";
 
 export type FileOrArrayFile = File | Array<File> | File[];
 interface UploadList {
@@ -45,7 +45,7 @@ interface UploadList {
   styleUrls: ['./file-input.component.scss'],
   encapsulation: ViewEncapsulation.None,
   host: {
-    'class': 'ngx-mat-file-input'
+    'class': 'mms-file-input'
   },
   providers: [
     { provide: MatFormFieldControl, useExisting: forwardRef(() => FileInputComponent) }
@@ -59,7 +59,10 @@ export class FileInputComponent {
   file_store!: FileList;
   file_list: Array<UploadList> = [];
   uploadSubs: Array<Subscription> = [];
+  results: Array<string> = [];
 
+  @Output()
+  onUploadingFinish = new EventEmitter();
 
   constructor(private http: HttpClient) {
   }
@@ -101,8 +104,9 @@ export class FileInputComponent {
       })
     ).pipe(
       finalize(() => this.display.reset())
-    ).subscribe(results => {
+    ).subscribe((results: any) => {
       uploadProgress$.complete();
+      this.onUploadingFinish.emit(results.map((result: any) => result.body.Url));
     });
     let uploadProgressSub = uploadProgress$.subscribe(progress => {
       this.file_list[progress.i].progress = Math.round(100 * (progress.e.loaded / (progress.e.total ?? 1)));
