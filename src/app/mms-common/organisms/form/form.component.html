@@ -128,7 +128,7 @@
 
       <!-- FILE INPUT -->
       <ng-container *ngSwitchCase="'file'">
-        <mat-form-field>
+        <mat-form-field class="hidden-input">
           <input matInput hidden [formControlName]="element.name" />
         </mat-form-field>
         <app-file-input (onUploadingFinish)="setFileControl($event, element.name)" [title]="element.placeholder"></app-file-input>

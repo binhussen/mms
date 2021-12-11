@@ -66,7 +66,9 @@ export class FileInputComponent {
 
   constructor(private http: HttpClient) {
   }
-
+  // TODO: validator in terms of type and size
+  // TODO: what is maximum acceptable file size
+  // TODO: what file type should be allowed?
   handleFileInputChange(l: FileList | null): void {
     if (l) {
       this.file_store = l;
