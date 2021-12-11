@@ -36,6 +36,7 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 import {HttpClientModule} from "@angular/common/http";
 import { FileInputComponent } from './atoms/file-input/file-input.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -56,7 +57,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     imports: [
         CommonModule,
         HttpClientModule,
-      MatProgressSpinnerModule,
+        MatProgressSpinnerModule,
         PerfectScrollbarModule,
         MatNativeDateModule,
         FlexLayoutModule,
@@ -81,7 +82,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         MatTooltipModule,
         MatDialogModule,
         MatPaginatorModule,
-      BrowserAnimationsModule
+        BrowserAnimationsModule,
+        MatProgressBarModule
     ],
   providers: [
     {

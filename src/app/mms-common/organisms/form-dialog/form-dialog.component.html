@@ -7,7 +7,8 @@
 <mat-dialog-actions class="actions">
   <button mat-button type="submit"
           [disabled]="formComponent.mmsForm.invalid"
-          (click)="formComponent.submit()">
+          (click)="formComponent.submit()"
+  >
     <mat-icon>save</mat-icon>
     {{actionTitle}}
   </button>

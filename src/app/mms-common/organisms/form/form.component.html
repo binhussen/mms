@@ -124,6 +124,15 @@
           </mat-error>
         </mat-form-field>
       </ng-container>
+
+
+      <!-- FILE INPUT -->
+      <ng-container *ngSwitchCase="'file'">
+        <mat-form-field>
+          <input matInput hidden [formControlName]="element.name" />
+        </mat-form-field>
+        <app-file-input #uploadInput [title]="element.placeholder"></app-file-input>
+      </ng-container>
     </div>
   </div>
 </form>

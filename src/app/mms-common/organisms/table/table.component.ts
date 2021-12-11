@@ -87,6 +87,12 @@ export class TableComponent implements OnInit, AfterViewInit {
           {value: "male", label: "Male"},
           {value: "female", label: "Female"}
         ]
+      },
+      {
+        name: 'profile_picture',
+        type: "file",
+        placeholder: "Profile Photo",
+        defaultValue: "",
       }
     ]
   }
