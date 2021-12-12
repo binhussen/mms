@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MmsCommonModule } from "./mms-common/mms-common.module";
 import { AppRoutingModule } from "./app-routing.module";
+import {CoreModule} from "./core/core.module";
 
 @NgModule({
   declarations: [
@@ -13,7 +14,7 @@ import { AppRoutingModule } from "./app-routing.module";
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MmsCommonModule,
+    CoreModule,
     AppRoutingModule
   ],
   providers: [],

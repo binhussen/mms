@@ -10,3 +10,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   --dialog-padding: 20px;
   --drag-over-background: #e3e5e8;
 }
+.error {
+  background-color: #b71c1c;
+  color: #fff;
+}
