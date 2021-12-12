@@ -11,6 +11,7 @@ export class GlobalErrorHandler implements ErrorHandler {
   ) {}
 
   handleError(error: any) {
+    console.error(error);
     // Check if it's an error from an HTTP response
     if (!(error instanceof HttpErrorResponse)) {
       error = error.rejection; // get the error object
@@ -18,7 +19,7 @@ export class GlobalErrorHandler implements ErrorHandler {
     this.zone.run(() =>
       this._snackBar.open(error?.error.description || 'Undefined client error', "close", {duration: 4000, verticalPosition: 'top', panelClass: 'error'})
     );
-    // console.log( error?.message || 'Undefined client error', error?.status)
+    console.log( error?.message || 'Undefined client error', error?.status)
     //console.error('Error from global error handler', error);0
   }
 }

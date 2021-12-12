@@ -36,6 +36,7 @@ import { FileInputComponent } from './atoms/file-input/file-input.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import { DndDirective } from './atoms/file-input/dnd.directive';
+import { BasicComponent } from './template/basic/basic.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -52,7 +53,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     TableComponent,
     FormDialogComponent,
     FileInputComponent,
-    DndDirective
+    DndDirective,
+    BasicComponent
   ],
     imports: [
         CommonModule,
