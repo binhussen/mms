@@ -8,8 +8,6 @@ import {MatIconModule} from "@angular/material/icon";
 import { LayoutComponent } from './templates/layout/layout.component';
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatToolbarModule} from "@angular/material/toolbar";
-import {AppModule} from "../app.module";
-import {DashboardComponent} from "../dashboard/dashboard.component";
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MatCardModule} from "@angular/material/card";
 import {MatMenuModule} from "@angular/material/menu";
@@ -84,7 +82,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         MatTooltipModule,
         MatDialogModule,
         MatPaginatorModule,
-        BrowserAnimationsModule,
         MatProgressBarModule
     ],
   providers: [
@@ -93,6 +90,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
     },
   ],
-  exports: [LayoutComponent]
+  exports: [LayoutComponent, FormComponent, LoadingButtonComponent]
 })
 export class MmsCommonModule { }

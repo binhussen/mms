@@ -8,3 +8,6 @@
 .hidden-input {
   display: none;
 }
+:host ::ng-deep .mat-form-field-appearance-outline .mat-form-field-wrapper {
+  margin: 0;
+}
