@@ -87,6 +87,12 @@ export class TableComponent implements OnInit, AfterViewInit {
           {value: "male", label: "Male"},
           {value: "female", label: "Female"}
         ]
+      },
+      {
+        name: 'profile_picture',
+        type: "file",
+        placeholder: "Profile Photo",
+        defaultValue: "",
       }
     ]
   }
@@ -127,10 +133,11 @@ export class TableComponent implements OnInit, AfterViewInit {
     columns = ['No', ...columns, ' '];
     // Describe the columns for <mat-table>.
     this.columns = columns.map((column: any, index: number) => {
+      console.log(column);
       return {
         columnDef: column,
         header: column.replace(/([^A-Z])([A-Z])/g, '$1 $2'),
-        cell: (element: any) => `${element[column] ? element[column] : ``}`,
+        cell: (element: any) => `${column === 'No' ? '' : (element && element[column] ? element[column] : ``)}`,
       }
     })
     this.displayedColumns = this.columns.map(c => c.columnDef);

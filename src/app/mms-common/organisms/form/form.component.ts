@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ErrorHandler} from "../../services/error.handler";
 import {map, tap} from "rxjs/operators";
 import {Observable, of} from "rxjs";
@@ -146,6 +146,11 @@ export class FormComponent implements OnInit {
       form[element.name] = [element.defaultValue, this.getValidator(element.validations)];
     });
     return this.fb.group(form);
+  }
+
+  setFileControl(results: Array<string>, controlName: string) {
+    const fileControl = this.mmsForm.get(controlName) as FormControl;
+    fileControl.patchValue(results.join(","));
   }
 }
 

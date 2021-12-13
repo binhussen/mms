@@ -8,8 +8,6 @@ import {MatIconModule} from "@angular/material/icon";
 import { LayoutComponent } from './templates/layout/layout.component';
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatToolbarModule} from "@angular/material/toolbar";
-import {AppModule} from "../app.module";
-import {DashboardComponent} from "../dashboard/dashboard.component";
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MatCardModule} from "@angular/material/card";
 import {MatMenuModule} from "@angular/material/menu";
@@ -36,6 +34,9 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 import {HttpClientModule} from "@angular/common/http";
 import { FileInputComponent } from './atoms/file-input/file-input.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
+import { DndDirective } from './atoms/file-input/dnd.directive';
+import { BasicComponent } from './template/basic/basic.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -51,12 +52,14 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     LoadingButtonComponent,
     TableComponent,
     FormDialogComponent,
-    FileInputComponent
+    FileInputComponent,
+    DndDirective,
+    BasicComponent
   ],
     imports: [
         CommonModule,
         HttpClientModule,
-      MatProgressSpinnerModule,
+        MatProgressSpinnerModule,
         PerfectScrollbarModule,
         MatNativeDateModule,
         FlexLayoutModule,
@@ -81,7 +84,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         MatTooltipModule,
         MatDialogModule,
         MatPaginatorModule,
-      BrowserAnimationsModule
+        MatProgressBarModule
     ],
   providers: [
     {
@@ -89,6 +92,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
     },
   ],
-  exports: [LayoutComponent]
+  exports: [LayoutComponent, FormComponent, LoadingButtonComponent]
 })
 export class MmsCommonModule { }

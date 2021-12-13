@@ -14,7 +14,7 @@ import {
   ViewEncapsulation,
   Directive,
   ContentChild,
-  OnInit, VERSION
+  OnInit, VERSION, EventEmitter, Output
 } from '@angular/core';
 import {
   AbstractControl,
@@ -28,21 +28,24 @@ import {
 } from '@angular/forms';
 import { CanUpdateErrorState, ErrorStateMatcher, ThemePalette } from '@angular/material/core';
 import {  } from '@angular/material/core/common-behaviors';
-import { Subject } from 'rxjs';
+import {forkJoin, Observable, of, ReplaySubject, Subject, Subscription} from 'rxjs';
 import {MatFormFieldControl} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
-import {finalize} from "rxjs/operators";
-import {HttpEventType} from "@angular/common/http";
+import {concatMap, finalize, map, mergeMap, tap} from "rxjs/operators";
+import {HttpClient, HttpEventType, HttpProgressEvent, HttpResponse} from "@angular/common/http";
 
 export type FileOrArrayFile = File | Array<File> | File[];
-
+interface UploadList {
+  name: string;
+  progress: number;
+}
 @Component({
   selector: 'app-file-input',
   templateUrl: './file-input.component.html',
   styleUrls: ['./file-input.component.scss'],
   encapsulation: ViewEncapsulation.None,
   host: {
-    'class': 'ngx-mat-file-input'
+    'class': 'mms-file-input'
   },
   providers: [
     { provide: MatFormFieldControl, useExisting: forwardRef(() => FileInputComponent) }
@@ -50,11 +53,22 @@ export type FileOrArrayFile = File | Array<File> | File[];
 })
 export class FileInputComponent {
 
-  name = "Angular " + VERSION.major;
+  @Input()
+  title!: string;
   display: FormControl = new FormControl("", Validators.required);
   file_store!: FileList;
-  file_list: Array<string> = [];
+  file_list: Array<UploadList> = [];
+  uploadSubs: Array<Subscription> = [];
+  results: Array<string> = [];
 
+  @Output()
+  onUploadingFinish = new EventEmitter();
+
+  constructor(private http: HttpClient) {
+  }
+  // TODO: validator in terms of type and size
+  // TODO: what is maximum acceptable file size
+  // TODO: what file type should be allowed?
   handleFileInputChange(l: FileList | null): void {
     if (l) {
       this.file_store = l;
@@ -62,36 +76,44 @@ export class FileInputComponent {
         const f = l[0];
         const count = l.length > 1 ? `(+${l.length - 1} files)` : "";
         this.display.patchValue(`${f.name}${count}`);
+        this.file_list = [];
+        const formData: Array<FormData> = [];
+        for (let i = 0; i < this.file_store.length; i++) {
+          const fd = new FormData();
+          fd.append("files", this.file_store[i], this.file_store[i].name);
+          formData.push(fd);
+          this.file_list.push({name: this.file_store[i].name, progress: 0});
+        }
+        this.upload(formData);
       } else {
         this.display.patchValue("");
       }
-      console.log(l);
     }
   }
 
-  handleSubmit(): void {
-    const fd = new FormData();
-    this.file_list = [];
-    for (let i = 0; i < this.file_store.length; i++) {
-      fd.append("files", this.file_store[i], this.file_store[i].name);
-      this.file_list.push(this.file_store[i].name);
-    }
-
-    // do submit ajax
-
-    // const upload$ = this.http.post("/api/thumbnail-upload", fd, {
-    //   reportProgress: true,
-    //   observe: 'events'
-    // })
-    //   .pipe(
-    //     finalize(() => this.reset())
-    //   );
-    //
-    // this.uploadSub = upload$.subscribe(event => {
-    //   if (event.type == HttpEventType.UploadProgress) {
-    //     this.uploadProgress = Math.round(100 * (event.loaded / event.total));
-    //   }
-    // })
-
+  upload(fd: Array<FormData>) {
+    const observables = fd.map(item => this.http.post("https://v2.convertapi.com/upload", item, {reportProgress: true, observe: 'events'}));
+    const uploadProgress$ = new ReplaySubject<{e: HttpProgressEvent, i: number}>();
+    let tempSub = forkJoin(
+      observables.map((req, index) => {
+        return req.pipe(
+          tap(e => {
+            if (e.type === HttpEventType.UploadProgress) {
+              uploadProgress$.next({e: e as HttpProgressEvent, i: index});
+            }
+          })
+        );
+      })
+    ).pipe(
+      finalize(() => this.display.reset())
+    ).subscribe((results: any) => {
+      uploadProgress$.complete();
+      this.onUploadingFinish.emit(results.map((result: any) => result.body.Url));
+    });
+    let uploadProgressSub = uploadProgress$.subscribe(progress => {
+      this.file_list[progress.i].progress = Math.round(100 * (progress.e.loaded / (progress.e.total ?? 1)));
+    })
+    this.uploadSubs.push(tempSub);
+    this.uploadSubs.push(uploadProgressSub);
   }
 }

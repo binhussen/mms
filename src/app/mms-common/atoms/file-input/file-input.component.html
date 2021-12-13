@@ -1,15 +1,40 @@
-<mat-form-field style="width: 100%;">
-  <mat-label>File matInput</mat-label>
-  <button mat-icon-button matPrefix (click)="f_input.click()">
-    <mat-icon>attach_file</mat-icon>
-  </button>
-  <input type="text" readonly matInput [formControl]="display" />
-  <input
-    type="file"
-    multiple
-    hidden
-    #f_input
-    (change)="handleFileInputChange(f_input.files)"
-  />
-  <mat-error>this field is required</mat-error>
-</mat-form-field>
+<mat-grid-list cols="4" rowHeight="18rem">
+  <mat-grid-tile [colspan]="2" rowspan="1">
+    <mat-grid-tile-header>
+      {{title}}
+    </mat-grid-tile-header>
+    <div class="upload-box" (click)="f_input.click()"  appDnd (fileDropped)="handleFileInputChange($event)">
+      <input
+        type="file"
+        multiple
+        hidden
+        #f_input
+        (change)="handleFileInputChange(f_input.files)"
+      />
+      <mat-icon [color]="'primary'" class="upload-icon">cloud_upload</mat-icon>
+      <h4>Drag & Drop your files here</h4>
+      <h4>OR</h4>
+      <button class="mat-elevation-z4"  mat-raised-button color="primary">
+        Browse Files
+      </button>
+    </div>
+  </mat-grid-tile>
+
+  <mat-grid-tile [colspan]="2" [rowspan]="1">
+    <mat-grid-tile-header>
+      Uploaded Files
+      <mat-divider></mat-divider>
+    </mat-grid-tile-header>
+    <mat-list>
+      <mat-list-item *ngFor="let f of file_list">
+        <mat-icon matListIcon>description</mat-icon> <!-- image -->
+        <h3 matLine>{{f.name}}</h3>
+        <mat-progress-bar matLine mode="determinate" [value]="f.progress"></mat-progress-bar>
+        <button mat-icon-button *ngIf="f.progress !== 100"> <!-- can be checked or close -->
+          <mat-icon>close</mat-icon>
+        </button>
+        <mat-icon *ngIf="f.progress === 100" style="color: #00ff80;">checked</mat-icon>
+      </mat-list-item>
+    </mat-list>
+  </mat-grid-tile>
+</mat-grid-list>
