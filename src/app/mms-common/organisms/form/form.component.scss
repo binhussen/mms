@@ -11,3 +11,7 @@
 :host ::ng-deep .mat-form-field-appearance-outline .mat-form-field-wrapper {
   margin: 0;
 }
+.inner-fieldset{
+  border-color: rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
+}

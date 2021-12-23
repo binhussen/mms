@@ -36,7 +36,8 @@ import { FileInputComponent } from './atoms/file-input/file-input.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import { DndDirective } from './atoms/file-input/dnd.directive';
-import { BasicComponent } from './template/basic/basic.component';
+import { BasicComponent } from './templates/basic/basic.component';
+import {RouterModule} from "@angular/router";
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -56,42 +57,43 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     DndDirective,
     BasicComponent
   ],
-    imports: [
-        CommonModule,
-        HttpClientModule,
-        MatProgressSpinnerModule,
-        PerfectScrollbarModule,
-        MatNativeDateModule,
-        FlexLayoutModule,
-        MatListModule,
-        MatIconModule,
-        MatSidenavModule,
-        MatToolbarModule,
-        MatGridListModule,
-        MatCardModule,
-        MatMenuModule,
-        MatButtonModule,
-        MatProgressSpinnerModule,
-        MatFormFieldModule,
-        MatInputModule,
-        ReactiveFormsModule,
-        MatDatepickerModule,
-        MatRadioModule,
-        MatSelectModule,
-        MatOptionModule,
-        MatTableModule,
-        CdkTableModule,
-        MatTooltipModule,
-        MatDialogModule,
-        MatPaginatorModule,
-        MatProgressBarModule
-    ],
+  imports: [
+    CommonModule,
+    HttpClientModule,
+    MatProgressSpinnerModule,
+    PerfectScrollbarModule,
+    MatNativeDateModule,
+    FlexLayoutModule,
+    MatListModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatGridListModule,
+    MatCardModule,
+    MatMenuModule,
+    MatButtonModule,
+    MatProgressSpinnerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatOptionModule,
+    MatTableModule,
+    CdkTableModule,
+    MatTooltipModule,
+    MatDialogModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    RouterModule
+  ],
   providers: [
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
     },
   ],
-  exports: [LayoutComponent, FormComponent, LoadingButtonComponent]
+  exports: [LayoutComponent, FormComponent, LoadingButtonComponent, BasicComponent]
 })
 export class MmsCommonModule { }
