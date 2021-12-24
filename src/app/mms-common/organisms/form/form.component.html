@@ -138,7 +138,6 @@
 
             </div>
           </div>
-
         </div>
       </div>
     </div>
@@ -296,10 +295,15 @@
                   Add
                 </button>
               </div>
-              <div *ngFor="let item of getFormArrayItems(element.name); let i = index">
-                <ng-container
-                  *ngTemplateOutlet="formInputTemplateFormArray;context:{elements: element?.formArrayItems, form: i, nameFormArray: element.name}">
-                </ng-container>
+              <div fxLayout="row" *ngFor="let item of getFormArrayItems(element.name); let i = index">
+                <div fxFlex="97%">
+                  <ng-container
+                    *ngTemplateOutlet="formInputTemplateFormArray;context:{elements: element?.formArrayItems, form: i, nameFormArray: element.name}">
+                  </ng-container>
+                </div>
+                <button fxFlex style="margin-top: 24px;" mat-icon-button (click)="removeFormItemFromFormArray($event, element.name, i)">
+                  <mat-icon>close</mat-icon>
+                </button>
               </div>
             </fieldset>
           </div>

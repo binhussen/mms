@@ -56,7 +56,7 @@ export class TableComponent implements OnInit, AfterViewInit {
     console.log(actionType, row);
   }
 
-  getColumns(data: Array<any>, excluded: Array<string>, actionsAvailable: boolean) {
+  getColumns(data: Array<any>, excluded: Array<string> = ['created_at', 'updated_at'], actionsAvailable: boolean) {
     let columns = data
       .reduce((c, r) => {
         return [...c, ...Object.keys(r)]
@@ -105,9 +105,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   async pageChange(value: any) {
     const _page = value.pageIndex;
     const _limit = value.pageSize;
-
     let previousSize = (_page) * _limit;
-
     await this.getData(_page + 1, _limit, previousSize);
 
   }
