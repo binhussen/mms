@@ -1,7 +1,13 @@
-import {Directive, HostBinding, HostListener, Output, EventEmitter} from '@angular/core';
+import {
+  Directive,
+  HostBinding,
+  HostListener,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 
 @Directive({
-  selector: '[appDnd]'
+  selector: '[appDnd]',
 })
 export class DndDirective {
   @HostBinding('class.fileover') fileOver!: boolean;
@@ -31,5 +37,4 @@ export class DndDirective {
       this.fileDropped.emit(files);
     }
   }
-
 }
