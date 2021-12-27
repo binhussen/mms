@@ -1,4 +1,4 @@
-import {Form} from "../../mms-common/organisms/form/form.component";
+import {Form} from "../../mms-common/models/form";
 
 const loginForm: Form = {
   title: 'Login',

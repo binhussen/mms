@@ -1,11 +1,15 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
-import {Form, FormComponent} from "../form/form.component";
 import {FormDialogComponent} from "../form-dialog/form-dialog.component";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
 import {HttpClient, HttpParams} from "@angular/common/http";
-
+import {Form} from "../../models/form";
+export interface Action {
+  name: string;
+  type: 'expand' | 'edit' | 'delete',
+  path?: string; // if expand we redirect the user to detail page. For example: if path = 'post' and item id = 2 => /post/2
+}
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
@@ -16,95 +20,24 @@ export class TableComponent implements OnInit, AfterViewInit {
   displayedColumns!: Array<any>;
   columns!: Array<any>;
   filters = []; // TODO
-  pageSize = 10;
   isColumnClickable: boolean = true;
   routeForDetailPage!: string;
-  dataSource = new MatTableDataSource<any>(this.data);
-  dataSourceUrl = "http://localhost:3000/elements";
+
   loading = false;
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @Input() form!: Form;
+  @Input() dataSourceUrl!: string;
+  @Input() actions!: Array<Action>;
+  @Input() excludedColumns!: Array<string>;
+  pageSize = 5;
+  dataSource = new MatTableDataSource<any>(this.data);
 
-  // /posts
-  // /posts?author=""
-  //
-
-  form: Form = {
-    title: "User Registration",
-    elements: [
-      {
-        name: "firstName",
-        type: "text",
-        placeholder: "First Name",
-        size: 6,
-        defaultValue: "",
-        validations: [
-          { type: "required", value: true },
-          { type: "max", value: 30},
-          { type: "min", value: 2}
-        ]
-      },
-      {
-        name: "lastName",
-        type: "text",
-        size: 6,
-        placeholder: "Last Name",
-        defaultValue: ""
-      },
-      {
-        name: "dob",
-        type: "date",
-        placeholder: "Birthdate",
-        defaultValue: ""
-      },
-      {
-        name: "country",
-        type: "select",
-        placeholder: "Country",
-        defaultValue: "",
-        options: [
-          {value: "Ethiopia", label: "Ethiopian"},
-          {value: "Sudan", label: "Sundanese"}
-        ]
-      },
-      {
-        name: 'city',
-        type: "select",
-        placeholder: "City",
-        defaultValue: "",
-        refer: "country",
-        options: [
-          {value: "Addis Ababa", label: "Addis Ababa", referredValue: "Ethiopia"},
-          {value: "Jimma", label: "Jimma", referredValue: "Ethiopia"},
-          {value: "Khartum", label: "Khartum", referredValue: "Sudan"},
-        ]
-      },
-      {
-        name: "gender",
-        type: "radio",
-        placeholder: "Gender",
-        defaultValue: "",
-        options: [
-          {value: "male", label: "Male"},
-          {value: "female", label: "Female"}
-        ]
-      },
-      {
-        name: 'profile_picture',
-        type: "file",
-        placeholder: "Profile Photo",
-        defaultValue: "",
-      }
-    ]
-  }
-  constructor(public dialog: MatDialog, private httpClient: HttpClient) {
-    // TODO: pagination
-    // TODO: dataSourceUrl
-   // console.log(JSON.stringify(this.data));
-  }
+  constructor(public dialog: MatDialog, private httpClient: HttpClient) {}
 
   async ngOnInit() {
     this.loading = true;
-   await this.getData('0', '5');
+   await this.getData('0', this.pageSize.toString());
   }
   openDialog() {
     const dialogRef = this.dialog.open(
@@ -118,8 +51,12 @@ export class TableComponent implements OnInit, AfterViewInit {
     );
 
   }
+  command(actionType: 'expand' | 'edit' | 'delete', row: any){
+    // TODO: pass the command to parent template or page
+    console.log(actionType, row);
+  }
 
-  getColumns(data: Array<any>, excluded: Array<string>, actionsAvailable: boolean) {
+  getColumns(data: Array<any>, excluded: Array<string> = ['created_at', 'updated_at'], actionsAvailable: boolean) {
     let columns = data
       .reduce((c, r) => {
         return [...c, ...Object.keys(r)]
@@ -133,7 +70,6 @@ export class TableComponent implements OnInit, AfterViewInit {
     columns = ['No', ...columns, ' '];
     // Describe the columns for <mat-table>.
     this.columns = columns.map((column: any, index: number) => {
-      console.log(column);
       return {
         columnDef: column,
         header: column.replace(/([^A-Z])([A-Z])/g, '$1 $2'),
@@ -152,7 +88,7 @@ export class TableComponent implements OnInit, AfterViewInit {
       .toPromise().then((data) => {
       if (!currentSize) {
         this.data = data;
-        this.getColumns(this.data, ['created_at', 'updated_at'], true);
+        this.getColumns(this.data, this.excludedColumns, true);
       }
       if (currentSize) {
         this.data.length = currentSize;
@@ -169,9 +105,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   async pageChange(value: any) {
     const _page = value.pageIndex;
     const _limit = value.pageSize;
-
     let previousSize = (_page) * _limit;
-
     await this.getData(_page + 1, _limit, previousSize);
 
   }

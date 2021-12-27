@@ -2,7 +2,7 @@
   [style.maxHeight]="(menu.open && menu.sub)?'500px':'48px'"
   [ngClass]="{'secondaryMenu': secondaryMenu, 'primary': !secondaryMenu}"
 >
-  <mat-list-item *ngIf="menu.link"  style="color: #D1B87E">
+  <mat-list-item *ngIf="menu.link"  [routerLink]="menu.link"  style="color: #D1B87E">
     <mat-icon matListIcon>{{menu.icon}}</mat-icon>
     <h3 matLine>{{menu.name}}</h3>
   </mat-list-item>

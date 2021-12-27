@@ -1,6 +1,6 @@
 import {Component, Inject, Input, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {Form} from "../form/form.component";
+import {Form} from "../../models/form";
 interface FormProps {
   form: Form;
   actionTitle: string;

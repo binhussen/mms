@@ -29,13 +29,14 @@
         {{(i + 1)}}
       </ng-container>
 
-      <ng-container *ngIf="!column.cell(row) && column.columnDef == ' '">
+      <ng-container *ngIf="!column.cell(row) && column.columnDef == ' ' && actions">
         <button mat-icon-button color="primary" [matMenuTriggerFor]="menu">
           <mat-icon>more_horiz</mat-icon>
         </button>
         <mat-menu #menu="matMenu" xPosition="before">
-          <button mat-menu-item>Expand</button>
-          <button mat-menu-item>Remove</button>
+          <ng-container *ngFor="let action of actions">
+            <button mat-menu-item (click)="command(action.type, row)">{{action.name}}</button>
+          </ng-container>
         </mat-menu>
       </ng-container>
     </mat-cell>

@@ -1,138 +1,321 @@
+<ng-template #formInputTemplateFormArray let-nameFormArray="nameFormArray" let-form="form" let-elements="elements">
+  <div style="margin: 16px 0">
+    <div [formGroup]="mmsForm">
+      <div [formArrayName]="nameFormArray">
+        <div  [formGroupName]="form"
+              fxLayout="row wrap"
+              style="justify-content: space-between"
+              fxLayout.lt-sm="column"
+              fxLayoutGap.lt-sm = "0"
+        >
+          <div
+            *ngFor="let element of elements"
+            [fxFlex]=getSizeDefault(element?.size)
+            fxFlex.lt-sm="100%"
+            fxFlex.lt-md="0 1 calc(50% - 32px)">
+            <div [ngSwitch]="element.type" >
 
-<form action="#" [formGroup]="mmsForm" novalidate
-      (ngSubmit)="submit()"
-      fxLayout="row wrap"
-      style="justify-content: space-between"
-      fxLayout.lt-sm="column"
-      fxLayoutGap.lt-sm = "0"
->
-  <div
-    *ngFor="let element of form.elements"
-    [fxFlex]=getSizeDefault(element?.size)
-    fxFlex.lt-sm="100%"
-    fxFlex.lt-md="0 1 calc(50% - 32px)">
-    <div [ngSwitch]="element.type">
+              <!-- TEXT INPUT -->
+              <ng-container *ngSwitchCase="'text'" >
+                <mat-form-field [appearance]="'outline'">
+                  <mat-label>{{element.placeholder}}</mat-label>
+                  <input matInput type="text"
+                         [spellcheck]="false"
+                         [formControlName]="element.name"
+                         placeholder="{{element.placeholder}}"
+                         value="{{element.defaultValue}}" />
+                  <mat-error>
+                    {{errors && errors[element.name]}}
+                  </mat-error>
+                </mat-form-field>
+              </ng-container>
 
-      <!-- TEXT INPUT -->
-      <ng-container *ngSwitchCase="'text'" >
-        <mat-form-field [appearance]="'outline'">
-          <mat-label>{{element.placeholder}}</mat-label>
-          <input matInput type="text"
-                 [spellcheck]="false"
-                 [formControlName]="element.name"
-                 placeholder="{{element.placeholder}}"
-                 value="{{element.defaultValue}}" />
-          <mat-error>
-            {{errors && errors[element.name]}}
-          </mat-error>
-        </mat-form-field>
-      </ng-container>
-
-      <!-- PASSWORD INPUT -->
-      <ng-container *ngSwitchCase="'password'">
-        <mat-form-field [appearance]="'outline'">
-          <mat-label>{{element.placeholder}}</mat-label>
-          <input matInput type="password"
-                 [spellcheck]="false"
-                 [formControlName]="element.name"
-                 placeholder="{{element.placeholder}}"
-                 value="{{element.defaultValue}}" />
-          <mat-error>
-            {{errors && errors[element.name]}}
-          </mat-error>
-        </mat-form-field>
-      </ng-container>
-
-
-      <!-- NUMBER INPUT -->
-      <ng-container *ngSwitchCase="'number'">
-        <mat-form-field [appearance]="'outline'">
-          <mat-label>{{element.placeholder}}</mat-label>
-          <input matInput type="number"
-                 [spellcheck]="false"
-                 [formControlName]="element.name"
-                 placeholder="{{element.placeholder}}"
-                 value="{{element.defaultValue}}" />
-          <mat-error>
-            {{errors && errors[element.name]}}
-          </mat-error>
-        </mat-form-field>
-      </ng-container>
+              <!-- PASSWORD INPUT -->
+              <ng-container *ngSwitchCase="'password'">
+                <mat-form-field [appearance]="'outline'">
+                  <mat-label>{{element.placeholder}}</mat-label>
+                  <input matInput type="password"
+                         [spellcheck]="false"
+                         [formControlName]="element.name"
+                         placeholder="{{element.placeholder}}"
+                         value="{{element.defaultValue}}" />
+                  <mat-error>
+                    {{errors && errors[element.name]}}
+                  </mat-error>
+                </mat-form-field>
+              </ng-container>
 
 
-      <!-- EMAIL INPUT -->
-      <ng-container *ngSwitchCase="'email'">
-        <mat-form-field [appearance]="'outline'">
-          <mat-label>{{element.placeholder}}</mat-label>
-          <input matInput type="text"
-                 [spellcheck]="false"
-                 [formControlName]="element.name"
-                 placeholder="{{element.placeholder}}"
-                 value="{{element.defaultValue}}" />
-          <mat-error>
-            {{errors && errors[element.name]}}
-          </mat-error>
-        </mat-form-field>
-      </ng-container>
+              <!-- NUMBER INPUT -->
+              <ng-container *ngSwitchCase="'number'">
+                <mat-form-field [appearance]="'outline'">
+                  <mat-label>{{element.placeholder}}</mat-label>
+                  <input matInput type="number"
+                         [spellcheck]="false"
+                         [formControlName]="element.name"
+                         placeholder="{{element.placeholder}}"
+                         value="{{element.defaultValue}}" />
+                  <mat-error>
+                    {{errors && errors[element.name]}}
+                  </mat-error>
+                </mat-form-field>
+              </ng-container>
 
 
-      <!-- RADIO INPUT -->
-      <ng-container *ngSwitchCase="'radio'">
-        <div class="misc-bottom-padding">
-          <mat-label>{{element.placeholder}}:</mat-label>
-          <mat-radio-group color="primary"
-                           aria-label="Select an option"
-                           [formControlName]="element.name">
-            <mat-radio-button *ngFor="let option of element?.options"
-                              [value]="option.value">
-              {{option.label}}
-            </mat-radio-button>
-          </mat-radio-group>
+              <!-- EMAIL INPUT -->
+              <ng-container *ngSwitchCase="'email'">
+                <mat-form-field [appearance]="'outline'">
+                  <mat-label>{{element.placeholder}}</mat-label>
+                  <input matInput type="text"
+                         [spellcheck]="false"
+                         [formControlName]="element.name"
+                         placeholder="{{element.placeholder}}"
+                         value="{{element.defaultValue}}" />
+                  <mat-error>
+                    {{errors && errors[element.name]}}
+                  </mat-error>
+                </mat-form-field>
+              </ng-container>
+
+
+              <!-- RADIO INPUT -->
+              <ng-container *ngSwitchCase="'radio'">
+                <div class="misc-bottom-padding">
+                  <mat-label>{{element.placeholder}}:</mat-label>
+                  <mat-radio-group color="primary"
+                                   aria-label="Select an option"
+                                   [formControlName]="element.name">
+                    <mat-radio-button *ngFor="let option of element?.options"
+                                      [value]="option.value">
+                      {{option.label}}
+                    </mat-radio-button>
+                  </mat-radio-group>
+                </div>
+              </ng-container>
+
+
+              <!-- DATE PICKER -->
+              <ng-container *ngSwitchCase="'date'">
+                <mat-form-field [appearance]="'outline'">
+                  <mat-label>{{element.placeholder}}</mat-label>
+                  <input matInput readonly
+                         [matDatepicker]="picker" [placeholder]="element.placeholder"
+                         [formControlName]="element.name"
+                         (dateChange)="dateChanged($event, element.name)">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                  <!-- error -->
+                  <mat-error>
+                    {{errors && errors[element.name]}}
+                  </mat-error>
+                </mat-form-field>
+              </ng-container>
+
+              <!-- SELECT INPUT -->
+              <ng-container *ngSwitchCase="'select'">
+                <mat-form-field [appearance]="'outline'">
+                  <mat-label>{{element.placeholder}}</mat-label>
+                  <mat-select [formControlName]="element.name">
+                    <mat-option  *ngFor="let option of data[element.name] ? data[element.name] : filterByValue(element, nameFormArray, form) | async" [value]="option.value">
+                      {{option.label}}
+                    </mat-option>
+                  </mat-select>
+                  <!-- error -->
+                  <mat-error>
+                    {{errors && errors[element.name]}}
+                  </mat-error>
+                </mat-form-field>
+              </ng-container>
+
+
+              <!-- FILE INPUT -->
+              <ng-container *ngSwitchCase="'file'">
+                <mat-form-field class="hidden-input">
+                  <input matInput hidden [formControlName]="element.name" />
+                </mat-form-field>
+                <app-file-input (onUploadingFinish)="setFileControl($event, element.name)" [title]="element.placeholder"></app-file-input>
+              </ng-container>
+
+            </div>
+          </div>
         </div>
-      </ng-container>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+  </div>
+</ng-template>
 
 
-      <!-- DATE PICKER -->
-      <ng-container *ngSwitchCase="'date'">
-        <mat-form-field [appearance]="'outline'">
-          <mat-label>{{element.placeholder}}</mat-label>
-          <input matInput readonly
-                 [matDatepicker]="picker" [placeholder]="element.placeholder"
-                 [formControlName]="element.name"
-                 (dateChange)="dateChanged($event, element.name)">
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-          <!-- error -->
-          <mat-error>
-            {{errors && errors[element.name]}}
-          </mat-error>
-        </mat-form-field>
-      </ng-container>
+<ng-template #formInputTemplate let-form="form" let-elements="elements">
+  <div
+    fxLayout="row wrap"
+    style="justify-content: space-between"
+    fxLayout.lt-sm="column"
+    fxLayoutGap.lt-sm = "0"
+    [formGroup]="mmsForm"
+           (ngSubmit)="submit()">
+    <div
+      *ngFor="let element of elements"
+      [fxFlex]=getSizeDefault(element?.size)
+      fxFlex.lt-sm="100%"
+      fxFlex.lt-md="0 1 calc(50% - 32px)">
+      <div [ngSwitch]="element.type">
 
-      <!-- SELECT INPUT -->
-      <ng-container *ngSwitchCase="'select'">
-        <mat-form-field [appearance]="'outline'">
-          <mat-label>{{element.placeholder}}</mat-label>
-          <mat-select [formControlName]="element.name">
-            <mat-option  *ngFor="let option of data[element.name] ? data[element.name] : filterByValue(element) | async" [value]="option.value">
-              {{option.label}}
-            </mat-option>
-          </mat-select>
-          <!-- error -->
-          <mat-error>
-            {{errors && errors[element.name]}}
-          </mat-error>
-        </mat-form-field>
-      </ng-container>
+        <!-- TEXT INPUT -->
+        <ng-container *ngSwitchCase="'text'" >
+          <mat-form-field [appearance]="'outline'">
+            <mat-label>{{element.placeholder}}</mat-label>
+            <input matInput type="text"
+                   [spellcheck]="false"
+                   [formControlName]="element.name"
+                   placeholder="{{element.placeholder}}"
+                   value="{{element.defaultValue}}" />
+            <mat-error>
+              {{errors && errors[element.name]}}
+            </mat-error>
+          </mat-form-field>
+        </ng-container>
+
+        <!-- PASSWORD INPUT -->
+        <ng-container *ngSwitchCase="'password'">
+          <mat-form-field [appearance]="'outline'">
+            <mat-label>{{element.placeholder}}</mat-label>
+            <input matInput type="password"
+                   [spellcheck]="false"
+                   [formControlName]="element.name"
+                   placeholder="{{element.placeholder}}"
+                   value="{{element.defaultValue}}" />
+            <mat-error>
+              {{errors && errors[element.name]}}
+            </mat-error>
+          </mat-form-field>
+        </ng-container>
 
 
-      <!-- FILE INPUT -->
-      <ng-container *ngSwitchCase="'file'">
-        <mat-form-field class="hidden-input">
-          <input matInput hidden [formControlName]="element.name" />
-        </mat-form-field>
-        <app-file-input (onUploadingFinish)="setFileControl($event, element.name)" [title]="element.placeholder"></app-file-input>
-      </ng-container>
+        <!-- NUMBER INPUT -->
+        <ng-container *ngSwitchCase="'number'">
+          <mat-form-field [appearance]="'outline'">
+            <mat-label>{{element.placeholder}}</mat-label>
+            <input matInput type="number"
+                   [spellcheck]="false"
+                   [formControlName]="element.name"
+                   placeholder="{{element.placeholder}}"
+                   value="{{element.defaultValue}}" />
+            <mat-error>
+              {{errors && errors[element.name]}}
+            </mat-error>
+          </mat-form-field>
+        </ng-container>
+
+
+        <!-- EMAIL INPUT -->
+        <ng-container *ngSwitchCase="'email'">
+          <mat-form-field [appearance]="'outline'">
+            <mat-label>{{element.placeholder}}</mat-label>
+            <input matInput type="text"
+                   [spellcheck]="false"
+                   [formControlName]="element.name"
+                   placeholder="{{element.placeholder}}"
+                   value="{{element.defaultValue}}" />
+            <mat-error>
+              {{errors && errors[element.name]}}
+            </mat-error>
+          </mat-form-field>
+        </ng-container>
+
+
+        <!-- RADIO INPUT -->
+        <ng-container *ngSwitchCase="'radio'">
+          <div class="misc-bottom-padding">
+            <mat-label>{{element.placeholder}}:</mat-label>
+            <mat-radio-group color="primary"
+                             aria-label="Select an option"
+                             [formControlName]="element.name">
+              <mat-radio-button *ngFor="let option of element?.options"
+                                [value]="option.value">
+                {{option.label}}
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </ng-container>
+
+
+        <!-- DATE PICKER -->
+        <ng-container *ngSwitchCase="'date'">
+          <mat-form-field [appearance]="'outline'">
+            <mat-label>{{element.placeholder}}</mat-label>
+            <input matInput readonly
+                   [matDatepicker]="picker" [placeholder]="element.placeholder"
+                   [formControlName]="element.name"
+                   (dateChange)="dateChanged($event, element.name)">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <!-- error -->
+            <mat-error>
+              {{errors && errors[element.name]}}
+            </mat-error>
+          </mat-form-field>
+        </ng-container>
+
+        <!-- SELECT INPUT -->
+        <ng-container *ngSwitchCase="'select'">
+          <mat-form-field [appearance]="'outline'">
+            <mat-label>{{element.placeholder}}</mat-label>
+            <mat-select [formControlName]="element.name">
+              <mat-option  *ngFor="let option of data[element.name] ? data[element.name] : filterByValue(element) | async" [value]="option.value">
+                {{option.label}}
+              </mat-option>
+            </mat-select>
+            <!-- error -->
+            <mat-error>
+              {{errors && errors[element.name]}}
+            </mat-error>
+          </mat-form-field>
+        </ng-container>
+
+
+        <!-- FILE INPUT -->
+        <ng-container *ngSwitchCase="'file'">
+          <mat-form-field class="hidden-input">
+            <input matInput hidden [formControlName]="element.name" />
+          </mat-form-field>
+          <app-file-input (onUploadingFinish)="setFileControl($event, element.name)" [title]="element.placeholder"></app-file-input>
+        </ng-container>
+
+
+        <!-- Form Array -->
+        <ng-container *ngSwitchCase="'formArray'">
+          <div [formArrayName]="element.name">
+            <fieldset class="inner-fieldset">
+            <legend>{{element.placeholder}}</legend>
+              <div style="display: flex; justify-content: flex-end">
+                <button
+                        mat-button
+                        (click)="addFormItemToFromArray($event, element.name, element.formArrayItems)">
+                        <mat-icon>add</mat-icon>
+                  Add
+                </button>
+              </div>
+              <div fxLayout="row" *ngFor="let item of getFormArrayItems(element.name); let i = index">
+                <div fxFlex="97%">
+                  <ng-container
+                    *ngTemplateOutlet="formInputTemplateFormArray;context:{elements: element?.formArrayItems, form: i, nameFormArray: element.name}">
+                  </ng-container>
+                </div>
+                <button fxFlex style="margin-top: 24px;" mat-icon-button (click)="removeFormItemFromFormArray($event, element.name, i)">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </div>
+            </fieldset>
+          </div>
+        </ng-container>
+      </div>
     </div>
   </div>
+</ng-template>
+
+<form action="#" novalidate>
+  <ng-container
+    *ngTemplateOutlet="formInputTemplate;context:{elements: form.elements, form: mmsForm}">
+  </ng-container>
 </form>

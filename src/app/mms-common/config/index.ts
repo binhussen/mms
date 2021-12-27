@@ -15,25 +15,25 @@ export const   menus: Array<Menu> = [
       {
         name: "Notify Weapon",
         icon: "",
-        link: "",
+        link: "notify",
         open: false
       },
       {
         name: "Inventory",
         icon: "",
-        link: "",
+        link: "inventory",
         open: false
       },
       {
         name: "Request",
         icon: "",
-        link: "",
+        link: "request",
         open: false
       },
       {
         name: "Report Damages",
         icon: "",
-        link: "",
+        link: "report-damage",
         open: false
       },
     ]

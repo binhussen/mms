@@ -1,7 +1,3 @@
-@font-face {
-  font-family:'frozen';
-  src:url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/Ice%20kingdom%20-%20Bold%20-%20Por%20Kustren.woff');
-}
 .container {
   display: flex;
   justify-content: center;
@@ -10,6 +6,7 @@
 }
 .mat-card {
   padding: 0 !important;
+  border-radius: 0.9em;
 }
 
 .login-container {
@@ -18,6 +15,8 @@
 }
 .login__welcome{
   display: flex;
+  border-top-left-radius: 0.9em;
+  border-bottom-left-radius: 0.9em;
   flex-direction: column;
   background: linear-gradient(to top, #7986cb, #fff);
   justify-content: center;

@@ -10,7 +10,10 @@ import {HttpClient} from "@angular/common/http";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DashboardComponent {
-
+  /**
+   * dashboard report design
+   *
+   */
 
   /** Based on the screen size, switch from standard to one column per row */
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
