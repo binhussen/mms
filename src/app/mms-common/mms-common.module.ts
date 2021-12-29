@@ -42,6 +42,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { DndDirective } from './atoms/file-input/dnd.directive';
 import { BasicComponent } from './templates/basic/basic.component';
 import { RouterModule } from '@angular/router';
+import { CrudHttpService } from './organisms/form-dialog/crudHttp.service';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -97,6 +98,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG,
     },
+    CrudHttpService,
   ],
   exports: [
     LayoutComponent,

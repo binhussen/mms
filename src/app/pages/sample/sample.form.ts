@@ -1,70 +1,40 @@
-import {Form} from "../../mms-common/models/form";
+import { Form } from '../../mms-common/models/form';
 
 const sampleForm: Form = {
-  title: "User Registration",
+  title: 'Element Registration',
   elements: [
     {
-      name: "lastName",
-      type: "text",
-      size: 6,
-      placeholder: "Last Name",
-      defaultValue: ""
+      name: 'position',
+      type: 'number',
+      placeholder: 'Position',
+      defaultValue: '',
+      validations: [{ type: 'required', value: true }],
     },
     {
-      name: "dob",
-      type: "date",
-      placeholder: "Birthdate",
-      defaultValue: ""
+      name: 'name',
+      type: 'text',
+      placeholder: 'Name',
+      defaultValue: '',
+      validations: [{ type: 'required', value: true }],
     },
     {
-      name: "addresses",
-      type: "formArray",
-      placeholder: "Addresses",
-      defaultValue: "",
-      formArrayItems: [
-        {
-          name: "country",
-          type: "select",
-          placeholder: "Country",
-          defaultValue: "",
-          size: 6,
-          options: [
-            {value: "Ethiopia", label: "Ethiopian"},
-            {value: "Sudan", label: "Sundanese"}
-          ]
-        },
-        {
-          name: 'city',
-          type: "select",
-          placeholder: "City",
-          defaultValue: "",
-          size: 6,
-          refer: "country",
-          options: [
-            {value: "Addis Ababa", label: "Addis Ababa", referredValue: "Ethiopia"},
-            {value: "Jimma", label: "Jimma", referredValue: "Ethiopia"},
-            {value: "Khartum", label: "Khartum", referredValue: "Sudan"},
-          ]
-        }
-      ]
+      name: 'weight',
+      type: 'number',
+      placeholder: 'Weight',
+      defaultValue: '',
+      validations: [{ type: 'required', value: true }],
     },
     {
-      name: "gender",
-      type: "radio",
-      placeholder: "Gender",
-      defaultValue: "",
-      options: [
-        {value: "male", label: "Male"},
-        {value: "female", label: "Female"}
-      ]
+      name: 'symbol',
+      type: 'text',
+      placeholder: 'Symbol',
+      defaultValue: '',
+      validations: [
+        { type: 'required', value: true },
+        { type: 'maxLength', value: 3 },
+      ],
     },
-    {
-      name: 'document_attachment',
-      type: "file",
-      placeholder: "Document Attachment",
-      defaultValue: "",
-    }
-  ]
-}
+  ],
+};
 
 export default sampleForm;

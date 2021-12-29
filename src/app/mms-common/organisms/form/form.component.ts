@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -32,6 +32,9 @@ export class FormComponent implements OnInit {
   mmsForm!: FormGroup;
   errors: any = {};
   data: any = {};
+
+  @Output()
+  onFormSubmit = new EventEmitter();
   constructor(private fb: FormBuilder, private errorHandler: ErrorHandler) {}
 
   // TODO: file input, checkbox
@@ -57,7 +60,7 @@ export class FormComponent implements OnInit {
       this.mmsForm.markAllAsTouched();
       return;
     }
-    console.log(this.mmsForm.value);
+    this.onFormSubmit.emit(this.mmsForm.value);
   }
 
   filterByValue(

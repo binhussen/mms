@@ -2,7 +2,12 @@
   <h3 class="title">{{form.title}}</h3>
 </mat-toolbar>
 <mat-dialog-content>
-  <app-form [actionTitle]="actionTitle" [form]="form" #formComponent></app-form>
+  <app-form
+   [actionTitle]="actionTitle"
+  [form]="form"
+  #formComponent
+  (onFormSubmit)="onSubmit($event)"
+  ></app-form>
 </mat-dialog-content>
 <mat-dialog-actions class="actions">
   <button mat-button type="submit"

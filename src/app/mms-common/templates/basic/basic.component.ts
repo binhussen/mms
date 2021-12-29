@@ -1,12 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Action} from "../../organisms/table/table.component";
-import {Form} from "../../models/form";
-
+import { Component, Input, OnInit } from '@angular/core';
+import { Action } from '../../organisms/table/table.component';
+import { Form } from '../../models/form';
 
 @Component({
   selector: 'app-basic',
   templateUrl: './basic.component.html',
-  styleUrls: ['./basic.component.scss']
+  styleUrls: ['./basic.component.scss'],
 })
 export class BasicComponent implements OnInit {
   @Input()
@@ -17,9 +16,7 @@ export class BasicComponent implements OnInit {
 
   @Input()
   actions!: Array<Action>;
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

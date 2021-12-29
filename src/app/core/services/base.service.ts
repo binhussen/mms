@@ -38,12 +38,12 @@ GET /posts?_page=7
 GET /posts?_page=7&_limit=20
  */
 
-abstract class BaseService<T> {
+export abstract class BaseService<T> {
   _path!: string;
   headers = new HttpHeaders({
     'Content-Type': 'application/json',
   });
-  constructor(private httpClient: HttpClient, private path: string) {
+  constructor(protected httpClient: HttpClient, private path: string) {
     this._path = path;
   }
   findAll(
@@ -70,12 +70,12 @@ abstract class BaseService<T> {
   }
 
   updateOne(
-    id: string,
     item: Partial<Omit<T, 'id'>>,
-    customPath: string
+    customPath?: string,
+    id?: string
   ): Observable<T> {
     return this.httpClient
-      .patch<T>(`${customPath ?? this._path}/${id}`, item)
+      .patch<T>(customPath ?? `${this._path}/${id}`, item)
       .pipe(retry(3));
   }
 

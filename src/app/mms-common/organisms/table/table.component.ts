@@ -39,23 +39,57 @@ export class TableComponent implements OnInit, AfterViewInit {
   pageSize = 5;
   dataSource = new MatTableDataSource<any>(this.data);
 
+  actionTitle = 'Create';
+
   constructor(public dialog: MatDialog, private httpClient: HttpClient) {}
 
   async ngOnInit() {
     this.loading = true;
     await this.getData('0', this.pageSize.toString());
   }
-  openDialog() {
+  openDialog(
+    actionTitle: string,
+    form: Form,
+    dataSourceUrl: string,
+    actionType: 'create' | 'expand' | 'edit' | 'delete'
+  ) {
     const dialogRef = this.dialog.open(FormDialogComponent, {
       width: '75%',
       maxWidth: '100vw',
       disableClose: true,
-      data: { actionTitle: 'Create', form: this.form },
+      data: {
+        actionTitle: actionTitle,
+        form: form,
+        dataSourceUrl: dataSourceUrl,
+        actionType: actionType,
+      },
+    });
+    dialogRef.afterClosed().subscribe(async (result) => {
+      // await this.getData('0', this.pageSize.toString());
+      console.log(result);
     });
   }
-  command(actionType: 'expand' | 'edit' | 'delete', row: any) {
+  command(actionType: 'create' | 'expand' | 'edit' | 'delete', row: any) {
     // TODO: pass the command to parent template or page
     console.log(actionType, row);
+    if (actionType === 'edit') {
+      const tempForm = { ...this.form };
+      tempForm.elements = this.form.elements.map((element) => {
+        element.defaultValue = row[element.name];
+        return element;
+      });
+      this.openDialog(
+        'Update',
+        tempForm,
+        `${this.dataSourceUrl}/${row['id']}`,
+        actionType
+      );
+    }
+
+    if (actionType === 'create') {
+      const tempForm = { ...this.form };
+      this.openDialog('Create', tempForm, this.dataSourceUrl, actionType);
+    }
   }
 
   getColumns(
