@@ -6,6 +6,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MmsCommonModule } from "./mms-common/mms-common.module";
 import { AppRoutingModule } from "./app-routing.module";
 import {CoreModule} from "./core/core.module";
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import {CoreModule} from "./core/core.module";
     BrowserModule,
     BrowserAnimationsModule,
     CoreModule,
-    AppRoutingModule
+    AppRoutingModule,
+    StoreModule.forRoot({}, {}),
+    EffectsModule.forRoot([])
   ],
   providers: [],
   bootstrap: [AppComponent]

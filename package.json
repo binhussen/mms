@@ -22,6 +22,8 @@
     "@angular/platform-browser": "~12.2.0",
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
+    "@ngrx/effects": "^13.0.2",
+    "@ngrx/store": "^13.0.2",
     "ng-animate": "^1.0.0",
     "ngx-perfect-scrollbar": "^10.1.1",
     "rxjs": "~6.6.0",
