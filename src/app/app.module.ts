@@ -11,6 +11,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import {metaReducers, reducers} from "./store/reducers";
+import {FormEffect} from "./store/effects/form.effect";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -20,11 +22,12 @@ import {metaReducers, reducers} from "./store/reducers";
     BrowserModule,
     BrowserAnimationsModule,
     CoreModule,
+    HttpClientModule,
     AppRoutingModule,
     StoreModule.forRoot(reducers, {
       metaReducers
     }),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([FormEffect]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [],

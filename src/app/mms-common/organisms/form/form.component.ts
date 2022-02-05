@@ -15,6 +15,9 @@ import {
   Validation,
   Option,
 } from '../../models/form';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../store/models/app.state';
+import formActions from '../../../store/actions/form.actions';
 
 @Component({
   selector: 'app-form',
@@ -60,6 +63,7 @@ export class FormComponent implements OnInit {
       this.mmsForm.markAllAsTouched();
       return;
     }
+
     this.onFormSubmit.emit(this.mmsForm.value);
   }
 

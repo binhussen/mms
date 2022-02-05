@@ -1,3 +1,5 @@
+import { ActionType } from 'src/app/mms-common/organisms/form-dialog/form-dialog.component';
+
 export interface FormInfo {
   submittedToUrl: string;
 }
@@ -7,6 +9,7 @@ export interface FormData {
 export interface FormState {
   id: string | null;
   status: 'PENDING' | 'FAILED' | 'SUCCESS' | null;
+  action: ActionType;
   submittedToUrl: string | null;
   data: any;
   response: any;

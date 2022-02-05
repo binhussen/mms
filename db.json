@@ -140,6 +140,90 @@
       "weight": 66,
       "symbol": "Ca",
       "id": 3
+    },
+    {
+      "position": 1,
+      "name": "ezedin fedlu",
+      "weight": 44,
+      "symbol": "4",
+      "id": 4
+    },
+    {
+      "position": 2,
+      "name": "fuck",
+      "weight": 3,
+      "symbol": "ff",
+      "id": 5
+    }
+  ],
+  "notifies": [
+    {
+      "id": 1,
+      "description": "new",
+      "document_attachment": "https://v2.convertapi.com/d/854tzpz8u3g5p3f7we5hz02y42uccrjk"
+    },
+    {
+      "id": 2,
+      "description": "trys2",
+      "document_attachment": null
+    }
+  ],
+  "notifyitems": [
+    {
+      "type": "Other",
+      "name": "የውሃ ኮዳ",
+      "quantity": 15,
+      "id": 2,
+      "notifyId": 2
+    },
+    {
+      "type": "Weapon",
+      "name": "ማካሮቭ",
+      "quantity": 20,
+      "id": 3,
+      "notifyId": 2
+    },
+    {
+      "type": "Bullet",
+      "name": "ክላሽ ጠብመንጃ ካርታ",
+      "quantity": 15,
+      "id": 4,
+      "notifyId": 1
+    },
+    {
+      "type": "Bullet",
+      "name": "የቶካሮቭ ሽጉጥ ካርታ",
+      "quantity": 25,
+      "id": 5,
+      "notifyId": 2
+    },
+    {
+      "type": "Other",
+      "name": "የእጅ ካቴና",
+      "quantity": 20,
+      "id": 7,
+      "notifyId": 1
+    },
+    {
+      "type": "Other",
+      "name": "የውሃ ኮዳ",
+      "quantity": 35,
+      "id": 8,
+      "notifyId": 2
+    },
+    {
+      "type": "Other",
+      "name": "የውሃ ኮዳ",
+      "quantity": 2500,
+      "notifyId": 2,
+      "id": 9
+    },
+    {
+      "type": "Weapon",
+      "name": "ክላሽ ጠብመንጃ",
+      "quantity": 10,
+      "notifyId": "1",
+      "id": 10
     }
   ]
 }
