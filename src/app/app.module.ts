@@ -6,6 +6,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MmsCommonModule } from "./mms-common/mms-common.module";
 import { AppRoutingModule } from "./app-routing.module";
 import {CoreModule} from "./core/core.module";
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import {metaReducers, reducers} from "./store/reducers";
+import {FormEffect} from "./store/effects/form.effect";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -15,7 +22,13 @@ import {CoreModule} from "./core/core.module";
     BrowserModule,
     BrowserAnimationsModule,
     CoreModule,
-    AppRoutingModule
+    HttpClientModule,
+    AppRoutingModule,
+    StoreModule.forRoot(reducers, {
+      metaReducers
+    }),
+    EffectsModule.forRoot([FormEffect]),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]
