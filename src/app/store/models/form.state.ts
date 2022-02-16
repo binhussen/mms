@@ -10,6 +10,7 @@ export interface FormState {
   id: string | null;
   status: 'PENDING' | 'FAILED' | 'SUCCESS' | null;
   action: ActionType;
+  updating: FormData | null;
   submittedToUrl: string | null;
   data: any;
   response: any;

@@ -1,0 +1,120 @@
+import { Form } from 'src/app/mms-common/models/form';
+
+const inventoryForm: Form = {
+  title: 'Inventory',
+  elements: [
+    {
+      name: 'itemNoInExpenditureRegister',
+      type: 'text',
+      placeholder: 'Item No. in Expenditure Register',
+      defaultValue: '',
+      size: 4,
+      validations: [{ type: 'required', value: true }],
+    },
+    {
+      name: 'noOfEntryInTheRegisterOfIncomingGoods',
+      type: 'text',
+      placeholder: 'No. of Entry in the Register of Incoming Goods',
+      defaultValue: '',
+      size: 4,
+      validations: [{ type: 'required', value: true }],
+    },
+    {
+      name: 'classificationOfStock',
+      type: 'select',
+      placeholder: 'Classification of Stock',
+      defaultValue: '',
+      size: 4,
+      options: [
+        { value: 'Weapon', label: 'Weapon' },
+        { value: 'Bullet', label: 'Bullet' },
+        { value: 'Other', label: 'Other' },
+      ],
+      validations: [{ type: 'required', value: true }],
+    },
+    {
+      name: 'storeNo',
+      type: 'text',
+      placeholder: 'Store No.',
+      defaultValue: '',
+      size: 4,
+      validations: [{ type: 'required', value: true }],
+    },
+    {
+      name: 'shelfNo',
+      type: 'text',
+      placeholder: 'Shelf No.',
+      defaultValue: '',
+      size: 4,
+      validations: [{ type: 'required', value: true }],
+    },
+    {
+      name: 'date',
+      type: 'date',
+      placeholder: 'Date',
+      defaultValue: '',
+      size: 4,
+      validations: [{ type: 'required', value: true }],
+    },
+    {
+      name: 'donor',
+      type: 'text',
+      placeholder: 'Donor',
+      defaultValue: '',
+      size: 4,
+      validations: [{ type: 'required', value: true }],
+    },
+    {
+      name: 'weaponItems',
+      type: 'formArray',
+      placeholder: 'Weapon Items',
+      defaultValue: '',
+      formArrayItems: [
+        {
+          name: 'weaponItemDescription',
+          type: 'text',
+          placeholder: 'Weapon Item Description',
+          defaultValue: '',
+          size: 4,
+        },
+        {
+          name: 'weaponModel',
+          type: 'text',
+          placeholder: 'Weapon Model',
+          defaultValue: '',
+          size: 4,
+        },
+        {
+          name: 'weaponSerialNo',
+          type: 'text',
+          placeholder: 'Weapon Serial No.',
+          defaultValue: '',
+          size: 4,
+        },
+        {
+          name: 'weaponQuantity',
+          type: 'text',
+          placeholder: 'Weapon Quantity',
+          defaultValue: '',
+          size: 4,
+        },
+        {
+          name: 'weaponUnitPrice',
+          type: 'text',
+          placeholder: 'Weapon Unit Price',
+          defaultValue: '',
+          size: 4,
+        },
+        {
+          name: 'weaponTotalPrice',
+          type: 'text',
+          placeholder: 'Weapon Total Price',
+          defaultValue: '',
+          size: 4,
+        },
+      ],
+    },
+  ],
+};
+
+export default inventoryForm;

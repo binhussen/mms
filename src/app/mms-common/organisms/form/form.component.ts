@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
+  AbstractControl,
   FormArray,
   FormBuilder,
   FormControl,
@@ -7,8 +8,19 @@ import {
   Validators,
 } from '@angular/forms';
 import { ErrorHandler } from '../../services/error.handler';
-import { map, tap } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
+import {
+  debounce,
+  distinctUntilChanged,
+  map,
+  mergeMap,
+  skip,
+  switchMap,
+  takeLast,
+  takeUntil,
+  takeWhile,
+  tap,
+} from 'rxjs/operators';
+import { combineLatest, Observable, of } from 'rxjs';
 import {
   Form as FormBase,
   FormElement,
@@ -18,6 +30,8 @@ import {
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../store/models/app.state';
 import formActions from '../../../store/actions/form.actions';
+import { ActionType } from '../form-dialog/form-dialog.component';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-form',
@@ -32,13 +46,20 @@ export class FormComponent implements OnInit {
   @Input()
   asDialog = false;
 
+  @Input()
+  actionType!: ActionType;
+
   mmsForm!: FormGroup;
   errors: any = {};
   data: any = {};
 
   @Output()
   onFormSubmit = new EventEmitter();
-  constructor(private fb: FormBuilder, private errorHandler: ErrorHandler) {}
+  constructor(
+    private fb: FormBuilder,
+    private errorHandler: ErrorHandler,
+    private store$: Store<AppState>
+  ) {}
 
   // TODO: file input, checkbox
   // TODO: get form info from url,
@@ -48,12 +69,57 @@ export class FormComponent implements OnInit {
   ngOnInit(): void {
     this.actionTitle =
       this.actionTitle[0].toUpperCase() + this.actionTitle.substring(1);
-    this.initForm();
-    this.errorHandler.handleErrors(this.mmsForm, this.errors);
+    this.initForm().then(() => {
+      this.errorHandler.handleErrors(this.mmsForm, this.errors);
+    });
   }
 
-  initForm() {
+  async initForm() {
     this.mmsForm = this.getNewFormGroup(this.form.elements);
+    await this.getForm(this.form.elements).toPromise();
+  }
+
+  getForm(elements: Array<FormElement>) {
+    return this.store$
+      .select((state) => state.form.updating)
+      .pipe(
+        takeWhile((value) => this.actionType === 'edit'),
+        skip(1),
+        distinctUntilChanged(),
+        tap((updating) => {
+          elements.forEach((element) => {
+            if (element.type !== 'formArray' && updating) {
+              this.mmsForm
+                .get(element.name)
+                ?.patchValue(updating[element.name]);
+            }
+
+            if (element.type === 'formArray' && updating) {
+              const items = updating[element.name]?.map((item: any) =>
+                this.getNewFormItem(element.formArrayItems ?? [])
+              );
+              items?.forEach((control: AbstractControl, index: number) => {
+                if (control instanceof FormGroup) {
+                  for (let con in control.controls) {
+                    control.controls[con].patchValue(
+                      updating[element.name][index][con]
+                    );
+                  }
+                }
+
+                if (control instanceof FormControl) {
+                  control.patchValue(updating[element.name][index]);
+                }
+              });
+              const formArray = this.mmsForm.get(element.name) as FormArray;
+              this.mmsForm.setControl(
+                element.name,
+                items ? this.fb.array(items) : formArray
+              );
+            }
+          });
+        })
+      );
   }
 
   dateChanged(e: any, control: string) {}

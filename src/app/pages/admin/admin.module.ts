@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {RouterModule, Routes} from "@angular/router";
-import {AdminComponent} from "./admin.component";
-import {MmsCommonModule} from "../../mms-common/mms-common.module";
+import { RouterModule, Routes } from '@angular/router';
+import { AdminComponent } from './admin.component';
+import { MmsCommonModule } from '../../mms-common/mms-common.module';
 
 const routes: Routes = [
   {
@@ -12,26 +12,31 @@ const routes: Routes = [
       {
         path: '',
         redirectTo: 'dashboard',
-        pathMatch: 'full'
+        pathMatch: 'full',
+      },
+      {
+        path: 'weapon',
+        loadChildren: () =>
+          import('../weapon/weapon.module').then((m) => m.WeaponModule),
       },
       {
         path: 'notify',
-        loadChildren: () => import('../sample/sample.module').then(m => m.SampleModule)
+        loadChildren: () =>
+          import('../sample/sample.module').then((m) => m.SampleModule),
       },
       {
         path: 'dashboard',
-        loadChildren: () => import('../dashboard/dashboard.module').then(m => m.DashboardModule)
-      }
-    ]
-  }
-]
+        loadChildren: () =>
+          import('../dashboard/dashboard.module').then(
+            (m) => m.DashboardModule
+          ),
+      },
+    ],
+  },
+];
 
 @NgModule({
   declarations: [AdminComponent],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    MmsCommonModule
-  ]
+  imports: [CommonModule, RouterModule.forChild(routes), MmsCommonModule],
 })
-export class AdminModule { }
+export class AdminModule {}

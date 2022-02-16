@@ -158,72 +158,240 @@
   ],
   "notifies": [
     {
-      "id": 1,
-      "description": "new",
-      "document_attachment": "https://v2.convertapi.com/d/854tzpz8u3g5p3f7we5hz02y42uccrjk"
+      "weaponDescription": "ezedin.fedlu@gmail.com",
+      "attachments": "https://v2.convertapi.com/d/m7ij2256wfgxnrkbjptdqowmvgitkpqw",
+      "id": 4
     },
     {
-      "id": 2,
-      "description": "trys2",
-      "document_attachment": null
+      "weaponDescription": "+251923275571",
+      "attachments": "https://v2.convertapi.com/d/sge59t12dvd7ju35ug69r2xesoumtx6o",
+      "id": 5
+    },
+    {
+      "weaponDescription": "weapon description",
+      "attachments": "https://v2.convertapi.com/d/78yhy7q0le74m2af8hh4hxlry4ed2a3j",
+      "id": 6
+    },
+    {
+      "weaponDescription": "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq",
+      "attachments": "https://v2.convertapi.com/d/njbt7mynbaexn4w3r2leut642ziq1pnf",
+      "id": 7
+    },
+    {
+      "weaponDescription": "bullet description",
+      "attachments": "https://v2.convertapi.com/d/roroseuggknlvqe7alxz9sz9s9bsj9j4",
+      "id": 8
     }
   ],
   "notifyitems": [
     {
-      "type": "Other",
-      "name": "የውሃ ኮዳ",
-      "quantity": 15,
-      "id": 2,
-      "notifyId": 2
-    },
-    {
-      "type": "Weapon",
-      "name": "ማካሮቭ",
+      "weaponType": "Weapon",
+      "weaponName": "Ezedin",
       "quantity": 20,
-      "id": 3,
-      "notifyId": 2
+      "notifiesId": 4,
+      "id": 11
     },
     {
-      "type": "Bullet",
-      "name": "ክላሽ ጠብመንጃ ካርታ",
-      "quantity": 15,
-      "id": 4,
-      "notifyId": 1
+      "weaponType": "Weapon",
+      "weaponName": "bvbbvvvvvvvvvvvvvvvvvvvvvvvvvvvvv",
+      "quantity": 23,
+      "notifiesId": 5,
+      "id": 12
     },
     {
-      "type": "Bullet",
-      "name": "የቶካሮቭ ሽጉጥ ካርታ",
-      "quantity": 25,
-      "id": 5,
-      "notifyId": 2
-    },
-    {
-      "type": "Other",
-      "name": "የእጅ ካቴና",
+      "weaponType": "Weapon",
+      "weaponName": "ካኑኒ ኤስ ሽጉጥ",
       "quantity": 20,
-      "id": 7,
-      "notifyId": 1
+      "notifiesId": 6,
+      "id": 13
     },
     {
-      "type": "Other",
-      "name": "የውሃ ኮዳ",
-      "quantity": 35,
-      "id": 8,
-      "notifyId": 2
+      "weaponType": "Bullet",
+      "weaponName": "Bullet something",
+      "quantity": 33,
+      "notifiesId": 6,
+      "id": 14
     },
     {
-      "type": "Other",
-      "name": "የውሃ ኮዳ",
-      "quantity": 2500,
-      "notifyId": 2,
-      "id": 9
+      "weaponType": "Bullet",
+      "weaponName": "Bullet something",
+      "quantity": 33,
+      "notifiesId": 7,
+      "id": 15
     },
     {
-      "type": "Weapon",
-      "name": "ክላሽ ጠብመንጃ",
-      "quantity": 10,
-      "notifyId": "1",
-      "id": 10
+      "weaponType": "Other",
+      "weaponName": "other weaoon",
+      "quantity": 45,
+      "notifiesId": 8,
+      "id": 16
+    },
+    {
+      "weaponType": "Bullet",
+      "weaponName": "Technical interviewer position",
+      "quantity": 78,
+      "notifiesId": 9,
+      "id": 17
+    },
+    {
+      "weaponType": "Bullet",
+      "weaponName": "Technical interviewer position",
+      "quantity": 78,
+      "notifiesId": 10,
+      "id": 18
+    },
+    {
+      "weaponType": "Other",
+      "weaponName": "dfa",
+      "quantity": 22,
+      "notifiesId": 11,
+      "id": 19
+    },
+    {
+      "weaponType": "Other",
+      "weaponName": "dfa",
+      "quantity": 22,
+      "notifiesId": 12,
+      "id": 20
+    },
+    {
+      "weaponType": "Bullet",
+      "weaponName": "Technical interviewer position",
+      "quantity": 22,
+      "notifiesId": 7,
+      "id": 21
+    },
+    {
+      "weaponType": "Bullet",
+      "weaponName": "Technical interviewer position",
+      "quantity": 22,
+      "notifiesId": 8,
+      "id": 22
+    },
+    {
+      "weaponType": "Other",
+      "weaponName": "Ezedin",
+      "quantity": 55,
+      "notifiesId": 9,
+      "id": 23
+    },
+    {
+      "weaponType": "Other",
+      "weaponName": "Ezedin",
+      "quantity": 55,
+      "notifiesId": 10,
+      "id": 24
+    },
+    {
+      "weaponType": "Other",
+      "weaponName": "ffd",
+      "quantity": 11,
+      "notifiesId": 200,
+      "id": 25
+    },
+    {
+      "weaponType": "Other",
+      "weaponName": "ffd",
+      "quantity": 11,
+      "notifiesId": 201,
+      "id": 26
+    },
+    {
+      "weaponType": "Other",
+      "weaponName": "Technical interviewer position",
+      "quantity": 11,
+      "notifiesId": 202,
+      "id": 27
+    },
+    {
+      "weaponType": "Other",
+      "weaponName": "Technical interviewer position",
+      "quantity": 11,
+      "notifiesId": 203,
+      "id": 28
+    },
+    {
+      "weaponType": "Other",
+      "weaponName": "www",
+      "quantity": 22,
+      "notifiesId": 204,
+      "id": 29
+    },
+    {
+      "weaponType": "Other",
+      "weaponName": "www",
+      "quantity": 22,
+      "notifiesId": 205,
+      "id": 30
+    },
+    {
+      "weaponType": "Bullet",
+      "weaponName": "Technical interviewer position",
+      "quantity": 88,
+      "notifiesId": 206,
+      "id": 31
+    },
+    {
+      "weaponType": "Other",
+      "weaponName": "Ezedin",
+      "quantity": 44,
+      "notifiesId": 208,
+      "id": 32
+    },
+    {
+      "weaponType": "Bullet",
+      "weaponName": "Ezedin",
+      "quantity": 33,
+      "notifiesId": 209,
+      "id": 33
+    },
+    {
+      "weaponType": "Other",
+      "weaponName": "www",
+      "quantity": 22,
+      "notifiesId": 210,
+      "id": 34
+    },
+    {
+      "weaponType": "Bullet",
+      "weaponName": "www",
+      "quantity": 55,
+      "notifiesId": 20,
+      "id": 35
+    }
+  ],
+  "weaponInventories": [
+    {
+      "itemNoInExpenditureRegister": "50.00",
+      "noOfEntryInTheRegisterOfIncomingGoods": "55.33",
+      "classificationOfStock": "Weapon",
+      "storeNo": "200",
+      "shelfNo": "55",
+      "date": "2022-02-09T21:00:00.000Z",
+      "donor": "Mohammed",
+      "id": 1
+    }
+  ],
+  "weaponItems": [
+    {
+      "weaponItemDescription": "ካኑኒ ኤስ ሽጉጥ",
+      "weaponModel": "Model",
+      "weaponSerialNo": "555",
+      "weaponQuantity": "50",
+      "weaponUnitPrice": "40",
+      "weaponTotalPrice": "2000",
+      "weaponInventoriesId": 1,
+      "id": 1
+    },
+    {
+      "weaponItemDescription": "ካኑኒ ኤስ ሽጉጥ",
+      "weaponModel": "model2",
+      "weaponSerialNo": "66",
+      "weaponQuantity": "20",
+      "weaponUnitPrice": "10",
+      "weaponTotalPrice": "200",
+      "weaponInventoriesId": 1,
+      "id": 2
     }
   ]
 }

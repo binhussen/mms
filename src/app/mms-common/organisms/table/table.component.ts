@@ -1,5 +1,6 @@
 import {
   AfterViewInit,
+  ChangeDetectorRef,
   Component,
   Input,
   OnInit,
@@ -11,6 +12,16 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Form } from '../../models/form';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/models/app.state';
+import tableSelectors from 'src/app/store/selectors/table.selectors';
+import { TableService } from './table.service';
+import { debounce, filter, map, mergeMap, takeLast, tap } from 'rxjs/operators';
+import { concat, Observable, of } from 'rxjs';
+import { TableState } from 'src/app/store/models/table.state';
+import tableActions from 'src/app/store/actions/table.actions';
+import formActions from 'src/app/store/actions/form.actions';
 export interface Action {
   name: string;
   type: 'expand' | 'edit' | 'delete';
@@ -41,17 +52,27 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   actionTitle = 'Create';
 
-  constructor(public dialog: MatDialog, private httpClient: HttpClient) {}
+  tableState$!: Observable<TableState>;
+  links!: any;
+
+  constructor(
+    public dialog: MatDialog,
+    private router: Router,
+    private store$: Store<AppState>,
+    public tableService: TableService,
+    private changeDetectorRefs: ChangeDetectorRef
+  ) {}
 
   async ngOnInit() {
-    this.loading = true;
-    await this.getData('0', this.pageSize.toString());
+    this.tableState$ = this.store$.select(tableSelectors.getTableState);
+    await this.initTable(this.tableState$).toPromise();
   }
   openDialog(
     actionTitle: string,
     form: Form,
     dataSourceUrl: string,
-    actionType: 'create' | 'expand' | 'edit' | 'delete'
+    actionType: 'create' | 'expand' | 'edit' | 'delete',
+    row?: any
   ) {
     const dialogRef = this.dialog.open(FormDialogComponent, {
       width: '75%',
@@ -62,100 +83,90 @@ export class TableComponent implements OnInit, AfterViewInit {
         form: form,
         dataSourceUrl: dataSourceUrl,
         actionType: actionType,
+        row: row,
       },
     });
     dialogRef.afterClosed().subscribe(async (result) => {
-      // await this.getData('0', this.pageSize.toString());
-      console.log(result);
+      this.store$.dispatch(formActions.clearData());
     });
   }
   command(actionType: 'create' | 'expand' | 'edit' | 'delete', row: any) {
-    // TODO: pass the command to parent template or page
-    console.log(actionType, row);
-    if (actionType === 'edit') {
-      const tempForm = { ...this.form };
-      tempForm.elements = this.form.elements.map((element) => {
-        element.defaultValue = row[element.name];
-        return element;
-      });
-      this.openDialog(
-        'Update',
-        tempForm,
-        `${this.dataSourceUrl}/${row['id']}`,
-        actionType
-      );
-    }
-
-    if (actionType === 'create') {
-      const tempForm = { ...this.form };
-      this.openDialog('Create', tempForm, this.dataSourceUrl, actionType);
+    switch (actionType) {
+      case 'create':
+        this.openDialog('Create', this.form, this.links.createPath, actionType);
+        break;
+      case 'expand':
+        this.router.navigate([`${this.router.url}/${row['id']}`]);
+        break;
+      case 'edit':
+        // fill the form with the current row
+        this.store$.dispatch(formActions.setUpdatingForm({ value: row }));
+        this.openDialog(
+          'Update',
+          this.form,
+          this.links.updatePath,
+          actionType,
+          row
+        );
+        break;
+      case 'delete':
+        // delete the row
+        break;
+      default:
+        console.log('unknown action');
     }
   }
 
-  getColumns(
-    data: Array<any>,
-    excluded: Array<string> = ['created_at', 'updated_at'],
-    actionsAvailable: boolean
-  ) {
-    let columns = data
-      .reduce((c, r) => {
-        return [...c, ...Object.keys(r)];
-      }, [])
-      .reduce((cs: any, c: any) => {
-        return cs.includes(c) ? cs : [...cs, c];
-      }, [])
-      .filter((c: any) => !excluded.includes(c));
-    columns = ['No', ...columns, ' '];
-    // Describe the columns for <mat-table>.
-    this.columns = columns.map((column: any, index: number) => {
-      return {
-        columnDef: column,
-        header: column.replace(/([^A-Z])([A-Z])/g, '$1 $2'),
-        cell: (element: any) =>
-          `${
-            column === 'No'
-              ? ''
-              : element && element[column]
-              ? element[column]
-              : ``
-          }`,
-      };
-    });
-    this.displayedColumns = this.columns.map((c) => c.columnDef);
-  }
-
-  async getData(page: string, limit: string, currentSize?: number) {
-    let params = new HttpParams();
-    params = params.set('_page', page);
-    params = params.set('_limit', limit);
-    this.httpClient
-      .get<Array<any>>(`${this.dataSourceUrl}?${params.toString()}`, {
-        observe: 'response',
-      })
-      .toPromise()
-      .then((data) => {
-        if (!currentSize) {
-          this.data = data.body ?? [];
-          this.getColumns(this.data, this.excludedColumns, true);
+  initTable(state$: Observable<TableState>, currentSize?: number) {
+    return this.store$.select(tableSelectors.getTableState).pipe(
+      filter((state) => Boolean(state?.data && state?.data?.length)),
+      tap(({ data, totalItems, excludedColumns, links }) => {
+        if (!currentSize && data) {
+          this.links = links;
+          this.data = [...data];
+          this.columns = this.tableService.getColumns(
+            this.data,
+            excludedColumns ?? []
+          );
+          this.displayedColumns = this.tableService.getDisplayedColumns(
+            this.columns
+          );
         }
-        if (currentSize) {
-          const temp = data.body ?? [];
+        if (currentSize && data) {
           this.data.length = currentSize;
-          this.data.push(...temp);
+          this.data.push(...data);
         }
-        this.data.length = Number(data.headers.get('X-Total-Count') ?? 20);
-        this.dataSource = new MatTableDataSource<any>(this.data);
+
+        // deep copy
+        const temp = JSON.parse(JSON.stringify(this.data));
+        temp.length = totalItems;
+        this.data = temp;
+
+        this.dataSource = new MatTableDataSource<any>(data);
+        this.changeDetectorRefs.detectChanges();
         this.dataSource._updateChangeSubscription();
         this.dataSource.paginator = this.paginator;
-        this.loading = false;
-      });
+      })
+    );
   }
 
   async pageChange(value: any) {
     const _page = value.pageIndex;
     const _limit = value.pageSize;
     let previousSize = _page * _limit;
-    await this.getData(_page + 1, _limit, previousSize);
+
+    // update page number and page size
+    this.store$.dispatch(
+      tableActions.updatePageNumber({
+        value: {
+          pageNumber: _page,
+          pageSize: _limit,
+          getPath: this.links.getPath,
+        },
+      })
+    );
+
+    await this.initTable(this.tableState$, previousSize).toPromise();
   }
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;

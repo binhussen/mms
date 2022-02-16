@@ -10,10 +10,13 @@
       <div fxFlex class="login__form">
         <h2 class="header-title">Login</h2>
         <h3>Please login to your account</h3>
-        <app-form [form]="form"></app-form>
+        <app-form [form]="form"
+        (onFormSubmit)="onSubmit($event)"
+        #formComponent
+        ></app-form>
 <!--        <a style="align-self: flex-start; color: #000F2D" [routerLink]="'/forgot-password'">Forgot your password?</a>-->
         <a style="align-self: flex-start; color: #000F2D" href="#">Forgot your password?</a>
-        <app-loading-button [isLoading]="false" style="align-self: flex-end;">Login</app-loading-button>
+        <app-loading-button (click)="formComponent.submit()" [isLoading]="false" style="align-self: flex-end;">Login</app-loading-button>
       </div>
     </mat-card-content>
   </mat-card>
