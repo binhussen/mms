@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import {
   AbstractControl,
   FormArray,
@@ -10,6 +17,7 @@ import {
 import { ErrorHandler } from '../../services/error.handler';
 import {
   debounce,
+  debounceTime,
   distinctUntilChanged,
   map,
   mergeMap,
@@ -19,8 +27,17 @@ import {
   takeUntil,
   takeWhile,
   tap,
+  zipAll,
 } from 'rxjs/operators';
-import { combineLatest, Observable, of } from 'rxjs';
+import {
+  combineLatest,
+  concat,
+  merge,
+  Observable,
+  of,
+  Subscription,
+  zip,
+} from 'rxjs';
 import {
   Form as FormBase,
   FormElement,
@@ -38,7 +55,7 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
 })
-export class FormComponent implements OnInit {
+export class FormComponent implements OnInit, OnDestroy {
   @Input()
   form!: FormBase;
   @Input()
@@ -53,6 +70,8 @@ export class FormComponent implements OnInit {
   errors: any = {};
   data: any = {};
 
+  subscriptions: Array<Subscription> = [];
+
   @Output()
   onFormSubmit = new EventEmitter();
   constructor(
@@ -60,6 +79,9 @@ export class FormComponent implements OnInit {
     private errorHandler: ErrorHandler,
     private store$: Store<AppState>
   ) {}
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
+  }
 
   // TODO: file input, checkbox
   // TODO: get form info from url,
@@ -77,6 +99,7 @@ export class FormComponent implements OnInit {
   async initForm() {
     this.mmsForm = this.getNewFormGroup(this.form.elements);
     await this.getForm(this.form.elements).toPromise();
+    this.computeValues(this.form.elements);
   }
 
   getForm(elements: Array<FormElement>) {
@@ -84,7 +107,6 @@ export class FormComponent implements OnInit {
       .select((state) => state.form.updating)
       .pipe(
         takeWhile((value) => this.actionType === 'edit'),
-        skip(1),
         distinctUntilChanged(),
         tap((updating) => {
           elements.forEach((element) => {
@@ -116,6 +138,10 @@ export class FormComponent implements OnInit {
                 element.name,
                 items ? this.fb.array(items) : formArray
               );
+            } else if (updating) {
+              this.mmsForm
+                .get(element.name)
+                ?.patchValue(updating[element.name]);
             }
           });
         })
@@ -211,6 +237,58 @@ export class FormComponent implements OnInit {
     return this.fb.group(temp);
   }
 
+  computeValues(elements: Array<FormElement>) {
+    elements.forEach((element) => {
+      if (element.type === 'formArray') {
+        element.formArrayItems?.forEach((item) => {});
+        const items = (this.mmsForm.get(element.name) as FormArray).controls;
+        items.forEach((control) => {
+          if (control instanceof FormGroup) {
+            const controls = control.controls;
+            for (let con in controls) {
+              const tempEl = element.formArrayItems?.find(
+                (el) => el.name === con
+              );
+              if (tempEl && tempEl.computeValueFrom) {
+                const sub1 = combineLatest(
+                  tempEl.computeValueFrom.elements.map(
+                    (el) => controls[el]?.valueChanges
+                  )
+                ).subscribe((values) => {
+                  // @TODO for the time being only multiplication is implemented
+                  controls[con].patchValue(
+                    values.reduce((ac, cur) => ac * cur, 1),
+                    { emitEvent: false }
+                  );
+                });
+                this.subscriptions.push(sub1);
+              }
+            }
+          }
+        });
+      } else {
+        if (element.computeValueFrom) {
+          const tempEl = this.mmsForm.get(element.name) as FormControl;
+          const sub2 = combineLatest(
+            element.computeValueFrom.elements.map(
+              (el) => this.mmsForm.get(el)?.valueChanges
+            )
+          ).subscribe((values) => {
+            // @TODO for the time being only multiplication is implemented
+            if (values && values.length > 0) {
+              tempEl.patchValue(
+                values.reduce((ac, cur: any) => ac * cur, 1),
+                { emitEvent: false }
+              );
+            }
+          });
+
+          this.subscriptions.push(sub2);
+        }
+      }
+    });
+  }
+
   getNewFormArray(elements: Array<FormElement>): FormArray {
     const item = this.getNewFormItem(elements);
     return this.fb.array([item]);
@@ -235,6 +313,7 @@ export class FormComponent implements OnInit {
     const formArray = this.mmsForm.get(path) as FormArray;
     const newItem = this.getNewFormItem(elements);
     formArray.push(newItem);
+    this.computeValues(this.form.elements);
   }
   removeFormItemFromFormArray(event: any, path: string, index: number) {
     event.preventDefault();

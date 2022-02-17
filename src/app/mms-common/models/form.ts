@@ -1,5 +1,6 @@
 export interface Validation {
-  type: 'required'
+  type:
+    | 'required'
     | 'minLength'
     | 'maxLength'
     | 'max'
@@ -11,18 +12,25 @@ export interface Validation {
 }
 export interface FormElement {
   name: string;
-  type: 'text'
+  type:
+    | 'text'
     | 'select'
     | 'date'
     | 'checkbox'
     | 'radio'
     | 'email'
     | 'number'
-    | 'password' | 'file' | 'formArray';
+    | 'password'
+    | 'file'
+    | 'formArray';
   placeholder: string;
   defaultValue: any;
   refer?: string;
   size?: number;
+  computeValueFrom?: {
+    elements: Array<string>;
+    operator: '+' | '-' | '*' | '/';
+  };
   options?: Array<Option>;
   validations?: Array<Validation>;
   formArrayItems?: Array<FormElement>;
