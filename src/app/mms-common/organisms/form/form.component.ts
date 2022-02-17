@@ -1,5 +1,13 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
+import {
+  AbstractControl,
   FormArray,
   FormBuilder,
   FormControl,
@@ -7,8 +15,29 @@ import {
   Validators,
 } from '@angular/forms';
 import { ErrorHandler } from '../../services/error.handler';
-import { map, tap } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
+import {
+  debounce,
+  debounceTime,
+  distinctUntilChanged,
+  map,
+  mergeMap,
+  skip,
+  switchMap,
+  takeLast,
+  takeUntil,
+  takeWhile,
+  tap,
+  zipAll,
+} from 'rxjs/operators';
+import {
+  combineLatest,
+  concat,
+  merge,
+  Observable,
+  of,
+  Subscription,
+  zip,
+} from 'rxjs';
 import {
   Form as FormBase,
   FormElement,
@@ -18,13 +47,15 @@ import {
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../store/models/app.state';
 import formActions from '../../../store/actions/form.actions';
+import { ActionType } from '../form-dialog/form-dialog.component';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
 })
-export class FormComponent implements OnInit {
+export class FormComponent implements OnInit, OnDestroy {
   @Input()
   form!: FormBase;
   @Input()
@@ -32,13 +63,25 @@ export class FormComponent implements OnInit {
   @Input()
   asDialog = false;
 
+  @Input()
+  actionType!: ActionType;
+
   mmsForm!: FormGroup;
   errors: any = {};
   data: any = {};
 
+  subscriptions: Array<Subscription> = [];
+
   @Output()
   onFormSubmit = new EventEmitter();
-  constructor(private fb: FormBuilder, private errorHandler: ErrorHandler) {}
+  constructor(
+    private fb: FormBuilder,
+    private errorHandler: ErrorHandler,
+    private store$: Store<AppState>
+  ) {}
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
+  }
 
   // TODO: file input, checkbox
   // TODO: get form info from url,
@@ -48,12 +91,61 @@ export class FormComponent implements OnInit {
   ngOnInit(): void {
     this.actionTitle =
       this.actionTitle[0].toUpperCase() + this.actionTitle.substring(1);
-    this.initForm();
-    this.errorHandler.handleErrors(this.mmsForm, this.errors);
+    this.initForm().then(() => {
+      this.errorHandler.handleErrors(this.mmsForm, this.errors);
+    });
   }
 
-  initForm() {
+  async initForm() {
     this.mmsForm = this.getNewFormGroup(this.form.elements);
+    await this.getForm(this.form.elements).toPromise();
+    this.computeValues(this.form.elements);
+  }
+
+  getForm(elements: Array<FormElement>) {
+    return this.store$
+      .select((state) => state.form.updating)
+      .pipe(
+        takeWhile((value) => this.actionType === 'edit'),
+        distinctUntilChanged(),
+        tap((updating) => {
+          elements.forEach((element) => {
+            if (element.type !== 'formArray' && updating) {
+              this.mmsForm
+                .get(element.name)
+                ?.patchValue(updating[element.name]);
+            }
+
+            if (element.type === 'formArray' && updating) {
+              const items = updating[element.name]?.map((item: any) =>
+                this.getNewFormItem(element.formArrayItems ?? [])
+              );
+              items?.forEach((control: AbstractControl, index: number) => {
+                if (control instanceof FormGroup) {
+                  for (let con in control.controls) {
+                    control.controls[con].patchValue(
+                      updating[element.name][index][con]
+                    );
+                  }
+                }
+
+                if (control instanceof FormControl) {
+                  control.patchValue(updating[element.name][index]);
+                }
+              });
+              const formArray = this.mmsForm.get(element.name) as FormArray;
+              this.mmsForm.setControl(
+                element.name,
+                items ? this.fb.array(items) : formArray
+              );
+            } else if (updating) {
+              this.mmsForm
+                .get(element.name)
+                ?.patchValue(updating[element.name]);
+            }
+          });
+        })
+      );
   }
 
   dateChanged(e: any, control: string) {}
@@ -145,6 +237,58 @@ export class FormComponent implements OnInit {
     return this.fb.group(temp);
   }
 
+  computeValues(elements: Array<FormElement>) {
+    elements.forEach((element) => {
+      if (element.type === 'formArray') {
+        element.formArrayItems?.forEach((item) => {});
+        const items = (this.mmsForm.get(element.name) as FormArray).controls;
+        items.forEach((control) => {
+          if (control instanceof FormGroup) {
+            const controls = control.controls;
+            for (let con in controls) {
+              const tempEl = element.formArrayItems?.find(
+                (el) => el.name === con
+              );
+              if (tempEl && tempEl.computeValueFrom) {
+                const sub1 = combineLatest(
+                  tempEl.computeValueFrom.elements.map(
+                    (el) => controls[el]?.valueChanges
+                  )
+                ).subscribe((values) => {
+                  // @TODO for the time being only multiplication is implemented
+                  controls[con].patchValue(
+                    values.reduce((ac, cur) => ac * cur, 1),
+                    { emitEvent: false }
+                  );
+                });
+                this.subscriptions.push(sub1);
+              }
+            }
+          }
+        });
+      } else {
+        if (element.computeValueFrom) {
+          const tempEl = this.mmsForm.get(element.name) as FormControl;
+          const sub2 = combineLatest(
+            element.computeValueFrom.elements.map(
+              (el) => this.mmsForm.get(el)?.valueChanges
+            )
+          ).subscribe((values) => {
+            // @TODO for the time being only multiplication is implemented
+            if (values && values.length > 0) {
+              tempEl.patchValue(
+                values.reduce((ac, cur: any) => ac * cur, 1),
+                { emitEvent: false }
+              );
+            }
+          });
+
+          this.subscriptions.push(sub2);
+        }
+      }
+    });
+  }
+
   getNewFormArray(elements: Array<FormElement>): FormArray {
     const item = this.getNewFormItem(elements);
     return this.fb.array([item]);
@@ -169,6 +313,7 @@ export class FormComponent implements OnInit {
     const formArray = this.mmsForm.get(path) as FormArray;
     const newItem = this.getNewFormItem(elements);
     formArray.push(newItem);
+    this.computeValues(this.form.elements);
   }
   removeFormItemFromFormArray(event: any, path: string, index: number) {
     event.preventDefault();

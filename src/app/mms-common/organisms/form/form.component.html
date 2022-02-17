@@ -313,8 +313,8 @@
     </div>
   </div>
 </ng-template>
-
-<form action="#" novalidate>
+<div *ngIf="!mmsForm">Loading...</div>
+<form action="#" novalidate *ngIf="mmsForm">
   <ng-container
     *ngTemplateOutlet="formInputTemplate;context:{elements: form.elements, form: mmsForm}">
   </ng-container>

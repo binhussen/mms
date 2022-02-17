@@ -11,7 +11,6 @@
 
 .login-container {
   width: 70%;
-
 }
 .login__welcome{
   display: flex;
@@ -21,7 +20,6 @@
   background: linear-gradient(to top, #7986cb, #fff);
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 10rem);
 }
 .login__welcome > h2 {
   position: relative;
@@ -45,7 +43,6 @@
   width: 100%;
 }
 .login__form{
-  min-height: calc(100vh - 10rem);
   padding: 24px;
   display: flex;
   flex-direction: column;
