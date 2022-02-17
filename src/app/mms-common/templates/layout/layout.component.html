@@ -21,6 +21,17 @@
             <mat-icon>menu</mat-icon>
           </button>
           <span class="spacer"></span>
+          <button mat-icon-button [matMenuTriggerFor]="langMenu" aria-label="Language Menu">
+            <mat-icon>language</mat-icon>
+          </button>
+          <mat-menu #langMenu="matMenu">
+            <button mat-menu-item (click)="changeLanguage('en-US')">
+              <span>English</span>
+            </button>
+            <button mat-menu-item (click)="changeLanguage('am-ET')">
+              <span>አማርኛ</span>
+            </button>
+          </mat-menu>
           <app-user-menu [user]="user"></app-user-menu>
         </mat-toolbar>
         <perfect-scrollbar>
