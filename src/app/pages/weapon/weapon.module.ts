@@ -17,6 +17,16 @@ import { RouterModule } from '@angular/router';
         loadChildren: () =>
           import('./inventory/inventory.module').then((m) => m.InventoryModule),
       },
+      {
+        path: 'requests',
+        loadChildren: () =>
+          import('./requests/requests.module').then((m) => m.RequestsModule),
+      },
+      {
+        path: 'damages',
+        loadChildren: () =>
+          import('./damages/damages.module').then((m) => m.DamagesModule),
+      },
     ]),
   ],
 })

@@ -22,7 +22,7 @@
     <mat-cell *cdkCellDef="let row; let i = index">
       <span class="mobile-label">{{ column.header }}:</span>
       <ng-container *ngIf="row && column.cell(row)">
-        {{column.cell(row)}}
+        {{ column.columnDef === 'date' ? (column.cell(row) | date) :  column.cell(row)}}
       </ng-container>
 
       <ng-container *ngIf="!column.cell(row) && column.columnDef == 'No'">

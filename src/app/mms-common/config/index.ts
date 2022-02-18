@@ -27,13 +27,13 @@ export const menus: Array<Menu> = [
       {
         name: 'Request',
         icon: '',
-        link: 'weapon/request',
+        link: 'weapon/requests',
         open: false,
       },
       {
         name: 'Report Damages',
         icon: '',
-        link: 'weapon/report-damage',
+        link: 'weapon/damages',
         open: false,
       },
     ],

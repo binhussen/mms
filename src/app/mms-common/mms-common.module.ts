@@ -30,6 +30,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { TableComponent } from './organisms/table/table.component';
 import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
 import { CdkTableModule } from '@angular/cdk/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -44,6 +45,7 @@ import { BasicComponent } from './templates/basic/basic.component';
 import { RouterModule } from '@angular/router';
 import { CrudHttpService } from './organisms/form-dialog/crudHttp.service';
 import { TableService } from './organisms/table/table.service';
+import { TabbedPageComponent } from './templates/tabbed-page/tabbed-page.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -62,6 +64,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     FileInputComponent,
     DndDirective,
     BasicComponent,
+    TabbedPageComponent,
   ],
   imports: [
     CommonModule,
@@ -92,6 +95,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MatDialogModule,
     MatPaginatorModule,
     MatProgressBarModule,
+    MatTabsModule,
     RouterModule,
   ],
   providers: [
