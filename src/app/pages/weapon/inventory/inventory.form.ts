@@ -108,4 +108,8 @@ const inventoryForm: Form = {
   ],
 };
 
-export default inventoryForm;
+const distributeForm: Form = {
+  title: 'Distribute Weapon',
+  elements: [],
+};
+export default { inventoryForm, distributeForm };

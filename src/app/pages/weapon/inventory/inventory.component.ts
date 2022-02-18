@@ -13,7 +13,7 @@ import inventoryTableState from './inventory.table';
   styleUrls: ['./inventory.component.scss'],
 })
 export class InventoryComponent implements OnInit {
-  form: Form = inventoryForm;
+  form: Form = inventoryForm.inventoryForm;
   dataSourceUrl = 'http://localhost:3000/weaponInventories';
   actions: Array<Action> = [
     { name: 'Expand', type: 'expand', path: 'notifies' },
