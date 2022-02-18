@@ -4,9 +4,9 @@
       <div [formArrayName]="nameFormArray">
         <div  [formGroupName]="form"
               fxLayout="row wrap"
-              style="justify-content: space-between"
               fxLayout.lt-sm="column"
               fxLayoutGap.lt-sm = "0"
+              fxLayoutGap="8px"
         >
           <div
             *ngFor="let element of elements"
@@ -149,9 +149,9 @@
 <ng-template #formInputTemplate let-form="form" let-elements="elements">
   <div
     fxLayout="row wrap"
-    style="justify-content: space-between"
     fxLayout.lt-sm="column"
     fxLayoutGap.lt-sm = "0"
+    fxLayoutGap="8px"
     [formGroup]="mmsForm"
            (ngSubmit)="submit()">
     <div

@@ -1,0 +1,12 @@
+{
+    "login": {
+        "loginButton": "Login",
+        "welcomeBack": "Welcome Back",
+        "loginHeader": "Login",
+        "loginSubHeader": "Please login to your account",
+        "form": {
+            "username": "Username",
+            "password": "Password"
+        }
+    }
+}

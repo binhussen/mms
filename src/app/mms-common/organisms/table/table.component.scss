@@ -60,3 +60,13 @@ mat-header-cell, mat-cell {
     padding: 8px 24px;
   }
 }
+
+/*
+.mat-header-cell {
+   truncate words and add ellipses
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-left: 16px;
+  padding-right: 16px;
+}*/

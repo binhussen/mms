@@ -1,10 +1,11 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatDrawerMode} from "@angular/material/sidenav/drawer";
-import {MediaChange, MediaObserver} from '@angular/flex-layout';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDrawerMode } from '@angular/material/sidenav/drawer';
+import { MediaChange, MediaObserver } from '@angular/flex-layout';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
-  styleUrls: ['./layout.component.scss']
+  styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent implements OnInit {
   sideNavOpened = true;
@@ -12,13 +13,15 @@ export class LayoutComponent implements OnInit {
   matDrawerShow = true;
   sideNavMode: MatDrawerMode = 'side';
   @ViewChild('drawerob') drawerob!: any;
-  user = {firstName: "Ezedin", lastName: "Fedlu"};
-  constructor(private media: MediaObserver) {
-    this.media.asObservable().subscribe(m => m.map(r => this.toggleView()));
+  user = { firstName: 'Ezedin', lastName: 'Fedlu' };
+  constructor(
+    private media: MediaObserver,
+    private translateService: TranslateService
+  ) {
+    this.media.asObservable().subscribe((m) => m.map((r) => this.toggleView()));
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   toggleView() {
     if (this.media.isActive('gt-md')) {
@@ -37,5 +40,10 @@ export class LayoutComponent implements OnInit {
       this.matDrawerOpened = false;
       this.matDrawerShow = false;
     }
+  }
+
+  changeLanguage(lang: string) {
+    console.log(lang);
+    this.translateService.use(lang);
   }
 }

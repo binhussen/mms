@@ -75,7 +75,7 @@ export class TableComponent implements OnInit, AfterViewInit {
     row?: any
   ) {
     const dialogRef = this.dialog.open(FormDialogComponent, {
-      width: '75%',
+      width: form.elements.length >= 6 ? '95%' : '75%',
       maxWidth: '100vw',
       disableClose: true,
       data: {

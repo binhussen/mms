@@ -12,8 +12,15 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { metaReducers, reducers } from './store/reducers';
 import { FormEffect } from './store/effects/form.effect';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TableEffect } from './store/effects/table.effect';
+/* internationalization */
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,6 +29,14 @@ import { TableEffect } from './store/effects/table.effect';
     BrowserAnimationsModule,
     CoreModule,
     HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: createTranslateLoader,
+        deps: [HttpClient],
+      },
+      defaultLanguage: 'am-ET',
+    }),
     AppRoutingModule,
     StoreModule.forRoot(reducers, {
       metaReducers,

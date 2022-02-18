@@ -1,0 +1,12 @@
+{
+    "login": {
+        "loginButton": "ግባ",
+        "welcomeBack": "እንኳን በደህና መጡ!",
+        "loginHeader": "ይግቡ",
+        "loginSubHeader": "እባክዎን ወደ አካውንትዎ ይግቡ",
+        "form": {
+            "username": "የተጠቃሚ ስም",
+            "password": "የይለፍ ቃል"
+        }
+    }
+}

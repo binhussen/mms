@@ -8,7 +8,7 @@ const inventoryForm: Form = {
       type: 'text',
       placeholder: 'Item No. in Expenditure Register',
       defaultValue: '',
-      size: 1,
+      size: 4,
       validations: [{ type: 'required', value: true }],
     },
     {
@@ -16,7 +16,7 @@ const inventoryForm: Form = {
       type: 'text',
       placeholder: 'No. of Entry in the Register of Incoming Goods',
       defaultValue: '',
-      size: 1,
+      size: 4,
       validations: [{ type: 'required', value: true }],
     },
     {
@@ -24,7 +24,7 @@ const inventoryForm: Form = {
       type: 'text',
       placeholder: 'Store No.',
       defaultValue: '',
-      size: 1,
+      size: 4,
       validations: [{ type: 'required', value: true }],
     },
     {
@@ -32,7 +32,7 @@ const inventoryForm: Form = {
       type: 'text',
       placeholder: 'Shelf No.',
       defaultValue: '',
-      size: 1,
+      size: 4,
       validations: [{ type: 'required', value: true }],
     },
     {
@@ -40,7 +40,7 @@ const inventoryForm: Form = {
       type: 'date',
       placeholder: 'Date',
       defaultValue: '',
-      size: 1,
+      size: 4,
       validations: [{ type: 'required', value: true }],
     },
     {
@@ -48,7 +48,7 @@ const inventoryForm: Form = {
       type: 'text',
       placeholder: 'Donor',
       defaultValue: '',
-      size: 1,
+      size: 4,
       validations: [{ type: 'required', value: true }],
     },
     {
@@ -62,35 +62,35 @@ const inventoryForm: Form = {
           type: 'text',
           placeholder: 'Weapon Item Description',
           defaultValue: '',
-          size: 2,
+          size: 3,
         },
         {
           name: 'weaponModel',
           type: 'text',
           placeholder: 'Weapon Model',
           defaultValue: '',
-          size: 2,
+          size: 3,
         },
         {
           name: 'weaponSerialNo',
           type: 'text',
           placeholder: 'Weapon Serial No.',
           defaultValue: '',
-          size: 2,
+          size: 3,
         },
         {
           name: 'weaponQuantity',
           type: 'text',
           placeholder: 'Weapon Quantity',
           defaultValue: '',
-          size: 2,
+          size: 3,
         },
         {
           name: 'weaponUnitPrice',
           type: 'text',
           placeholder: 'Weapon Unit Price',
           defaultValue: '',
-          size: 2,
+          size: 3,
         },
         {
           name: 'weaponTotalPrice',
@@ -101,11 +101,15 @@ const inventoryForm: Form = {
             elements: ['weaponQuantity', 'weaponUnitPrice'],
             operator: '*',
           },
-          size: 2,
+          size: 3,
         },
       ],
     },
   ],
 };
 
-export default inventoryForm;
+const distributeForm: Form = {
+  title: 'Distribute Weapon',
+  elements: [],
+};
+export default { inventoryForm, distributeForm };
