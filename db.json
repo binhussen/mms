@@ -366,15 +366,9 @@
     },
     {
       "weaponType": "Bullet",
-<<<<<<< HEAD
       "weaponName": "xxx",
       "quantity": 80,
       "damagesId": 2,
-      "id": 36
-=======
-      "weaponName": "try",
-      "quantity": 32,
-      "notifiesId": 9,
       "id": 36
     },
     {
@@ -419,7 +413,6 @@
       "weaponName": "23",
       "quantity": 44,
       "id": 43
->>>>>>> 39047137078281454dd82186d43d31a749f2bb93
     }
   ],
   "weaponInventories": [
