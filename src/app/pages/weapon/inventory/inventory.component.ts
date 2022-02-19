@@ -16,7 +16,7 @@ export class InventoryComponent implements OnInit {
   form: Form = inventoryForm.inventoryForm;
   dataSourceUrl = 'http://localhost:3000/weaponInventories';
   actions: Array<Action> = [
-    { name: 'Expand', type: 'expand', path: 'notifies' },
+    { name: 'Expand', type: 'expand', path: 'inventories' },
     { name: 'Edit', type: 'edit' },
   ];
   table = inventoryTableState;
