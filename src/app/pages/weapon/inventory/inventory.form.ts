@@ -19,30 +19,15 @@ const inventoryForm: Form = {
       size: 4,
       validations: [{ type: 'required', value: true }],
     },
-    {
-      name: 'storeNo',
-      type: 'text',
-      placeholder: 'Store No.',
-      defaultValue: '',
-      size: 4,
-      validations: [{ type: 'required', value: true }],
-    },
-    {
-      name: 'shelfNo',
-      type: 'text',
-      placeholder: 'Shelf No.',
-      defaultValue: '',
-      size: 4,
-      validations: [{ type: 'required', value: true }],
-    },
-    {
-      name: 'date',
-      type: 'date',
-      placeholder: 'Date',
-      defaultValue: '',
-      size: 4,
-      validations: [{ type: 'required', value: true }],
-    },
+    
+    // {
+    //   name: 'date',
+    //   type: 'date',
+    //   placeholder: 'Date',
+    //   defaultValue: '',
+    //   size: 4,
+    //   validations: [{ type: 'required', value: true }],
+    // },
     {
       name: 'donor',
       type: 'text',
@@ -103,6 +88,22 @@ const inventoryForm: Form = {
           },
           size: 3,
         },
+        {
+          name: 'storeNo',
+          type: 'text',
+          placeholder: 'Store No.',
+          defaultValue: '',
+          size: 3,
+          validations: [{ type: 'required', value: true }],
+        },
+        {
+          name: 'shelfNo',
+          type: 'text',
+          placeholder: 'Shelf No.',
+          defaultValue: '',
+          size: 3,
+          validations: [{ type: 'required', value: true }],
+        },
       ],
     },
   ],
@@ -112,4 +113,72 @@ const distributeForm: Form = {
   title: 'Distribute Weapon',
   elements: [],
 };
-export default { inventoryForm, distributeForm };
+
+const inventoryItemForm: Form = {
+  title: 'Inventory Item',
+  elements: [
+    {
+          name: 'weaponItemDescription',
+          type: 'text',
+          placeholder: 'Weapon Item Description',
+          defaultValue: '',
+          size: 3,
+        },
+        {
+          name: 'weaponModel',
+          type: 'text',
+          placeholder: 'Weapon Model',
+          defaultValue: '',
+          size: 3,
+        },
+        {
+          name: 'weaponSerialNo',
+          type: 'text',
+          placeholder: 'Weapon Serial No.',
+          defaultValue: '',
+          size: 3,
+        },
+        {
+          name: 'weaponQuantity',
+          type: 'text',
+          placeholder: 'Weapon Quantity',
+          defaultValue: '',
+          size: 3,
+        },
+        {
+          name: 'weaponUnitPrice',
+          type: 'text',
+          placeholder: 'Weapon Unit Price',
+          defaultValue: '',
+          size: 3,
+        },
+        {
+          name: 'weaponTotalPrice',
+          type: 'text',
+          placeholder: 'Weapon Total Price',
+          defaultValue: '',
+          computeValueFrom: {
+            elements: ['weaponQuantity', 'weaponUnitPrice'],
+            operator: '*',
+          },
+          size: 3,
+        },
+        {
+          name: 'storeNo',
+          type: 'text',
+          placeholder: 'Store No.',
+          defaultValue: '',
+          size: 3,
+          validations: [{ type: 'required', value: true }],
+        },
+        {
+          name: 'shelfNo',
+          type: 'text',
+          placeholder: 'Shelf No.',
+          defaultValue: '',
+          size: 3,
+          validations: [{ type: 'required', value: true }],
+        },
+  ],
+};
+export default { inventoryForm, inventoryItemForm, distributeForm };

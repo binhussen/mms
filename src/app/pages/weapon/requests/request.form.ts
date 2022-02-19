@@ -2,7 +2,92 @@ import { Form } from 'src/app/mms-common/models/form';
 
 const requestForWeaponForm: Form = {
   title: 'Request For Weapon',
-  elements: [],
+  elements: [{
+    name: 'description',
+    type: 'text',
+    placeholder: 'Request Description',
+    defaultValue: '',
+    size: 12,
+    validations: [{ type: 'required', value: true }],
+  },
+  {
+    name: 'attachments',
+    type: 'file',
+    placeholder: 'Request Attachments',
+    defaultValue: '',
+  },
+  {
+    name: 'requestItems',
+    type: 'formArray',
+    placeholder: 'Request Items',
+    defaultValue: '',
+    formArrayItems: [
+      {
+        name: 'type',
+        type: 'select',
+        placeholder: 'Type',
+        defaultValue: '',
+        size: 4,
+        options: [
+          { value: 'Weapon', label: 'Weapon' },
+          { value: 'Bullet', label: 'Bullet' },
+          { value: 'Other', label: 'Other' },
+        ],
+        validations: [{ type: 'required', value: true }],
+      },
+      {
+        name: 'name',
+        type: 'text',
+        placeholder: 'Name',
+        defaultValue: '',
+        size: 4,
+        validations: [{ type: 'required', value: true }],
+      },
+      {
+        name: 'quantity',
+        type: 'number',
+        placeholder: 'Quantity',
+        defaultValue: '',
+        size: 4,
+        validations: [{ type: 'required', value: true }],
+      },
+    ],
+  }
+],
+};
+
+const requestItemForWeaponForm: Form = {
+  title: 'Request Item For Weapon',
+  elements: [
+      {
+        name: 'type',
+        type: 'select',
+        placeholder: 'Type',
+        defaultValue: '',
+        size: 4,
+        options: [
+          { value: 'Weapon', label: 'Weapon' },
+          { value: 'Bullet', label: 'Bullet' },
+          { value: 'Other', label: 'Other' },
+        ],
+        validations: [{ type: 'required', value: true }],
+      },
+      {
+        name: 'name',
+        type: 'text',
+        placeholder: 'Name',
+        defaultValue: '',
+        size: 4,
+        validations: [{ type: 'required', value: true }],
+      },
+      {
+        name: 'quantity',
+        type: 'number',
+        placeholder: 'Quantity',
+        defaultValue: '',
+        size: 4,
+        validations: [{ type: 'required', value: true }],
+      }],
 };
 
 const requestForReturningWeaponForm: Form = {
@@ -19,4 +104,5 @@ export default {
   requestApprovalForm,
   requestForReturningWeaponForm,
   requestForWeaponForm,
+  requestItemForWeaponForm
 };

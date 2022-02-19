@@ -21,7 +21,7 @@ export const menus: Array<Menu> = [
       {
         name: 'Inventory',
         icon: '',
-        link: 'weapon/inventory',
+        link: 'weapon/inventories',
         open: false,
       },
       {

@@ -13,7 +13,7 @@ import { RouterModule } from '@angular/router';
           import('./notify/notify.module').then((m) => m.NotifyModule),
       },
       {
-        path: 'inventory',
+        path: 'inventories',
         loadChildren: () =>
           import('./inventory/inventory.module').then((m) => m.InventoryModule),
       },
