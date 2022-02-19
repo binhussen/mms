@@ -3,11 +3,12 @@
     <mat-card-content fxLayout="row wrap"
                       fxLayout.lt-sm="column"
                       fxLayoutGap.lt-sm = "0">
-      <div fxFlex class="login__welcome" fxHide.lt-sm>
+      <div fxFlex class="login__welcome" fxHide.lt-md>
         <h2 class="header-title">{{"login.welcomeBack" | translate}}</h2>
         <img src="/assets/inventory.svg" alt="inventory" />
       </div>
       <div fxFlex class="login__form">
+        <img src="/assets/img/logo.PNG" alt="Ethiopian Federal Police Commission" width="128"  />
         <h2 class="header-title">{{"login.loginHeader" | translate}}</h2>
         <h3>{{"login.loginSubHeader" | translate}}</h3>
         <app-form [form]="form"
@@ -15,9 +16,20 @@
         #formComponent
         ></app-form>
 <!--        <a style="align-self: flex-start; color: #000F2D" [routerLink]="'/forgot-password'">Forgot your password?</a>-->
-        <a style="align-self: flex-start; color: #000F2D" href="#">Forgot your password?</a>
+        <a style="align-self: flex-start; color: #000F2D" href="#">{{ "login.footer.forgotPassword" | translate }}</a>
         <app-loading-button (click)="formComponent.submit()" [isLoading]="false" style="align-self: flex-end;">{{"login.loginButton" | translate}}</app-loading-button>
       </div>
     </mat-card-content>
   </mat-card>
+</div>
+
+<div class="login__footer">
+  <div class="login__footer-content">
+    <div class="login__footer-content-left">
+      <p>{{"login.footer.text1" | translate}}</p>
+      <p>{{"login.footer.text2" | translate}}</p>
+    </div>
+    <div class="login__footer-content-right">
+      <img src="/assets/img/logo.PNG" alt="Ethiopian Federal Police Commission" width="32"  />
+    </div>
 </div>
