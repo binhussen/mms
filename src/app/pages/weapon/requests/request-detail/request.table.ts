@@ -23,5 +23,8 @@ const requestItemsTableState: TableState = {
   },
   actions,
   relations: [],
+  childOf: {
+    requestItems: 0,
+  },
 };
 export default requestItemsTableState;

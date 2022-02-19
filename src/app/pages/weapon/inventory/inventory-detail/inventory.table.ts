@@ -20,6 +20,9 @@ const inventoryItemsTableState: TableState = {
   },
   actions,
   relations: [],
+  childOf: {
+    weaponItems: 0,
+  },
 };
 
 // set this state to the store

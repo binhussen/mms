@@ -11,10 +11,9 @@ import inventoryItemsTableState from './inventory.table';
 @Component({
   selector: 'app-inventory-detail',
   templateUrl: './inventory-detail.component.html',
-  styleUrls: ['./inventory-detail.component.scss']
+  styleUrls: ['./inventory-detail.component.scss'],
 })
 export class InventoryDetailComponent implements OnInit {
-
   form: Form = inventoryForm.inventoryItemForm;
   dataSourceUrl = 'http://localhost:3000/weaponItems';
   actions: Array<Action> = [
@@ -30,11 +29,20 @@ export class InventoryDetailComponent implements OnInit {
       this.dataSourceUrl +
       '?weaponInventoriesId=' +
       this.activatedRoute.snapshot.params.id;
-
     if (this.table.links) {
-      this.table.links.getPath = this.dataSourceUrl;
+      this.table = {
+        ...this.table,
+        links: { ...this.table.links, getPath: this.dataSourceUrl },
+      };
     }
 
+    if (this.table.childOf) {
+      const temp: any = {};
+      temp[Object.keys(this.table.childOf)[0]] =
+        this.activatedRoute.snapshot.params.id;
+
+      this.table = { ...this.table, childOf: this.table.childOf };
+    }
     this.store$.dispatch(tableActions.setTableState({ value: this.table }));
   }
 
