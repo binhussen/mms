@@ -7,6 +7,13 @@
         "form": {
             "username": "የተጠቃሚ ስም",
             "password": "የይለፍ ቃል"
+        },
+        "footer": {
+            "forgotPassword": "የይለፍ ቃልዎን ረስተውታል?",
+            "noAccount": "የአካውንት መግቢያ የለም?",
+            "signUp": "መግቢያ",
+            "text1": "በጀግንነት መጠበቅ",
+            "text2": "በሰብዓዊነት ማገልገል"
         }
     }
 }

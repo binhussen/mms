@@ -33,6 +33,15 @@ mat-header-cell, mat-cell {
 }
 .table-header {
   display: flex;
+  justify-content: space-between;
+}
+.table-header-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-right: 1rem;
+}
+.table-header-actions{
+  display: flex;
   justify-content: flex-end;
 }
 

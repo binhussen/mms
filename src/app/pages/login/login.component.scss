@@ -30,7 +30,8 @@
   background-image: linear-gradient(to top, #7986cb, #102846);
   -webkit-background-clip: text;
   background-size: contain;
-  font-size: 3em;
+  // adjust text size using clamp
+  font-size: clamp(1.5em, 2.5vw, 3.5em);
   height: 1em;
   color: transparent;
   font-weight: bolder;
@@ -56,6 +57,43 @@
 .login__form > h2 {
   font-size: 2em;
   color: #000F2D;
+}
+.login__form > img {
+  // center the image
+  display: flex;
+  justify-self: center;
+  align-self: center;
+  height: auto;
+  position: relative;
+  top: -2.5em;
+}
+
+.login__footer{
+   position: absolute;
+   bottom: 5em;
+   width: 100%;
+   display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.login__footer-content{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.login__footer-content-left{
+  display: flex;
+  flex-direction: column;
+  padding: 0 1em;
+  margin: 0 1em;
+  border-right: 2px solid rgba(0, 0, 0, 0.12);
+}
+.login__footer-content-left > p {
+  font-size: 1.0em;
+  color: #000F2D;
+  line-height: 0.5em;
+  text-align: left;
 }
 @keyframes shine {
   0% {background-position: -100%;}

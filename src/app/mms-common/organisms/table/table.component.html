@@ -1,14 +1,24 @@
 <mat-toolbar class="mat-elevation-z1 table-header">
-  <button mat-icon-button
-          matTooltip="Filter"
-          aria-label="Filter the table"
-          color="primary">
-    <mat-icon>filter_list</mat-icon>
-  </button>
-  <button mat-button color="primary" (click)="command('create', undefined)">
-    <mat-icon>add</mat-icon>
-    Create New
-  </button>
+    <div class="table-header-title">
+        <h1>table title</h1>
+    </div>
+    <div class="table-header-actions">
+        <button mat-icon-button>
+            <mat-icon>refresh</mat-icon>
+        </button>
+
+        <button mat-icon-button
+        matTooltip="Filter"
+        aria-label="Filter the table"
+        color="primary">
+          <mat-icon>filter_list</mat-icon>
+        </button>
+
+        <button mat-button color="primary" (click)="command('create', undefined)">
+          <mat-icon>add</mat-icon>
+          Create New
+        </button>
+    </div>
 </mat-toolbar>
 <div *ngIf="loading" style="display: flex; justify-content: center; padding: 24px">
   <mat-progress-spinner
