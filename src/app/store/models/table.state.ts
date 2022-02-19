@@ -21,4 +21,7 @@ export interface TableState {
   relations?: RelationShip[];
   links?: ResourceLinks;
   actions?: Action[];
+  childOf?: {
+    [key: string]: number;
+  };
 }

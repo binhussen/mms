@@ -394,6 +394,25 @@
       "weaponName": "try",
       "quantity": 2,
       "id": 40
+    },
+    {
+      "weaponType": "Weapon",
+      "weaponName": "weapon descriptio",
+      "quantity": 45,
+      "id": 41
+    },
+    {
+      "weaponType": "Bullet",
+      "weaponName": "78",
+      "quantity": 45,
+      "id": 42
+    },
+    {
+      "notifiesId": "6",
+      "weaponType": "Bullet",
+      "weaponName": "23",
+      "quantity": 44,
+      "id": 43
     }
   ],
   "weaponInventories": [

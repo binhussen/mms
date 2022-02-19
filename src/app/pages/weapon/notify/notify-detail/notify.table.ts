@@ -3,10 +3,7 @@ import { TableState } from 'src/app/store/models/table.state';
 
 const baseApiUrl = 'http://localhost:3000';
 const dataSourceUrl = `${baseApiUrl}/notifyItems`;
-const actions: Array<Action> = [
-  { name: 'Expand', type: 'expand', path: 'notifyItems' },
-  { name: 'Edit', type: 'edit' },
-];
+const actions: Array<Action> = [{ name: 'Edit', type: 'edit' }];
 
 const notifyItemsTableState: TableState = {
   id: 'notify items table',
@@ -23,6 +20,9 @@ const notifyItemsTableState: TableState = {
   },
   actions,
   relations: [],
+  childOf: {
+    notifiesId: 0,
+  },
 };
 
 // set this state to the store

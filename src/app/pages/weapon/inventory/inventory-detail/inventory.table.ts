@@ -3,10 +3,7 @@ import { TableState } from 'src/app/store/models/table.state';
 
 const baseApiUrl = 'http://localhost:3000';
 const dataSourceUrl = `${baseApiUrl}/weaponItems`;
-const actions: Array<Action> = [
-  { name: 'Expand', type: 'expand', path: 'weaponItems' },
-  { name: 'Edit', type: 'edit' },
-];
+const actions: Array<Action> = [{ name: 'Edit', type: 'edit' }];
 
 const inventoryItemsTableState: TableState = {
   id: 'Weapon Items table',
@@ -14,7 +11,7 @@ const inventoryItemsTableState: TableState = {
   pageSize: 5,
   totalItems: 0,
   data: [],
-  excludedColumns: ['id','weaponInventoriesId'],
+  excludedColumns: ['id', 'weaponInventoriesId'],
   links: {
     getPath: dataSourceUrl,
     createPath: `${dataSourceUrl}`,

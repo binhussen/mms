@@ -41,12 +41,14 @@ export class CrudHttpService extends BaseService<any> {
                 submittedToUrl: state.form.submittedToUrl,
                 action: state.form.action,
                 relations: state.table.relations,
+                childOf: state.table.childOf,
               }
             : {
                 data: this.checkForChange(state.form.data, state.form.updating),
                 submittedToUrl: state.form.submittedToUrl,
                 action: state.form.action,
                 relations: state.table.relations,
+                childOf: state.table.childOf,
               }
         )
       )
@@ -59,7 +61,8 @@ export class CrudHttpService extends BaseService<any> {
               form.data,
               form.relations,
               form.action,
-              form.submittedToUrl ?? ''
+              form.submittedToUrl ?? '',
+              form.childOf
             );
             return this.createResource(single.data, single.submittedToUrl).pipe(
               tap((response) => console.log(response)),
@@ -139,11 +142,17 @@ export class CrudHttpService extends BaseService<any> {
     data: any,
     relations: any,
     action: string,
-    submittedToUrl: string
+    submittedToUrl: string,
+    childOf?: { [key: string]: number }
   ) {
     const single: any = {};
     const bulk: any = {};
-    const temp: any = {};
+    let temp: any = {};
+
+    if (childOf) {
+      temp = { ...childOf };
+    }
+
     for (let key in data) {
       if (data[key] === null) {
         delete data[key];

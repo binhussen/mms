@@ -34,6 +34,11 @@ export class NotifyDetailComponent implements OnInit {
       this.table.links.getPath = this.dataSourceUrl;
     }
 
+    if (this.table.childOf) {
+      this.table.childOf[Object.keys(this.table.childOf)[0]] =
+        this.activatedRoute.snapshot.params.id;
+    }
+
     this.store$.dispatch(tableActions.setTableState({ value: this.table }));
   }
 
