@@ -10,6 +10,7 @@ const actions: Array<Action> = [
 
 const notifyTableState: TableState = {
   id: 'notify table',
+  title: 'List of weapons that have been notified',
   pageNumber: 0,
   pageSize: 5,
   totalItems: 0,

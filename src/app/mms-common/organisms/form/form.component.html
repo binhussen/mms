@@ -283,6 +283,12 @@
         </ng-container>
 
 
+        <!-- HIDDEN INPUT -->
+        <ng-container *ngSwitchCase="'hidden'">
+          <input matInput hidden [formControlName]="element.name" />
+        </ng-container>
+
+
         <!-- Form Array -->
         <ng-container *ngSwitchCase="'formArray'">
           <div [formArrayName]="element.name">

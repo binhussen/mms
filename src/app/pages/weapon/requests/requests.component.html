@@ -1,5 +1,5 @@
 <mat-tab-group [backgroundColor]="'primary'">
-    <mat-tab [title]="'Insert Weapons to store'" [label]="'Request Weapons'">
+    <mat-tab [title]="'Insert Weapons to store'" [label]="'Request For Weapons'">
         <ng-template matTabContent>
             <app-basic
             [form]="form"
@@ -9,15 +9,9 @@
         </ng-template>
     </mat-tab>
 
-    <mat-tab [label]="'Request Status'">
+    <mat-tab [label]="'Request For Returning Weapon'">
         <ng-template matTabContent>
             <h4>View Approved Request</h4>
-        </ng-template>
-    </mat-tab>
-
-    <mat-tab [label]="'Distributed Request'">
-        <ng-template matTabContent>
-            <h4>Distribute Request</h4>
         </ng-template>
     </mat-tab>
 </mat-tab-group>

@@ -10,6 +10,7 @@ const actions: Array<Action> = [
 
 const requestForWeaponTable: TableState = {
   id: 'request table',
+  title: 'List of weapons that have been requested',
   pageNumber: 0,
   pageSize: 5,
   totalItems: 0,
@@ -42,4 +43,4 @@ const requestForReturningWeaponTable: TableState = {
   totalItems: 0,
 };
 
-export default { requestForWeaponTable, requestForReturningWeaponTable};
+export default { requestForWeaponTable, requestForReturningWeaponTable };

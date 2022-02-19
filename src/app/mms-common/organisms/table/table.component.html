@@ -1,6 +1,7 @@
-<mat-toolbar class="mat-elevation-z1 table-header">
+<ng-container *ngIf="(tableState$ | async) as tableState"> 
+  <mat-toolbar class="mat-elevation-z1 table-header">
     <div class="table-header-title">
-        <h1>table title</h1>
+        <h1>{{tableState?.title}}</h1>
     </div>
     <div class="table-header-actions">
         <button mat-icon-button>
@@ -44,7 +45,7 @@
           <mat-icon>more_horiz</mat-icon>
         </button>
         <mat-menu #menu="matMenu" xPosition="before">
-          <ng-container *ngFor="let action of actions">
+          <ng-container *ngFor="let action of tableState?.actions">
             <button mat-menu-item (click)="command(action.type, row)">{{action.name}}</button>
           </ng-container>
         </mat-menu>
@@ -59,3 +60,5 @@
                showFirstLastButtons
                aria-label="Select page">
 </mat-paginator>
+
+</ng-container>
