@@ -24,7 +24,7 @@ import tableActions from 'src/app/store/actions/table.actions';
 import formActions from 'src/app/store/actions/form.actions';
 export interface Action {
   name: string;
-  type: 'expand' | 'edit' | 'delete';
+  type: 'expand' | 'edit' | 'delete' ;
   path?: string; // if expand we redirect the user to detail page. For example: if path = 'post' and item id = 2 => /post/2
 }
 @Component({

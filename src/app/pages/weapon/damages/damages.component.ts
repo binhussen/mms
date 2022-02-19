@@ -13,7 +13,6 @@ import damagesTableState from './damages.table';
   styleUrls: ['./damages.component.scss']
 })
 export class DamagesComponent implements OnInit {
-
   form: Form = damagesForm.damagesForm;
   dataSourceUrl = 'http://localhost:3000/notifies';
   actions: Array<Action> = [
@@ -27,5 +26,4 @@ export class DamagesComponent implements OnInit {
   ngOnInit(): void {
     this.store$.dispatch(tableActions.setTableState({ value: this.table }));
   }
-
 }
