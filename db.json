@@ -358,6 +358,13 @@
       "quantity": 55,
       "notifiesId": 20,
       "id": 35
+    },
+    {
+      "weaponType": "Bullet",
+      "weaponName": "xxx",
+      "quantity": 80,
+      "damagesId": 2,
+      "id": 36
     }
   ],
   "weaponInventories": [
@@ -393,5 +400,10 @@
       "weaponInventoriesId": 1,
       "id": 2
     }
-  ]
+  ],
+  "damages": [
+   {
+     
+   }
+   ]
 }
