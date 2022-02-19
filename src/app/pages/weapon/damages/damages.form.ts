@@ -81,9 +81,17 @@ const damagesItemForm: Form = {
         ],
       },
       {
+        name: 'reason',
+        type: 'text',
+        placeholder: 'Reason of report damages',//e.g expried date, crushed, unmaintainable...
+        defaultValue: '',
+        size: 12,
+        validations: [{ type: 'required', value: true }],
+      },
+      {
         name: 'description',
         type: 'text',
-        placeholder: 'Reason and description',
+        placeholder: 'description',
         defaultValue: '',
         size: 12,
         validations: [{ type: 'required', value: true }],
