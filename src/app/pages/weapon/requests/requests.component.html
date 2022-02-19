@@ -1,1 +1,23 @@
-<p>requests works!</p>
+<mat-tab-group [backgroundColor]="'primary'">
+    <mat-tab [title]="'Insert Weapons to store'" [label]="'Request Weapons'">
+        <ng-template matTabContent>
+            <app-basic
+            [form]="form"
+            [dataSourceUrl]="dataSourceUrl"
+            [actions]="actions">
+            </app-basic>
+        </ng-template>
+    </mat-tab>
+
+    <mat-tab [label]="'Request Status'">
+        <ng-template matTabContent>
+            <h4>View Approved Request</h4>
+        </ng-template>
+    </mat-tab>
+
+    <mat-tab [label]="'Distributed Request'">
+        <ng-template matTabContent>
+            <h4>Distribute Request</h4>
+        </ng-template>
+    </mat-tab>
+</mat-tab-group>

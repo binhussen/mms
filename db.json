@@ -181,6 +181,11 @@
       "weaponDescription": "bullet description",
       "attachments": "https://v2.convertapi.com/d/roroseuggknlvqe7alxz9sz9s9bsj9j4",
       "id": 8
+    },
+    {
+      "weaponDescription": "try",
+      "attachments": "https://v2.convertapi.com/d/yyxb46h48x2qce953xivnssbqym62ngk",
+      "id": 9
     }
   ],
   "notifyitems": [
@@ -361,10 +366,60 @@
     },
     {
       "weaponType": "Bullet",
+<<<<<<< HEAD
       "weaponName": "xxx",
       "quantity": 80,
       "damagesId": 2,
       "id": 36
+=======
+      "weaponName": "try",
+      "quantity": 32,
+      "notifiesId": 9,
+      "id": 36
+    },
+    {
+      "weaponType": "Other",
+      "weaponName": "try",
+      "quantity": 45,
+      "id": 37
+    },
+    {
+      "weaponType": "Bullet",
+      "weaponName": "admn",
+      "quantity": 12,
+      "id": 38
+    },
+    {
+      "weaponType": "Bullet",
+      "weaponName": "try",
+      "quantity": 2,
+      "id": 39
+    },
+    {
+      "weaponType": "Bullet",
+      "weaponName": "try",
+      "quantity": 2,
+      "id": 40
+    },
+    {
+      "weaponType": "Weapon",
+      "weaponName": "weapon descriptio",
+      "quantity": 45,
+      "id": 41
+    },
+    {
+      "weaponType": "Bullet",
+      "weaponName": "78",
+      "quantity": 45,
+      "id": 42
+    },
+    {
+      "notifiesId": "6",
+      "weaponType": "Bullet",
+      "weaponName": "23",
+      "quantity": 44,
+      "id": 43
+>>>>>>> 39047137078281454dd82186d43d31a749f2bb93
     }
   ],
   "weaponInventories": [
@@ -372,11 +427,16 @@
       "itemNoInExpenditureRegister": "50.00",
       "noOfEntryInTheRegisterOfIncomingGoods": "55.33",
       "classificationOfStock": "Weapon",
-      "storeNo": "200",
-      "shelfNo": "55",
       "date": "2022-02-09T21:00:00.000Z",
       "donor": "Mohammed",
       "id": 1
+    },
+    {
+      "itemNoInExpenditureRegister": "try",
+      "noOfEntryInTheRegisterOfIncomingGoods": "dff",
+      "date": "2022-02-07T21:00:00.000Z",
+      "donor": "sdf",
+      "id": 2
     }
   ],
   "weaponItems": [
@@ -388,7 +448,9 @@
       "weaponUnitPrice": "40",
       "weaponTotalPrice": "2000",
       "weaponInventoriesId": 1,
-      "id": 1
+      "id": 1,
+      "storeNo": "12",
+      "shelfNo": "12"
     },
     {
       "weaponItemDescription": "ካኑኒ ኤስ ሽጉጥ",
@@ -399,6 +461,44 @@
       "weaponTotalPrice": "200",
       "weaponInventoriesId": 1,
       "id": 2
+    },
+    {
+      "weaponItemDescription": "fsd",
+      "weaponModel": "fsd",
+      "weaponSerialNo": "fsd",
+      "weaponQuantity": "fsd",
+      "weaponUnitPrice": "fsd",
+      "weaponTotalPrice": "NaNfsd",
+      "weaponInventoriesId": 2,
+      "id": 3
+    }
+  ],
+  "requests": [
+    {
+      "description": "try",
+      "attachments": "https://v2.convertapi.com/d/yyxb46h48x2qce953xivnssbqym62ngk",
+      "id": 1
+    }
+  ],
+  "requestitems": [
+    {
+      "type": "Weapon",
+      "name": "try",
+      "quantity": 45,
+      "requestsId": 1,
+      "id": 1
+    },
+    {
+      "type": "Bullet",
+      "name": "try",
+      "quantity": 45,
+      "id": 2
+    },
+    {
+      "type": "Bullet",
+      "name": "abe",
+      "quantity": 452,
+      "id": 3
     }
   ],
   "damages": [
