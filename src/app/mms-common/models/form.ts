@@ -22,7 +22,8 @@ export interface FormElement {
     | 'number'
     | 'password'
     | 'file'
-    | 'formArray';
+    | 'formArray'
+    | 'hidden';
   placeholder: string;
   defaultValue: any;
   refer?: string;

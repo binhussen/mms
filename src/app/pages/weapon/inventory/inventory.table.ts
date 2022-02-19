@@ -10,6 +10,7 @@ const actions: Array<Action> = [
 
 const inventoryTableState: TableState = {
   id: 'Inventory table',
+  title: 'List Of Records In Inventory',
   pageNumber: 0,
   pageSize: 5,
   totalItems: 0,

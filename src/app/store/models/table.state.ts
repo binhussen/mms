@@ -13,6 +13,7 @@ export interface RelationShip {
 
 export interface TableState {
   id?: string;
+  title?: string;
   data?: any[];
   pageNumber: number;
   pageSize: number;

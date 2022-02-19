@@ -41,6 +41,12 @@ const requestForWeaponForm: Form = {
       ],
     },
     {
+      name: 'requestStatus',
+      type: 'hidden',
+      placeholder: 'Request Status',
+      defaultValue: 'PENDING',
+    },
+    {
       name: 'description',
       type: 'text',
       placeholder: 'Request Description',
