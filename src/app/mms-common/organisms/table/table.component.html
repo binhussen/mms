@@ -27,38 +27,55 @@
     diameter="50"
     mode="indeterminate"></mat-progress-spinner>
 </div>
-<mat-table *ngIf="!loading" #table [dataSource]="dataSource" class="mat-elevation-z1">
-  <ng-container *ngFor="let column of columns;" [cdkColumnDef]="column.columnDef">
-    <mat-header-cell *cdkHeaderCellDef>{{ column.header }}</mat-header-cell>
-    <mat-cell *cdkCellDef="let row; let i = index">
-      <span class="mobile-label">{{ column.header }}:</span>
-      <ng-container *ngIf="row && column.cell(row)">
-        {{ column.columnDef === 'date' ? (column.cell(row) | date) :  column.cell(row)}}
-      </ng-container>
 
-      <ng-container *ngIf="!column.cell(row) && column.columnDef == 'No'">
-        {{(i + 1)}}
-      </ng-container>
-
-      <ng-container *ngIf="!column.cell(row) && column.columnDef == ' ' && actions">
-        <button mat-icon-button color="primary" [matMenuTriggerFor]="menu">
-          <mat-icon>more_horiz</mat-icon>
-        </button>
-        <mat-menu #menu="matMenu" xPosition="before">
-          <ng-container *ngFor="let action of tableState?.actions">
-            <button mat-menu-item (click)="command(action.type, row)">{{action.name}}</button>
-          </ng-container>
-        </mat-menu>
-      </ng-container>
-    </mat-cell>
-  </ng-container>
-  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row [ngClass.gt-sm]="{'clickable-mat-row': isColumnClickable}" *matRowDef="let row; columns: displayedColumns;"></mat-row>
-</mat-table>
-<mat-paginator [pageSizeOptions]="[5, 10, 20]"
-               (page)="pageChange($event)"
-               showFirstLastButtons
-               aria-label="Select page">
-</mat-paginator>
-
+<ng-container *ngIf="tableState.data?.length; else noRecordTemplate;">
+  <mat-table *ngIf="!loading" #table [dataSource]="dataSource" class="mat-elevation-z1">
+    <ng-container *ngFor="let column of columns;" [cdkColumnDef]="column.columnDef">
+      <mat-header-cell *cdkHeaderCellDef>{{ column.header }}</mat-header-cell>
+      <mat-cell *cdkCellDef="let row; let i = index">
+        <span class="mobile-label">{{ column.header }}:</span>
+        <ng-container *ngIf="row && column.cell(row)">
+          {{ column.columnDef === 'date' ? (column.cell(row) | date) :  column.cell(row)}}
+        </ng-container>
+  
+        <ng-container *ngIf="!column.cell(row) && column.columnDef == 'No'">
+          {{(i + 1)}}
+        </ng-container>
+  
+        <ng-container *ngIf="!column.cell(row) && column.columnDef == ' ' && actions">
+          <button mat-icon-button color="primary" [matMenuTriggerFor]="menu">
+            <mat-icon>more_horiz</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu" xPosition="before">
+            <ng-container *ngFor="let action of tableState?.actions">
+              <button mat-menu-item (click)="command(action.type, row)">{{action.name}}</button>
+            </ng-container>
+          </mat-menu>
+        </ng-container>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row [ngClass.gt-sm]="{'clickable-mat-row': isColumnClickable}" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 (page)="pageChange($event)"
+                 showFirstLastButtons
+                 aria-label="Select page">
+  </mat-paginator>
 </ng-container>
+</ng-container>
+
+
+
+
+<ng-template #noRecordTemplate>
+  <!--no record found -->
+  <mat-card>
+    <mat-card-content>
+      <div class="no-record-found">
+        <img src="assets/img/no-record.svg" alt="No Record Found">
+        <h1>No Record Found!</h1>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</ng-template>
