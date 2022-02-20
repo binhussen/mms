@@ -1,5 +1,5 @@
-<mat-tab-group [backgroundColor]="'primary'">
-    <mat-tab [title]="'Insert Weapons to store'" [label]="'Request For Weapons'">
+<!-- <mat-tab-group [backgroundColor]="'primary'">
+    <mat-tab mat-tab-link  [title]="'Insert Weapons to store'" [label]="'Request For Weapons'">
         <ng-template matTabContent>
             <app-basic
             [form]="form"
@@ -14,4 +14,19 @@
             <h4>View Approved Request</h4>
         </ng-template>
     </mat-tab>
-</mat-tab-group>
+</mat-tab-group> -->
+
+<nav mat-tab-nav-bar  backgroundColor="primary" class="mat-elevation-z1">
+    <a
+    mat-tab-link
+    *ngFor="let tab of tabs"
+    routerLink="{{ tab.route }}"
+    routerLinkActive
+    #rla="routerLinkActive"
+    [active]="rla.isActive"
+  >
+    <span>{{ tab.title | uppercase }}</span>
+  </a>
+</nav>
+
+<router-outlet></router-outlet>

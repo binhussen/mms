@@ -13,8 +13,28 @@ import { MatTabsModule } from '@angular/material/tabs';
     MmsCommonModule,
     MatTabsModule,
     RouterModule.forChild([
-      { path: '', component: RequestsComponent},
-      { path: ':id', component: RequestDetailComponent }]),
+      {
+        path: '',
+        component: RequestsComponent,
+        children: [
+          { path: '', redirectTo: 'request-for-weapon', pathMatch: 'full' },
+          {
+            path: 'request-for-weapon',
+            loadChildren: () =>
+              import('./request-weapon/request-weapon.module').then(
+                (m) => m.RequestWeaponModule
+              ),
+          },
+          {
+            path: 'request-for-return-weapon',
+            loadChildren: () =>
+              import('./return-weapon/return-weapon.module').then(
+                (m) => m.ReturnWeaponModule
+              ),
+          },
+        ],
+      },
+    ]),
   ],
 })
 export class RequestsModule {}

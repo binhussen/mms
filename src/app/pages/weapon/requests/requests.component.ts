@@ -5,25 +5,16 @@ import { Action } from 'src/app/mms-common/organisms/table/table.component';
 import tableActions from 'src/app/store/actions/table.actions';
 import { AppState } from 'src/app/store/models/app.state';
 import requestForm from './request.form';
+import requestTabs from './request.tabs';
 import requestsTable from './requests.table';
 
 @Component({
   selector: 'app-requests',
   templateUrl: './requests.component.html',
-  styleUrls: ['./requests.component.scss']
+  styleUrls: ['./requests.component.scss'],
 })
 export class RequestsComponent implements OnInit {
   form: Form = requestForm.requestForWeaponForm;
-  dataSourceUrl = 'http://localhost:3000/notifies';
-  actions: Array<Action> = [
-    { name: 'Expand', type: 'expand', path: 'requests' },
-    { name: 'Edit', type: 'edit' },
-  ];
-
-  table = requestsTable.requestForWeaponTable;
-  constructor(private store$: Store<AppState>) {}
-
-  ngOnInit(): void {
-    this.store$.dispatch(tableActions.setTableState({ value: this.table }));
-  }
+  tabs = requestTabs;
+  ngOnInit(): void {}
 }

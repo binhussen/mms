@@ -15,24 +15,18 @@ import requestItemsTableState from './request.table';
 })
 export class RequestDetailComponent implements OnInit {
   form: Form = requestForm.requestItemForWeaponForm;
-  dataSourceUrl = 'http://localhost:3000/requestItems';
-  actions: Array<Action> = [
-    { name: 'Expand', type: 'expand', path: 'notifies' },
-    { name: 'Edit', type: 'edit' },
-  ];
   table = requestItemsTableState;
   constructor(
     private activatedRoute: ActivatedRoute,
     private store$: Store<AppState>
   ) {
-    this.dataSourceUrl =
-      this.dataSourceUrl +
-      '?requestsId=' +
-      this.activatedRoute.snapshot.params.id;
     if (this.table.links) {
       this.table = {
         ...this.table,
-        links: { ...this.table.links, getPath: this.dataSourceUrl },
+        links: {
+          ...this.table.links,
+          getPath: `${this.table.links.getPath}?requestsId=${this.activatedRoute.snapshot.params.id}`,
+        },
       };
     }
 

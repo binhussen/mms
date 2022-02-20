@@ -10,12 +10,6 @@ import { Form } from '../../models/form';
 export class BasicComponent implements OnInit {
   @Input()
   form!: Form;
-
-  @Input()
-  dataSourceUrl!: string; // TODO: validate url
-
-  @Input()
-  actions!: Array<Action>;
   constructor() {}
 
   ngOnInit(): void {}

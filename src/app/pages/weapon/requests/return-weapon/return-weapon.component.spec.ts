@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SampleComponent } from './sample.component';
+import { ReturnWeaponComponent } from './return-weapon.component';
 
-describe('SampleComponent', () => {
-  let component: SampleComponent;
-  let fixture: ComponentFixture<SampleComponent>;
+describe('ReturnWeaponComponent', () => {
+  let component: ReturnWeaponComponent;
+  let fixture: ComponentFixture<ReturnWeaponComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SampleComponent ]
+      declarations: [ ReturnWeaponComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SampleComponent);
+    fixture = TestBed.createComponent(ReturnWeaponComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
