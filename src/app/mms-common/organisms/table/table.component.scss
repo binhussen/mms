@@ -39,7 +39,6 @@ mat-header-cell, mat-cell {
   font-size: 1.2rem;
   font-weight: bold;
   margin-right: 1rem;
-  text-transform: capitalize;
 }
 .table-header-actions{
   display: flex;
@@ -80,6 +79,7 @@ mat-header-cell, mat-cell {
 .no-record-found > h1 {
   background-image: linear-gradient(to top, #7986cb, #7986cb);
   -webkit-background-clip: text;
+  background-clip: text;
   background-size: contain;
   font-size: clamp(1.5em, 2.5vw, 3.5em);
   height: 1em;

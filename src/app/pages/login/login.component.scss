@@ -29,6 +29,7 @@
 .header-title {
   background-image: linear-gradient(to top, #7986cb, #102846);
   -webkit-background-clip: text;
+  background-clip: text;
   background-size: contain;
   // adjust text size using clamp
   font-size: clamp(1.5em, 2.5vw, 3.5em);

@@ -45,7 +45,6 @@ import { BasicComponent } from './templates/basic/basic.component';
 import { RouterModule } from '@angular/router';
 import { CrudHttpService } from './organisms/form-dialog/crudHttp.service';
 import { TableService } from './organisms/table/table.service';
-import { TabbedPageComponent } from './templates/tabbed-page/tabbed-page.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -64,7 +63,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     FileInputComponent,
     DndDirective,
     BasicComponent,
-    TabbedPageComponent,
   ],
   imports: [
     CommonModule,

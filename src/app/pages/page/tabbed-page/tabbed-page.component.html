@@ -1,0 +1,16 @@
+<ng-container *ngIf="(activatedRoute.data | async) as data">
+    <nav mat-tab-nav-bar  backgroundColor="primary" class="mat-elevation-z1">
+        <a
+        mat-tab-link
+        *ngFor="let tab of data.tabs"
+        routerLink="{{ tab.route }}"
+        routerLinkActive
+        #rla="routerLinkActive"
+        [active]="rla.isActive"
+      >
+        <span>{{ tab.title | uppercase }}</span>
+      </a>
+    </nav>
+    
+    <router-outlet></router-outlet>
+</ng-container>

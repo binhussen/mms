@@ -44,9 +44,6 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @Input() form!: Form;
-  @Input() dataSourceUrl!: string;
-  @Input() actions!: Array<Action>;
-  @Input() excludedColumns!: Array<string>;
   pageSize = 5;
   dataSource = new MatTableDataSource<any>(this.data);
 
@@ -90,7 +87,11 @@ export class TableComponent implements OnInit, AfterViewInit {
       this.store$.dispatch(formActions.clearData());
     });
   }
-  command(actionType: 'create' | 'expand' | 'edit' | 'delete', row: any) {
+  command(
+    actionType: 'create' | 'expand' | 'edit' | 'delete',
+    row: any,
+    link?: string
+  ) {
     switch (actionType) {
       case 'create':
         this.openDialog('Create', this.form, this.links.createPath, actionType);
@@ -119,10 +120,10 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   initTable(state$: Observable<TableState>, currentSize?: number) {
     return this.store$.select(tableSelectors.getTableState).pipe(
-      filter((state) => Boolean(state?.data && state?.data?.length)),
+      //  filter((state) => Boolean(state?.data && state?.data?.length)),
       tap(({ data, totalItems, excludedColumns, links }) => {
+        this.links = links;
         if (!currentSize && data) {
-          this.links = links;
           this.data = [...data];
           this.columns = this.tableService.getColumns(
             this.data,
