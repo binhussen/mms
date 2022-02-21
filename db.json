@@ -507,6 +507,12 @@
       "weaponDescription": "to whom it concerns",
       "attachments": "https://v2.convertapi.com/d/sge59t12dvd7ju35ug69r2xesoumtx6o",
       "id": 2
+    },
+    {
+      "reason": "dfsdfdsf",
+      "weaponDescription": "dfsdafsdf",
+      "attachments": "https://v2.convertapi.com/d/4bkwrazkvkxgarbzygvy7hw9akk6tgqe",
+      "id": 3
     }
   ],
   "damagesItems": [
@@ -514,14 +520,14 @@
       "weaponType": "Weapon",
       "weaponName": "gun",
       "quantity": 60,
-      "itemsId": 1,
+      "damagesId": 1,
       "id": 1
     },
     {
       "weaponType": "Weapon",
-      "weaponName": "xxxxxx",
+      "weaponName": "sniper",
       "quantity": 23,
-      "itemsId": 2,
+      "damagesId": 2,
       "id": 2
     }
   ]
