@@ -27,7 +27,7 @@ const inventoryTableState: TableState = {
     {
       type: 'weaponItems',
       links: {
-        getPath: `${baseApiUrl}/weaponItems?notifiesId=[id]`,
+        getPath: `${baseApiUrl}/weaponItems?weaponInventoriesId=[id]`,
         createPath: `${baseApiUrl}/weaponItems`,
         updatePath: `${baseApiUrl}/weaponItems/[id]`,
         deletePath: `${baseApiUrl}/weaponItems/[id]`,
@@ -37,7 +37,28 @@ const inventoryTableState: TableState = {
   ],
 };
 
+const inventoryItemsTableState: TableState = {
+  id: 'Weapon Items table',
+  title: 'List of weapons in a record',
+  pageNumber: 0,
+  pageSize: 5,
+  totalItems: 0,
+  data: [],
+  excludedColumns: ['id', 'weaponInventoriesId'],
+  links: {
+    getPath: `${baseApiUrl}/weaponItems?weaponInventoriesId=[id]`,
+    createPath: `${baseApiUrl}/weaponItems`,
+    updatePath: `${baseApiUrl}/weaponItems/[id]`,
+    deletePath: `${baseApiUrl}/weaponItems/[id]`,
+  },
+  actions,
+  relations: [],
+  childOf: {
+    weaponInventoriesId: 0,
+  },
+};
+
 // set this state to the store
 // effect will fetch the data from the api and set it to the store
 
-export default inventoryTableState;
+export default { inventoryTableState, inventoryItemsTableState };

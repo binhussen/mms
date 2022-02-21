@@ -37,4 +37,25 @@ const requestForWeaponTable: TableState = {
   ],
 };
 
-export default requestForWeaponTable;
+const requestItemsForWeaponTable: TableState = {
+  id: 'request items table',
+  title: 'List of weapons items that are in the request',
+  pageNumber: 0,
+  pageSize: 5,
+  totalItems: 0,
+  data: [],
+  excludedColumns: ['id', 'requestsId'],
+  links: {
+    getPath: `${baseApiUrl}/requestWeaponItems`,
+    createPath: `${baseApiUrl}/requestWeaponItems`,
+    updatePath: `${baseApiUrl}/requestWeaponItems/[id]`,
+    deletePath: `${baseApiUrl}/requestWeaponItems/[id]`,
+  },
+  actions: actions.slice(1),
+  relations: [],
+  childOf: {
+    requestItems: 0,
+  },
+};
+
+export default { requestForWeaponTable, requestItemsForWeaponTable };

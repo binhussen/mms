@@ -44,9 +44,6 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @Input() form!: Form;
-  @Input() dataSourceUrl!: string;
-  @Input() actions!: Array<Action>;
-  @Input() excludedColumns!: Array<string>;
   pageSize = 5;
   dataSource = new MatTableDataSource<any>(this.data);
 

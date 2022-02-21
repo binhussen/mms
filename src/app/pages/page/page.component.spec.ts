@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NotifyDetailComponent } from './notify-detail.component';
+import { PageComponent } from './page.component';
 
-describe('NotifyDetailComponent', () => {
-  let component: NotifyDetailComponent;
-  let fixture: ComponentFixture<NotifyDetailComponent>;
+describe('PageComponent', () => {
+  let component: PageComponent;
+  let fixture: ComponentFixture<PageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NotifyDetailComponent ]
+      declarations: [ PageComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NotifyDetailComponent);
+    fixture = TestBed.createComponent(PageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

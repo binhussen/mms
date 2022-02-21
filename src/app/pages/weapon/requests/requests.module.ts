@@ -1,21 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RequestsComponent } from './requests.component';
 import { RouterModule } from '@angular/router';
 import { MmsCommonModule } from 'src/app/mms-common/mms-common.module';
-import { RequestDetailComponent } from './request-detail/request-detail.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { PageModule } from '../../page/page.module';
+import requestPages from './request.pages';
+import { TabbedPageComponent } from '../../page/tabbed-page/tabbed-page.component';
 
 @NgModule({
-  declarations: [RequestsComponent, RequestDetailComponent],
   imports: [
     CommonModule,
     MmsCommonModule,
     MatTabsModule,
+    PageModule,
     RouterModule.forChild([
       {
         path: '',
-        component: RequestsComponent,
+        component: TabbedPageComponent,
+        data: requestPages,
         children: [
           { path: '', redirectTo: 'request-for-weapon', pathMatch: 'full' },
           {

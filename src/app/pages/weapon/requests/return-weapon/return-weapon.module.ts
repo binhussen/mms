@@ -1,15 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReturnWeaponComponent } from './return-weapon.component';
 import { RouterModule } from '@angular/router';
 import { MmsCommonModule } from 'src/app/mms-common/mms-common.module';
+import { PageModule } from 'src/app/pages/page/page.module';
+import { PageComponent } from 'src/app/pages/page/page.component';
+import returnWeaponPage from './return-weapon.page';
 
 @NgModule({
-  declarations: [ReturnWeaponComponent],
+  declarations: [],
   imports: [
     CommonModule,
     MmsCommonModule,
-    RouterModule.forChild([{ path: '', component: ReturnWeaponComponent }]),
+    PageModule,
+    RouterModule.forChild([
+      { path: '', component: PageComponent, data: returnWeaponPage },
+    ]),
   ],
 })
 export class ReturnWeaponModule {}

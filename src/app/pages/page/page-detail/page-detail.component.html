@@ -1,0 +1,3 @@
+<ng-container *ngIf="(activatedRoute.data | async) as data">
+    <app-basic [form]="data.form"></app-basic>
+</ng-container>

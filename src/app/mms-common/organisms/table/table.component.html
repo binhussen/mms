@@ -42,7 +42,7 @@
           {{(i + 1)}}
         </ng-container>
   
-        <ng-container *ngIf="!column.cell(row) && column.columnDef == ' ' && actions">
+        <ng-container *ngIf="!column.cell(row) && column.columnDef == ' ' && tableState?.actions">
           <button mat-icon-button color="primary" [matMenuTriggerFor]="menu">
             <mat-icon>more_horiz</mat-icon>
           </button>
