@@ -14,9 +14,9 @@ import damagesTableState from './damages.table';
 })
 export class DamagesComponent implements OnInit {
   form: Form = damagesForm.damagesForm;
-  dataSourceUrl = 'http://localhost:3000/notifies';
+  dataSourceUrl = 'http://localhost:3000/damages';
   actions: Array<Action> = [
-    { name: 'Expand', type: 'expand', path: 'notifies' },
+    { name: 'Expand', type: 'expand', path: 'damages' },
     { name: 'Edit', type: 'edit' },
   ];
 
