@@ -417,53 +417,24 @@
   ],
   "weaponInventories": [
     {
-      "itemNoInExpenditureRegister": "50.00",
-      "noOfEntryInTheRegisterOfIncomingGoods": "55.33",
-      "classificationOfStock": "Weapon",
-      "date": "2022-02-09T21:00:00.000Z",
-      "donor": "Mohammed",
+      "itemNoInExpenditureRegister": "Technical interviewer position",
+      "noOfEntryInTheRegisterOfIncomingGoods": "fdas",
+      "donor": "Ezedin Fedlu",
       "id": 1
-    },
-    {
-      "itemNoInExpenditureRegister": "try",
-      "noOfEntryInTheRegisterOfIncomingGoods": "dff",
-      "date": "2022-02-07T21:00:00.000Z",
-      "donor": "sdf",
-      "id": 2
     }
   ],
   "weaponItems": [
     {
-      "weaponItemDescription": "ካኑኒ ኤስ ሽጉጥ",
-      "weaponModel": "Model",
-      "weaponSerialNo": "555",
-      "weaponQuantity": "50",
-      "weaponUnitPrice": "40",
-      "weaponTotalPrice": "2000",
+      "weaponItemDescription": "+251923275571",
+      "weaponModel": "Bullet something",
+      "weaponSerialNo": "ddd",
+      "weaponQuantity": 32,
+      "weaponUnitPrice": 33,
+      "weaponTotalPrice": 1056,
+      "storeNo": "dd",
+      "shelfNo": "dd",
       "weaponInventoriesId": 1,
-      "id": 1,
-      "storeNo": "12",
-      "shelfNo": "12"
-    },
-    {
-      "weaponItemDescription": "ካኑኒ ኤስ ሽጉጥ",
-      "weaponModel": "model2",
-      "weaponSerialNo": "66",
-      "weaponQuantity": "20",
-      "weaponUnitPrice": "10",
-      "weaponTotalPrice": "200",
-      "weaponInventoriesId": 1,
-      "id": 2
-    },
-    {
-      "weaponItemDescription": "fsd",
-      "weaponModel": "fsd",
-      "weaponSerialNo": "fsd",
-      "weaponQuantity": "fsd",
-      "weaponUnitPrice": "fsd",
-      "weaponTotalPrice": "NaNfsd",
-      "weaponInventoriesId": 2,
-      "id": 3
+      "id": 1
     }
   ],
   "requests": [

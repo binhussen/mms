@@ -20,11 +20,6 @@ const routes: Routes = [
           import('../weapon/weapon.module').then((m) => m.WeaponModule),
       },
       {
-        path: 'notify',
-        loadChildren: () =>
-          import('../sample/sample.module').then((m) => m.SampleModule),
-      },
-      {
         path: 'dashboard',
         loadChildren: () =>
           import('../dashboard/dashboard.module').then(
