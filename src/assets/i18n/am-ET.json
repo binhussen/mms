@@ -20,18 +20,18 @@
 
 
     "menus": {
-        "dashboard": "ደሽ ቦርድ",
+        "dashboard": "ዳሽ ቦርድ",
         "Weapon": "የጦር መሳሪያ",
         "Notify Weapon": "የጦር መሳሪያ ማሰወቅ",
-        "Inventory": "እቃ መከማችቻ",
+        "Inventory": "እቃ መከማቻ",
         "Request": "የጦር መሳሪያ መጠየቅ",
         "Report Damages":"የሚወገዱ ጦር መሳሪያዎች",
         "User Management":"የተጠቃሚ አስተዳደር"
     },
 
     "elements": {
-        "Notify Item" :"በነጠላ የሚገቡ",
-        "Weapon": "የጦር መሣሪያ ዓይነት",
+        "Notify Item" :"በነጠላ የሚገቡ ቅጽ",
+        "Weapon": "የጦር መሣሪያ",
         "Bullet" :"ጥይት",
         "Other":"ሌላ",
         "Quantity" :"ብዛት",
@@ -69,5 +69,9 @@
         "List Of Records In Inventory": "የተከመቹ እቃዎች ዝርዝር",
         "View Store": "የተከመቹ እቃዎች እየው",
         "View store grouped by type and model": "በአይነት እና በሞዴል የተከመቹ እቃዎች መየት "
+    },
+
+    "dashboard": {
+      "Dashbiard": "ዳሽ ቦርድ"
     }
 }
