@@ -1,20 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DamagesComponent } from './damages.component';
+import { MmsCommonModule } from 'src/app/mms-common/mms-common.module';
 import { RouterModule } from '@angular/router';
-import { MmsCommonModule } from './../../../mms-common/mms-common.module';
-import { DamageDetailComponent } from './damage-detail/damage-detail.component';
+import { PageComponent } from '../../page/page.component';
+import damagesPage from './damages.page';
+import { PageDetailComponent } from '../../page/page-detail/page-detail.component';
+import damagesDetailPage from './damages-detail.page';
+
+
 
 @NgModule({
-  declarations: [DamagesComponent, DamageDetailComponent],
+  declarations: [],
   imports: [
-  CommonModule,
+    CommonModule,
     MmsCommonModule,
     RouterModule.forChild([
-      { path: '', component: DamagesComponent },
-      { path: 'id', component: DamageDetailComponent }
-
+      { path: '', component: PageComponent, data: damagesPage }, // page
+      { path: ':id', component: PageDetailComponent, data: damagesDetailPage }, // page detail
     ]),
-  ],
+  ]
 })
-export class DamagesModule {}
+export class DamagesModule { }

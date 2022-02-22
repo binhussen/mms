@@ -468,32 +468,20 @@
   ],
   "damages": [
     {
-      "reason": "expired date reached",
-      "weaponDescription": "to whom it concerns",
-      "attachments": "https://v2.convertapi.com/d/m7ij2256wfgxnrkbjptdqowmvgitkpqw",
+      "damagesId": 0,
+      "reason": "expired date already passed",
+      "weaponDescription": "to whom it concerns and mandate person",
+      "attachments": "https://v2.convertapi.com/d/npf6iwisr7qffswpl33c06my7v6a9jp5",
       "id": 1
-    },
-    {
-      "reason": "crashed",
-      "weaponDescription": "to whom it concerns",
-      "attachments": "https://v2.convertapi.com/d/sge59t12dvd7ju35ug69r2xesoumtx6o",
-      "id": 2
     }
   ],
   "damagesitems": [
     {
-      "weaponType": "Weapon",
-      "weaponName": "gun",
-      "quantity": 60,
-      "itemsId": 1,
+      "weaponType": "Bullet",
+      "weaponName": "sssss",
+      "quantity": 78,
+      "damagesId": 1,
       "id": 1
-    },
-    {
-      "weaponType": "Weapon",
-      "weaponName": "xxxxxx",
-      "quantity": 23,
-      "itemsId": 2,
-      "id": 2
     }
   ]
 }

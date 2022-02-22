@@ -1,5 +1,5 @@
-import { Action } from "src/app/mms-common/organisms/table/table.component";
-import { TableState } from "src/app/store/models/table.state";
+import { Action } from 'src/app/mms-common/organisms/table/table.component';
+import { TableState } from 'src/app/store/models/table.state';
 
 const baseApiUrl = 'http://localhost:3000';
 const dataSourceUrl = `${baseApiUrl}/damagesItems`;
@@ -24,4 +24,4 @@ const damagesItemsTableState: TableState = {
     damagesId: 0,
   },
 };
-export default damagesItemsTableState
+export default damagesItemsTableState;
