@@ -44,6 +44,22 @@
             </div>
           </div>
 
+          <div  *ngIf="card.title == 'lineChart'">
+            <ngx-charts-line-chart
+              [view]=[600,300]
+              [legend]="legend"
+              [showXAxisLabel]="showXAxisLabel"
+              [showYAxisLabel]="showYAxisLabel"
+              [xAxis]="xAxis"
+              [yAxis]="yAxis"
+              [xAxisLabel]="xAxisLabel"
+              [yAxisLabel]="yAxisLabel"
+              [timeline]="timeline"
+              [results]="lineChart"
+              >
+            </ngx-charts-line-chart>
+          </div>
+
           <ngx-charts-pie-chart
           *ngIf="card.title == 'pieChart'"
             [results]="pieChartData"

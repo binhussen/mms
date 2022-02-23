@@ -3,7 +3,6 @@ import {map, single} from 'rxjs/operators';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {HttpClient} from "@angular/common/http";
 import { DashboardService } from './dashboard.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -23,7 +22,7 @@ export class DashboardComponent {
       if (matches) {
         return [
           { title: 'Board', cols: 1, rows: 1 },
-          { title: 'Card 2', cols: 1, rows: 1 },
+          { title: 'lineChart', cols: 1, rows: 1 },
           { title: 'pieChart', cols: 1, rows: 1 },
           { title: 'Card 4', cols: 1, rows: 1 }
         ];
@@ -31,7 +30,7 @@ export class DashboardComponent {
 
       return [
         { title: 'board', cols: 2, rows: 1 },
-        { title: 'Card 2', cols: 1, rows: 1 },
+        { title: 'lineChart', cols: 1, rows: 1 },
         { title: 'pieChart', cols: 1, rows: 2 },
         { title: 'Card 4', cols: 1, rows: 1 }
       ];
@@ -63,7 +62,17 @@ export class DashboardComponent {
   numberOfWeapon! : number;
   numberOfBullet! : number;
   numberOfOther! : number;
-  //
+  //Pie Chart
+  // options
+  gradient: boolean = true;
+  showLegend: boolean = true;
+  showLabels: boolean = true;
+  isDoughnut: boolean = false;
+  legendPosition: string = 'below';
+
+  colorScheme = {
+    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+  };
   pieChartData = [
     {
       "name": "Weapon",
@@ -109,19 +118,59 @@ export class DashboardComponent {
       amount: 0
     }
   ];
-  // 
-  view: any[] = [700, 400];
+  //Line Chart
+   // options
+  view: any[] = [700, 300];
 
-  // options
-  gradient: boolean = true;
-  showLegend: boolean = true;
-  showLabels: boolean = true;
-  isDoughnut: boolean = false;
-  legendPosition: string = 'below';
+   legend: boolean = true;
+   animations: boolean = true;
+   xAxis: boolean = true;
+   yAxis: boolean = true;
+   showYAxisLabel: boolean = true;
+   showXAxisLabel: boolean = true;
+   xAxisLabel: string = 'Year';
+   yAxisLabel: string = 'Weapon';
+   timeline: boolean = true;
 
-  colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
-  };
+  lineChart = [
+    {
+      "name": "Inventory",
+      "series": [
+        {
+          "name": "2012",
+          "value": 10
+        },
+        {
+          "name": "2013",
+          "value": 20
+        },
+        {
+          "name": "2014",
+          "value": 30
+        }
+      ]
+    },
+  
+    {
+      "name": "Distribute",
+      "series": [
+        {
+          "name": "2012",
+          "value": 14
+        },
+        {
+          "name": "2013",
+          "value": 20
+        },
+        {
+          "name": "2014",
+          "value": 50
+        }
+      ]
+    },
+  ];
+
+  
   ngOnInit(){
     this.getData();
   }
