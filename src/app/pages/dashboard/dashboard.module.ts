@@ -7,6 +7,8 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatButtonModule} from "@angular/material/button";
 import {RouterModule} from "@angular/router";
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [DashboardComponent],
@@ -17,6 +19,8 @@ import {RouterModule} from "@angular/router";
     MatIconModule,
     MatMenuModule,
     MatButtonModule,
+    NgxChartsModule,
+    FlexLayoutModule,
     RouterModule.forChild([
       {path: '', component: DashboardComponent}
     ])

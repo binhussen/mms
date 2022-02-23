@@ -27,6 +27,7 @@
     "@ngrx/store-devtools": "^13.0.2",
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
+    "@swimlane/ngx-charts": "^20.0.1",
     "ng-animate": "^1.0.0",
     "ngx-perfect-scrollbar": "^10.1.1",
     "rxjs": "~6.6.0",

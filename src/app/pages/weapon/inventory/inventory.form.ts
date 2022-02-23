@@ -50,6 +50,19 @@ const inventoryForm: Form = {
           size: 3,
         },
         {
+          name: 'weaponType',
+          type: 'select',
+          placeholder: 'Weapon Type',
+          defaultValue: '',
+          size: 4,
+          options: [
+            { value: 'Weapon', label: 'Weapon' },
+            { value: 'Bullet', label: 'Bullet' },
+            { value: 'Other', label: 'Other' },
+          ],
+          validations: [{ type: 'required', value: true }],
+        },
+        {
           name: 'weaponModel',
           type: 'text',
           placeholder: 'Weapon Model',
