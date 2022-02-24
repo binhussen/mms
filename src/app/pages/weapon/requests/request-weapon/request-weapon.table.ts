@@ -1,11 +1,20 @@
 import { Action } from 'src/app/mms-common/organisms/table/table.component';
 import { TableState } from 'src/app/store/models/table.state';
+import requestWeaponForm from './request-weapon.form';
 
 const baseApiUrl = 'http://localhost:3000';
 const dataSourceUrl = `${baseApiUrl}/requestWeapons`;
 const actions: Array<Action> = [
   { name: 'Expand', type: 'expand', path: 'request-for-weapon' },
   { name: 'Edit', type: 'edit' },
+  {
+    name: 'Approve',
+    type: 'approve',
+    urlToPopulateForm: `${baseApiUrl}/requestWeapons/[id]`,
+    form: requestWeaponForm.requestApprovalForm,
+    submittedUrl: `${baseApiUrl}/requestWeaponApprovals`,
+  },
+  { name: 'Reject', type: 'reject' },
 ];
 
 const requestForWeaponTable: TableState = {
@@ -27,7 +36,7 @@ const requestForWeaponTable: TableState = {
     {
       type: 'requestWeaponItems',
       links: {
-        getPath: `${baseApiUrl}/requestWeaponItems?requestsId=[id]`,
+        getPath: `${baseApiUrl}/requestWeaponItems?requestWeaponsId=[id]`,
         createPath: `${baseApiUrl}/requestWeaponItems`,
         updatePath: `${baseApiUrl}/requestWeaponItems/[id]`,
         deletePath: `${baseApiUrl}/requestWeaponItems/[id]`,
@@ -44,17 +53,17 @@ const requestItemsForWeaponTable: TableState = {
   pageSize: 5,
   totalItems: 0,
   data: [],
-  excludedColumns: ['id', 'requestsId'],
+  excludedColumns: ['id', 'requestWeaponsId'],
   links: {
     getPath: `${baseApiUrl}/requestWeaponItems`,
     createPath: `${baseApiUrl}/requestWeaponItems`,
     updatePath: `${baseApiUrl}/requestWeaponItems/[id]`,
     deletePath: `${baseApiUrl}/requestWeaponItems/[id]`,
   },
-  actions: actions.slice(1),
+  actions: actions.slice(1, 2),
   relations: [],
   childOf: {
-    requestItems: 0,
+    requestWeaponsId: 0,
   },
 };
 

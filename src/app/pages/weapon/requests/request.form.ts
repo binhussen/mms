@@ -31,6 +31,14 @@ const requestForWeaponForm: Form = {
           validations: [{ type: 'required', value: true }],
         },
         {
+          name: 'model',
+          type: 'text',
+          placeholder: 'Model',
+          defaultValue: '',
+          size: 4,
+          validations: [{ type: 'required', value: true }],
+        },
+        {
           name: 'quantity',
           type: 'number',
           placeholder: 'Quantity',
@@ -163,7 +171,12 @@ const requestForReturningWeaponForm: Form = {
 
 const requestApprovalForm = {
   title: 'Request Approval Form',
-  elements: [],
+  elements: requestForWeaponForm.elements.map((element) => {
+    if (element.name === 'requestStatus') {
+      return { ...element, defaultValue: 'APPROVED' };
+    }
+    return element;
+  }),
 };
 
 export default {

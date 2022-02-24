@@ -1,4 +1,4 @@
-import { ActionType } from 'src/app/mms-common/organisms/form-dialog/form-dialog.component';
+import { ActionType } from 'src/app/mms-common/organisms/table/table.component';
 
 export interface FormInfo {
   submittedToUrl: string;

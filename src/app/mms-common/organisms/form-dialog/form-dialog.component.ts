@@ -6,13 +6,7 @@ import formActions from '../../../store/actions/form.actions';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../store/models/app.state';
 import { filter } from 'rxjs/operators';
-export type ActionType =
-  | 'create'
-  | 'update'
-  | 'edit'
-  | 'delete'
-  | 'expand'
-  | null;
+import { ActionType } from '../table/table.component';
 interface FormProps {
   form: Form;
   actionTitle: string;
@@ -49,6 +43,7 @@ export class FormDialogComponent implements OnInit {
     this.row = row;
   }
   onSubmit(formData: any) {
+    console.log(formData);
     const f = {
       value: {
         id: this.form.title,

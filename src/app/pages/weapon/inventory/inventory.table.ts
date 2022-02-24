@@ -46,7 +46,7 @@ const inventoryItemsTableState: TableState = {
   data: [],
   excludedColumns: ['id', 'weaponInventoriesId'],
   links: {
-    getPath: `${baseApiUrl}/weaponItems?weaponInventoriesId=[id]`,
+    getPath: `${baseApiUrl}/weaponItems`,
     createPath: `${baseApiUrl}/weaponItems`,
     updatePath: `${baseApiUrl}/weaponItems/[id]`,
     deletePath: `${baseApiUrl}/weaponItems/[id]`,

@@ -47,8 +47,8 @@ import {
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../store/models/app.state';
 import formActions from '../../../store/actions/form.actions';
-import { ActionType } from '../form-dialog/form-dialog.component';
 import { HttpClient } from '@angular/common/http';
+import { ActionType } from '../table/table.component';
 
 @Component({
   selector: 'app-form',
@@ -65,6 +65,9 @@ export class FormComponent implements OnInit, OnDestroy {
 
   @Input()
   actionType!: ActionType;
+
+  @Input()
+  submittedToUrl!: string;
 
   mmsForm!: FormGroup;
   errors: any = {};
@@ -106,31 +109,37 @@ export class FormComponent implements OnInit, OnDestroy {
     return this.store$
       .select((state) => state.form.updating)
       .pipe(
-        takeWhile((value) => this.actionType === 'edit'),
+        takeWhile(
+          (value) => this.actionType === 'edit' || this.actionType === 'approve'
+        ),
         distinctUntilChanged(),
         tap((updating) => {
           elements.forEach((element) => {
-            if (element.type !== 'formArray' && updating) {
-              this.mmsForm
-                .get(element.name)
-                ?.patchValue(updating[element.name]);
-            }
-
             if (element.type === 'formArray' && updating) {
-              const items = updating[element.name]?.map((item: any) =>
+              const elementPath = this.someInformalShit(
+                this.submittedToUrl ?? '',
+                element.name
+              );
+              const items = updating[elementPath]?.map((item: any) =>
                 this.getNewFormItem(element.formArrayItems ?? [])
               );
               items?.forEach((control: AbstractControl, index: number) => {
+                const elementPath = this.someInformalShit(
+                  this.submittedToUrl ?? '',
+                  element.name
+                );
                 if (control instanceof FormGroup) {
                   for (let con in control.controls) {
                     control.controls[con].patchValue(
-                      updating[element.name][index][con]
+                      updating[elementPath][index][con] ?? element.defaultValue
                     );
                   }
                 }
 
                 if (control instanceof FormControl) {
-                  control.patchValue(updating[element.name][index]);
+                  control.patchValue(
+                    updating[elementPath][index] ?? element.defaultValue
+                  );
                 }
               });
               const formArray = this.mmsForm.get(element.name) as FormArray;
@@ -139,13 +148,25 @@ export class FormComponent implements OnInit, OnDestroy {
                 items ? this.fb.array(items) : formArray
               );
             } else if (updating) {
+              // TODO: change this shitty code
+              const elementPath =
+                element.name == 'requestWeaponsId' ? 'id' : element.name;
               this.mmsForm
                 .get(element.name)
-                ?.patchValue(updating[element.name]);
+                ?.patchValue(updating[elementPath] ?? element.defaultValue);
             }
           });
         })
       );
+  }
+
+  someInformalShit(submittedToUrl: string, elementName: string) {
+    console.log(submittedToUrl);
+    if (submittedToUrl.includes('requestWeaponApprovals')) {
+      return 'requestWeaponItems';
+    }
+
+    return elementName;
   }
 
   dateChanged(e: any, control: string) {}
