@@ -60,7 +60,7 @@
         "Weapon Model": "ሞዴል",
         "Weapon Serial No.": "ሴሪ",
         "Weapon Quantity": "ብዛት",
-        "Weapon Unit Price": "የንዱ ዋጋ",
+        "Weapon Unit Price": "የአንዱ ዋጋ",
         "Weapon Total Price": "የዋጋ ድምር",
         "Store No.": "እቃዉ የሚቀመጥበት መጋዛን ቁጥር",
         "Shelf No.": "የመደርደሪያዉ ቁጥር",
@@ -73,5 +73,36 @@
 
     "dashboard": {
       "Dashbiard": "ዳሽ ቦርድ"
-    }
+    },
+
+
+    "damages Item": {        
+        "form": {
+            "weaponType": "የጦር መሳሪያው አይነት",
+            "options":{
+                "Weapon": "የጦር መሣሪያ",
+                "Bullet" :"ጥይት",
+                "Other":"ሌላ"
+            },
+            "weaponName": "የጦር መሳሪያ ስም",
+            "Quantity" :"ብዛት"
+        }
+    },
+        "Damages Weapon": {
+            "form": {
+            "damagesItems": "የሚወገዱ እቃዎች ዝርዝር",
+            "weaponType": "የጦር መሳሪያው አይነት",
+            "options":{
+                "Weapon": "የጦር መሣሪያ",
+                "Bullet" :"ጥይት",
+                "Other":"ሌላ"
+            },
+            "weaponName": "የጦር መሳሪያ ስም",
+            "quantity": "ብዛት",
+            "reason": "እቃው የሚወገድበት ምክንያት",
+            "Weapon Description":"መግለጫ",
+            "Attachments": "አባሪ ዶኩሜንት"
+            }
+        }
+    
 }
