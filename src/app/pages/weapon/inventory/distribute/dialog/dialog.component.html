@@ -1,0 +1,58 @@
+<mat-stepper *ngIf="data.weaponItems.length; else noAvailableItem;" linear #stepper>
+    <mat-step
+        label="Firearm Receiver Registration"
+        [editable]="false"
+        [stepControl]="step1"
+        [completed]="steps.step1.isCompleted"
+    >
+        <ng-template matStepLabel style="margin-bottom: 24px;">{{userRegistrationForm.title}}</ng-template>
+
+        <mat-dialog-content>
+            <br>
+            <app-form
+            [actionType]="actionType"
+            [form]="userRegistrationForm"
+            [submittedToUrl]="dataSourceUrl"
+            #userRegistration
+            (onFormSubmit)="onSubmit($event, 'step1')"
+            ></app-form>
+        </mat-dialog-content>
+
+        <mat-dialog-actions class="actions">
+            <button mat-button (click)="userRegistration.submit()" [disabled]="userRegistration.mmsForm.invalid">Next</button>
+            <button mat-button color="warn" type="button" mat-dialog-close tabindex="1">Cancel</button>
+        </mat-dialog-actions>
+
+    </mat-step>
+    <mat-step
+         label="Distribute Form"
+         [editable]="false"
+         [stepControl]="step2"
+         [completed]="steps.step2.isCompleted"
+         >
+        <ng-template matStepLabel style="margin-bottom: 24px;">{{distributeForm.title}}</ng-template>
+
+        <mat-dialog-content>
+            <br>
+            <app-form
+            [actionType]="actionType"
+            [form]="distributeForm"
+            [submittedToUrl]="dataSourceUrl"
+            #distributeFormRegistration
+            (onFormSubmit)="onSubmit($event, 'step2')"
+            ></app-form>
+        </mat-dialog-content>
+
+        <mat-dialog-actions class="actions">
+            <button mat-button [disabled]="distributeFormRegistration.mmsForm.invalid" (click)="distributeFormRegistration.submit()">Finish</button>
+            <button mat-button color="warn" type="button" mat-dialog-close tabindex="1">Cancel</button>
+        </mat-dialog-actions>
+    </mat-step>
+</mat-stepper>
+
+<ng-template #noAvailableItem>
+    <div class="no-available-item">
+        <h3>No available item</h3>
+        <p>Please contact the administrator to add an item to the inventory.</p>
+    </div>
+</ng-template>

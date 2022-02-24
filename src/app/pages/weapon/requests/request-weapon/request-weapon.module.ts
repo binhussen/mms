@@ -5,6 +5,8 @@ import { MmsCommonModule } from 'src/app/mms-common/mms-common.module';
 import { PageComponent } from 'src/app/pages/page/page.component';
 import { PageModule } from 'src/app/pages/page/page.module';
 import requestWeaponPage from './request-weapon.page';
+import { PageDetailComponent } from 'src/app/pages/page/page-detail/page-detail.component';
+import requestWeaponDetailPage from './request-weapon-detail.page';
 
 @NgModule({
   declarations: [],
@@ -14,6 +16,11 @@ import requestWeaponPage from './request-weapon.page';
     PageModule,
     RouterModule.forChild([
       { path: '', component: PageComponent, data: requestWeaponPage },
+      {
+        path: ':id',
+        component: PageDetailComponent,
+        data: requestWeaponDetailPage,
+      },
     ]),
   ],
 })

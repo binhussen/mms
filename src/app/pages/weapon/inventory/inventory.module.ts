@@ -10,6 +10,7 @@ import { PageDetailComponent } from '../../page/page-detail/page-detail.componen
 import inventoryPageTabs from './inventory.tabs';
 import insertWeaponPage from './insert-weapon.page';
 import insertWeaponDetailPage from './insert-weapon-detail.page';
+import viewWeaponPage from './pages/view-weapon.page';
 
 @NgModule({
   imports: [
@@ -34,8 +35,18 @@ import insertWeaponDetailPage from './insert-weapon-detail.page';
             component: PageDetailComponent,
             data: insertWeaponDetailPage,
           },
-          { path: 'view-weapon-inventory', component: PageComponent },
-          { path: 'distributee-weapon', component: PageComponent },
+          {
+            path: 'view-weapon-inventory',
+            component: PageComponent,
+            data: viewWeaponPage,
+          },
+          {
+            path: 'distribute-weapon',
+            loadChildren: () =>
+              import('./distribute/distribute.module').then(
+                (m) => m.DistributeModule
+              ),
+          },
           { path: 'distributee-weapon/:id', component: PageDetailComponent },
         ],
       },

@@ -295,7 +295,7 @@
             <fieldset class="inner-fieldset">
             <legend>{{element.placeholder}}</legend>
               <div style="display: flex; justify-content: flex-end">
-                <button
+                <button *ngIf="actionType !== 'approve'"
                         mat-button
                         (click)="addFormItemToFromArray($event, element.name, element.formArrayItems)">
                         <mat-icon>add</mat-icon>
@@ -308,7 +308,7 @@
                     *ngTemplateOutlet="formInputTemplateFormArray;context:{elements: element?.formArrayItems, form: i, nameFormArray: element.name}">
                   </ng-container>
                 </div>
-                <button fxFlex style="margin-top: 24px;" mat-icon-button (click)="removeFormItemFromFormArray($event, element.name, i)">
+                <button *ngIf="actionType !== 'approve'" fxFlex style="margin-top: 24px;" mat-icon-button (click)="removeFormItemFromFormArray($event, element.name, i)">
                   <mat-icon>close</mat-icon>
                 </button>
               </div>

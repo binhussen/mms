@@ -425,6 +425,8 @@
   ],
   "weaponItems": [
     {
+      "weaponType": "Weapon",
+      "weaponAvailability": "0",
       "weaponItemDescription": "+251923275571",
       "weaponModel": "Bullet something",
       "weaponSerialNo": "ddd",
@@ -437,33 +439,114 @@
       "id": 1
     }
   ],
-  "requests": [
+  "requestWeapons": [
     {
-      "requestStatus": "PENDING",
-      "description": "bullets in karta",
-      "attachments": "https://v2.convertapi.com/d/6umh0lnoxcs12haiql781v9g5bhrggik",
-      "id": 2
-    }
-  ],
-  "requestitems": [
-    {
-      "type": "Weapon",
-      "name": "try",
-      "quantity": 45,
-      "requestsId": 1,
+      "requestStatus": "DISTRIBUTED",
+      "description": "Bullet something",
+      "attachments": "https://v2.convertapi.com/d/cy7a899e938r231i0fg51xk7e00wk1x6",
       "id": 1
     },
     {
-      "type": "Bullet",
-      "name": "try",
-      "quantity": 45,
+      "requestStatus": "APPROVED",
+      "description": "Bullet something",
+      "attachments": "https://v2.convertapi.com/d/cy7a899e938r231i0fg51xk7e00wk1x6",
       "id": 2
+    }
+  ],
+  "requestWeaponItems": [
+    {
+      "weaponType": "Weapon",
+      "weaponName": "Bullet Something",
+      "weaponModel": "Bullet Something",
+      "weaponQuantity": 20,
+      "requestWeaponsId": 1,
+      "id": 1
     },
     {
-      "type": "Bullet",
-      "name": "abe",
-      "quantity": 452,
-      "id": 3
+      "weaponType": "Weapon",
+      "weaponName": "Bullet Something",
+      "weaponModel": "Bullet Something",
+      "weaponQuantity": 20,
+      "requestWeaponsId": 2,
+      "id": 2
+    }
+  ],
+  "requestWeaponApprovals": [
+    {
+      "requestStatus": "APPROVED",
+      "requestApprovalDescription": "request has been approved",
+      "attachments": "https://v2.convertapi.com/d/b4kv8k58jlza5ztcotl4m4kczmikbt7g",
+      "requestWeaponsId": 1,
+      "id": 1
+    },
+    {
+      "requestStatus": "APPROVED",
+      "requestApprovalDescription": "request has been approved",
+      "attachments": "https://v2.convertapi.com/d/b4kv8k58jlza5ztcotl4m4kczmikbt7g",
+      "requestWeaponsId": 2,
+      "id": 2
+    }
+  ],
+  "requestApprovedWeaponItems": [
+    {
+      "weaponType": "Weapon",
+      "weaponName": "Bullet Something",
+      "weaponModel": "Bullet Something",
+      "weaponQuantity": 20,
+      "requestWeaponApprovalsId": 1,
+      "id": 1
+    },
+    {
+      "weaponType": "Weapon",
+      "weaponName": "Bullet Something",
+      "weaponModel": "Bullet Something",
+      "weaponQuantity": 20,
+      "requestWeaponApprovalsId": 2,
+      "id": 2
+    }
+  ],
+  "weaponReceivers": [
+    {
+      "name": "Ezedin",
+      "fatherName": "Fedlu",
+      "grandFatherName": "Sherif",
+      "gender": "male",
+      "region": "Addis Ababa",
+      "sub-city": "Addis Ababa",
+      "woreda": "06",
+      "house-number": "554",
+      "phone-number": "+251923275571",
+      "birth-place": "Addis Ababa",
+      "birth-date": "2022-02-16T21:00:00.000Z",
+      "occupation": "Software Engineer",
+      "emergence-contact-name": "Rediet Getye",
+      "emergence-contact-phone-number": "0923777777",
+      "emergence-contact-sub-city": "Arada",
+      "emergence-contact-woreda": "10",
+      "emergence-contact-house-number": "22",
+      "id": 1
+    }
+  ],
+  "distributedWeapons": [
+    {
+      "itemNoInExpenditureRegister": "we don on",
+      "noOfEntryInTheRegisterOfIncomingGoods": "jjjj",
+      "donor": "daniel",
+      "weaponReceiversId": 1,
+      "requestWeaponsId": 1,
+      "requestWeaponApprovalsId": 1,
+      "id": 1
+    }
+  ],
+  "distributedWeaponItems": [
+    {
+      "weaponType": "Weapon",
+      "weaponItemDescription": "+251923275571",
+      "weaponModel": "Bullet something",
+      "weaponSerialNo": "ddd",
+      "weaponQuantity": 32,
+      "id": 1,
+      "distributedWeaponsId": 1
     }
   ],
   "damages": [

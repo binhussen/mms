@@ -1,0 +1,35 @@
+<ng-container>
+    <mat-toolbar class="mat-elevation-z1 table-header">
+        <div class="table-header-title">
+            <h1>{{tables.requests.title}}</h1>
+        </div>
+    </mat-toolbar>
+    <mat-table #table [dataSource]="tables.requests.dataSource" class="mat-elevation-z1">
+        <ng-container *ngFor="let column of tables.requests.columns;" [cdkColumnDef]="column.columnDef">
+          <mat-header-cell *cdkHeaderCellDef>{{ column.header }}</mat-header-cell>
+          <mat-cell *cdkCellDef="let row; let i = index">
+            <span class="mobile-label">{{ column.header }}:</span>
+            <ng-container *ngIf="row && column.cell(row)">
+              {{ column.columnDef === 'date' ? (column.cell(row) | date) :  column.cell(row)}}
+            </ng-container>
+      
+            <ng-container *ngIf="!column.cell(row) && column.columnDef == 'No'">
+              {{(i + 1)}}
+            </ng-container>
+      
+            <ng-container *ngIf="!column.cell(row) && column.columnDef == ' ' && tables.requests.actions">
+              <button mat-icon-button color="primary" [matMenuTriggerFor]="menu">
+                <mat-icon>more_horiz</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu" xPosition="before">
+                <ng-container *ngFor="let action of tables.requests.actions">
+                  <button mat-menu-item (click)="command(action, row)">{{action.name}}</button>
+                </ng-container>
+              </mat-menu>
+            </ng-container>
+          </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="tables.requests.getDisplayedColumns(tables.requests.columns)"></mat-header-row>
+        <mat-row  *matRowDef="let row; columns:tables.requests.getDisplayedColumns(tables.requests.columns);"></mat-row>
+      </mat-table>
+</ng-container>

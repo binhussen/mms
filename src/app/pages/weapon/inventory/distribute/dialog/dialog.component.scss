@@ -1,0 +1,13 @@
+.actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+::ng-deep .mat-horizontal-stepper-header {
+    height: 48px !important;
+    margin-bottom: 24px !important;
+}
+
+::ng-deep .mat-stepper-horizontal-line {
+    flex: 0;
+    margin-bottom: 24px !important;
+}

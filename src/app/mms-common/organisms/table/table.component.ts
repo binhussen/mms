@@ -22,10 +22,24 @@ import { concat, Observable, of } from 'rxjs';
 import { TableState } from 'src/app/store/models/table.state';
 import tableActions from 'src/app/store/actions/table.actions';
 import formActions from 'src/app/store/actions/form.actions';
+
+export type ActionType =
+  | 'create'
+  | 'expand'
+  | 'edit'
+  | 'delete'
+  | 'approve'
+  | 'reject'
+  | 'view'
+  | null;
+
 export interface Action {
   name: string;
-  type: 'expand' | 'edit' | 'delete' ;
+  type: ActionType;
   path?: string; // if expand we redirect the user to detail page. For example: if path = 'post' and item id = 2 => /post/2
+  urlToPopulateForm?: string; // if we need to populate the form with data from the server
+  form?: Form;
+  submittedUrl?: string; // if we need to submit the form to the server
 }
 @Component({
   selector: 'app-table',
@@ -57,7 +71,8 @@ export class TableComponent implements OnInit, AfterViewInit {
     private router: Router,
     private store$: Store<AppState>,
     public tableService: TableService,
-    private changeDetectorRefs: ChangeDetectorRef
+    private changeDetectorRefs: ChangeDetectorRef,
+    private httpClient: HttpClient
   ) {}
 
   async ngOnInit() {
@@ -68,7 +83,7 @@ export class TableComponent implements OnInit, AfterViewInit {
     actionTitle: string,
     form: Form,
     dataSourceUrl: string,
-    actionType: 'create' | 'expand' | 'edit' | 'delete',
+    actionType: ActionType,
     row?: any
   ) {
     const dialogRef = this.dialog.open(FormDialogComponent, {
@@ -87,14 +102,15 @@ export class TableComponent implements OnInit, AfterViewInit {
       this.store$.dispatch(formActions.clearData());
     });
   }
-  command(
-    actionType: 'create' | 'expand' | 'edit' | 'delete',
-    row: any,
-    link?: string
-  ) {
-    switch (actionType) {
+  command(action: Action, row: any, link?: string) {
+    switch (action.type) {
       case 'create':
-        this.openDialog('Create', this.form, this.links.createPath, actionType);
+        this.openDialog(
+          'Create',
+          this.form,
+          this.links.createPath,
+          action.type
+        );
         break;
       case 'expand':
         this.router.navigate([`${this.router.url}/${row['id']}`]);
@@ -106,12 +122,32 @@ export class TableComponent implements OnInit, AfterViewInit {
           'Update',
           this.form,
           this.links.updatePath,
-          actionType,
+          action.type,
           row
         );
         break;
       case 'delete':
         // delete the row
+        break;
+      case 'approve':
+        // fetch data from the server using actionType.urlToPopulateForm by replacing [id] with the current row id
+        this.httpClient
+          .get(action?.urlToPopulateForm?.replace('[id]', row.id) ?? '')
+          .subscribe((r) => {
+            console.log(r);
+            this.store$.dispatch(
+              formActions.setUpdatingForm({
+                value: { ...r },
+              })
+            );
+            this.openDialog(
+              'Approve',
+              action.form ?? this.form,
+              action.submittedUrl ?? '',
+              action.type,
+              row
+            );
+          });
         break;
       default:
         console.log('unknown action');

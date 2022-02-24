@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BaseService } from '../core/services/base.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { concat, merge, Observable, of, zip } from 'rxjs';
 import {
   catchError,
@@ -20,6 +20,9 @@ import tableActions from './actions/table.actions';
 
 @Injectable({ providedIn: 'root' })
 export class CrudHttpService extends BaseService<any> {
+  headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+  });
   constructor(httpClient: HttpClient, private store$: Store<AppState>) {
     super(httpClient, '');
   }
@@ -35,11 +38,11 @@ export class CrudHttpService extends BaseService<any> {
       .pipe(
         takeWhile((state: AppState) => state.form.status === 'PENDING'),
         map((state) =>
-          state.form.action === 'create'
+          state.form.action === 'create' || state.form.action === 'approve'
             ? {
                 data: state.form.data,
                 submittedToUrl: state.form.submittedToUrl,
-                action: state.form.action,
+                action: 'create',
                 relations: state.table.relations,
                 childOf: state.table.childOf,
               }
@@ -126,7 +129,7 @@ export class CrudHttpService extends BaseService<any> {
         observer.next(null);
       });
     }
-    return this.httpClient.post(`${url}`, data);
+    return this.httpClient.post(`${url}`, data, { headers: this.headers });
   }
 
   updateResource(data: any, url: string): Observable<any> {
@@ -135,7 +138,9 @@ export class CrudHttpService extends BaseService<any> {
         observer.next(null);
       });
     }
-    return this.httpClient.patch(`${this.getUrl(url, data.id)}`, data);
+    return this.httpClient.patch(`${this.getUrl(url, data.id)}`, data, {
+      headers: this.headers,
+    });
   }
 
   getSingleAndBulk(
@@ -160,12 +165,12 @@ export class CrudHttpService extends BaseService<any> {
       if (Array.isArray(data[key])) {
         bulk[key] = {
           data: data[key],
-          submittedToUrl:
-            action === 'create'
-              ? relations?.find((relation: any) => relation.type === key)?.links
-                  .createPath
-              : relations?.find((relation: any) => relation.type === key)?.links
-                  .updatePath,
+          submittedToUrl: this.getChildUrl(
+            submittedToUrl,
+            action,
+            relations,
+            key
+          ),
         };
       } else {
         temp[key] = data[key];
@@ -177,6 +182,23 @@ export class CrudHttpService extends BaseService<any> {
       single,
       bulk,
     };
+  }
+
+  getChildUrl(
+    submittedToUrl: string,
+    action: string,
+    relations: any,
+    key: string
+  ) {
+    const baseApiUrl = this.getBaseUrl(submittedToUrl);
+    if (submittedToUrl.includes('requestWeaponApprovals')) {
+      return `${baseApiUrl}/requestApprovedWeaponItems`;
+    }
+    return action === 'create'
+      ? relations?.find((relation: any) => relation.type === key)?.links
+          .createPath
+      : relations?.find((relation: any) => relation.type === key)?.links
+          .updatePath;
   }
 
   checkForChange(data: any, updating: any) {

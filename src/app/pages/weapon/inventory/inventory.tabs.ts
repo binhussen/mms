@@ -3,7 +3,7 @@ const inventoryPageTabs = {
   title: 'Inventory',
   tabs: [
     { title: 'Insert Weapon', route: 'insert-weapon' },
-    { title: 'View Weapon', route: 'view-weapon' },
+    { title: 'View Weapon', route: 'view-weapon-inventory' },
     { title: 'Distribute Weapon', route: 'distribute-weapon' },
   ],
 };
