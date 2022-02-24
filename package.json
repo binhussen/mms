@@ -38,6 +38,8 @@
     "@angular-devkit/build-angular": "~12.2.7",
     "@angular/cli": "~12.2.7",
     "@angular/compiler-cli": "~12.2.0",
+    "@types/d3-scale": "^4.0.2",
+    "@types/d3-selection": "^3.0.2",
     "@types/jasmine": "~3.8.0",
     "@types/node": "^12.11.1",
     "concurrently": "^6.5.1",
