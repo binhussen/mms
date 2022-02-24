@@ -8,5 +8,200 @@
             "username": "Username",
             "password": "Password"
         }
+    },
+
+    "userMenu": {
+        "profile": "Profile",
+        "setting": "Settings",
+        "help": "Help",
+        "logout": "Logout"
+      },
+  
+      "formAction": {
+          "createNew": "Create New",
+          "noRecordFound": "No Record Found",
+          "no": "NO"
+        },
+
+    "menus": {
+        "dashboard": "Dashboard",
+        "weapon": "Weapon",
+        "notifyWeapon": "Notify Weapon",
+        "inventory": "እቃ መከማቻ",
+        "request": "Request",
+        "reportDamages":"report Damages",
+        "userManagement":"User Managment"
+    },
+    
+        "createNew":{
+            "expand": "Expand",
+            "edit":"Edit",
+            "create": "Create",
+            "update": "Update",
+            "cancel": "Cancel"           
+        },
+
+    
+
+    "notifyItem": {
+    "listofweaponsthathavebeennotified": "List of weapons that have been notified",        
+        "form": {
+            "weaponType": "Weapon Type",
+            "options":{
+                "Weapon": "Weapon",
+                "Bullet" :"Bullet",
+                "Other":"Other"
+            },
+            "weaponName": "Weapon Name",
+            "Quantity" :"Quantity"
+        }
+    },
+    "notifyWeapon": {
+        "form": {
+        "notifyItems": "Notify Items",
+        "weaponType": "Weapon Type",
+        "options":{
+            "Weapon": "Weapon",
+            "Bullet" :"Bullet",
+            "Other":"Other"
+        },
+        "weaponName": "Weapon Name",
+        "quantity": "Quantity",        
+        "weaponDescription":"Weapon Description",
+        "attachments": "Attachments"
+        }
+    },
+
+    
+    "requestForWeapon": {  
+        "listofweaponsthathavebeenrequested": "List of weapons that have been requested",
+        "listofweaponsthathavebeenrequestedtobereturned": "list of weapons that have been requested to be returned",
+        "tabs":{
+            "requestForWeapon": "Request For Weapon", 
+            "requestForReturnWeapon": "Request For Return Weapon"          
+        },       
+        "form": {
+            "requestItems": "Request Items",
+            "type": "Type",
+                "options":{
+                    "Weapon": "Weapon",
+                    "Bullet" :"Bullet",
+                    "Other":"Other"
+                },
+                "name": "Name",
+                "quantity" :"Quantity",
+            "requestStatus": "Request Status",
+            "description": "Description",
+            "attachments": "Attachments"
+        },
+
+    "requestItemForWeapon": {
+        "form": {
+            "type": "Type",
+            "options":{
+                "Weapon": "Weapon",
+                "Bullet" :"Bullet",
+                "Other":"Other"
+            },
+            "name": "Name",
+            "Quantity" :"Quantity"
+       }
+    },   
+    
+    "requestForReturningWeapon": {
+        "form":{
+           "returnItems" : "Return Items",
+           "type": "Type",
+                "options":{
+                    "Weapon": "Weapon",
+                    "Bullet" :"Bullet",
+                    "Other":"Other"
+                },
+            "name": "Name",
+            "Quantity" :"Quantity",
+            "returnStatus": "Return Status",
+            "description": "Description",
+            "attachments": "Attachments"
+        }
+    },      
+        "requestApprovalForm": "Request Approval Form",
+        "insertWeaponstostore": "Insert Weapons to store",
+        "requestForWeapons": "Request For Weapons",        
+        "viewApprovedRequest": "View Approved Request"
+},  
+
+        "Inventory": { 
+            "ListOfRecordsInInventory": "List Of Records In Inventory",
+            "tabs":{
+                "insertWeaopn": "Insert Weaopn", 
+                "viewWeapon": "View Weapon",
+                "distributeWeapon": "Distribute Weapon" 
+            }, 
+            "Insert Weaopn":{
+            "form": {
+                "itemNoInExpenditureRegister": "Item No In Expenditure Register",
+                "noOfEntryInTheRegisterOfIncomingGoods": "No Of Entry In The Register Of Incoming Goods ",
+                 "donor": "Donor",
+                 "weaponItems": "Weapon Items",
+                 "weaponItemDescription": "Weapon Item Description",
+                 "weaponModel": "Weapon Model",
+                 "weaponSerialNo": "Weapon Serial No",
+                 "weaponQuantity": "Weapon Quantity",
+                 "weaponUnitPrice": "Weapon Unit Price",
+                 "weaponTotalPrice": "Weapon Total Price",
+                 "storeNo": "Store No",
+                 "shelfNo": "Shelf No"
+            }  
+        }      
+        },
+       
+        "distributeWeapon": {
+            "form": {
+                "weaponItems": "Weapon Items",
+                "weaponItemDescription": "Weapon Item Description",                 
+                 "weaponModel": "Weapon Model",
+                 "weaponSerialNo": "Weapon Serial No",
+                 "weaponQuantity": "Weapon Quantity",
+                 "weaponUnitPrice": "Weapon Unit Price",
+                 "weaponTotalPrice": "Weapon Total Price",
+                 "storeNo": "Store No",
+                 "shelfNo": "Shelf No"
+            }           
+        },       
+
+    "dashboard": {
+      "dashboard": "Dashboard"
+    },
+
+    "damagesItem": {  
+        "listofdamagedweapons": "List of Damaged Weapons",     
+        "form": {
+            "weaponType": "Weapon Type",
+            "options":{
+                "Weapon": "Weapon",
+                "Bullet" :"Bullet",
+                "Other":"Other"
+            },
+            "weaponName": "Weapon Name",
+            "Quantity" :"Quantity"
+        },
+    
+        "damagesWeapon": {
+            "form": {
+            "damagesItems": "Damages Items",
+            "weaponType": "Weapon Type",
+            "options":{
+                "Weapon": "Weapon",
+                "Bullet" :"Bullet",
+                "Other":"Other"
+            },
+            "weaponName": "Weapon Name",
+            "quantity": "Quantity",
+            "reason": "Reason",
+            "weaponDescription":"Weapon Description",
+            "attachments": "Attachments"
+            }
+        }
     }
-}
+ }
+ 
