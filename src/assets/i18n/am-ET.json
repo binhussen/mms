@@ -15,5 +15,63 @@
             "text1": "በጀግንነት መጠበቅ",
             "text2": "በሰብዓዊነት ማገልገል"
         }
+    },
+
+
+
+    "menus": {
+        "dashboard": "ዳሽ ቦርድ",
+        "Weapon": "የጦር መሳሪያ",
+        "Notify Weapon": "የጦር መሳሪያ ማሰወቅ",
+        "Inventory": "እቃ መከማቻ",
+        "Request": "የጦር መሳሪያ መጠየቅ",
+        "Report Damages":"የሚወገዱ ጦር መሳሪያዎች",
+        "User Management":"የተጠቃሚ አስተዳደር"
+    },
+
+    "elements": {
+        "Notify Item" :"በነጠላ የሚገቡ ቅጽ",
+        "Weapon": "የጦር መሣሪያ",
+        "Bullet" :"ጥይት",
+        "Other":"ሌላ",
+        "Quantity" :"ብዛት",
+        "Weapon Description":"መግለጫ",
+        "Attachments": "አባሪ ዶኩሜንት",
+        "List of weapons that have been notified":"ገቢ ኢንድደረጉ የተዘዙት የጦር መሳሪያዎች ዝርዝር",
+ 
+
+        "Request For Weapon": "የጦር መሳሪየ መጠየቅ",
+        "Request Items": "የተጠየቁ አይነት",
+        "Request Status": "ሁኔታ",
+        "Request Description": "መግለጫ",
+        "Request Attachments": "አባሪ ዶኩሜንት",
+        "Request Item For Weapon": "በአይነት የሚጠየቁ የጦር መሳሪያ",
+        "Request Approval Form": "የማጽደቅ መጠየቅያ ቅጽ",
+        "Insert Weapons to store": "የጦር መሳሪያዎች ወደ መከማቻ አስገባ",
+        "Request For Weapons": "የጦር መሳሪያ ጠይቅ",
+        "Request For Returning Weapon": "የጦር መሳሪያ ለመመለስ አማልክት",
+        "View Approved Request": "የተጸደቁ ጥያቄ ይመልከቱ",
+
+        "Inventory": "እቃ መከማችቻ",
+        "Item No. in Expenditure Register": "ዋገዉ በገንዘብ ወጪ መዝገብ የሳረንበት ተራ ቁጥር",
+        "No. of Entry in the Register of Incoming Goods": "በእቃ ገቢ መዝገብ የገባበት ንምራ ",
+        "Weapon Items": "የጦር መሳሪያ አይነቶች",
+        "Weapon Item Description'": "መግለጫ",
+        "Weapon Model": "ሞዴል",
+        "Weapon Serial No.": "ሴሪ",
+        "Weapon Quantity": "ብዛት",
+        "Weapon Unit Price": "የንዱ ዋጋ",
+        "Weapon Total Price": "የዋጋ ድምር",
+        "Store No.": "እቃዉ የሚቀመጥበት መጋዛን ቁጥር",
+        "Shelf No.": "የመደርደሪያዉ ቁጥር",
+        "Distribute Weapon": "የጦር መሳሪያ መስጠት",
+        "Inventory Item": "የእቃ ዝርዝር",
+        "List Of Records In Inventory": "የተከመቹ እቃዎች ዝርዝር",
+        "View Store": "የተከመቹ እቃዎች እየው",
+        "View store grouped by type and model": "በአይነት እና በሞዴል የተከመቹ እቃዎች መየት "
+    },
+
+    "dashboard": {
+      "Dashbiard": "ዳሽ ቦርድ"
     }
 }
