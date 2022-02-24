@@ -4,4 +4,5 @@ export interface Menu {
   link?: string;
   open: boolean;
   sub?: Array<Menu>;
+  trans: string;
 }
