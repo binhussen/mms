@@ -5,6 +5,7 @@ import { MmsCommonModule } from 'src/app/mms-common/mms-common.module';
 import { PageModule } from 'src/app/pages/page/page.module';
 import { PageComponent } from 'src/app/pages/page/page.component';
 import returnWeaponPage from './return-weapon.page';
+import returnWeaponDetailPage from './return-weapon-detail.page';
 
 @NgModule({
   declarations: [],
@@ -14,6 +15,7 @@ import returnWeaponPage from './return-weapon.page';
     PageModule,
     RouterModule.forChild([
       { path: '', component: PageComponent, data: returnWeaponPage },
+      { path: ':id', component: PageComponent, data: returnWeaponDetailPage },
     ]),
   ],
 })

@@ -1,8 +1,9 @@
 import { Form } from 'src/app/mms-common/models/form';
 import inventoryForm from '../inventory.form';
 
-const distributeFormElements = inventoryForm.inventoryForm.elements.filter(
-  (formElement) => {
+const distributeFormElements = inventoryForm.inventoryForm.elements
+  .slice(0)
+  .filter((formElement) => {
     if (formElement.name === 'weaponItems' && formElement.formArrayItems) {
       formElement.formArrayItems = formElement.formArrayItems
         .filter((weaponItem) => {
@@ -23,8 +24,7 @@ const distributeFormElements = inventoryForm.inventoryForm.elements.filter(
       });
     }
     return true;
-  }
-);
+  });
 const distributeForm: Form = {
   title: 'Form for weapon issued',
   elements: distributeFormElements,

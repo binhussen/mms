@@ -69,6 +69,17 @@ export class CrudHttpService extends BaseService<any> {
             );
             return this.createResource(single.data, single.submittedToUrl).pipe(
               tap((response) => console.log(response)),
+              tap(async (response) => {
+                if (form.submittedToUrl?.includes('requestWeaponApprovals')) {
+                  await this.httpClient
+                    .patch(
+                      `http://localhost:3000/requestWeapons/${response.requestWeaponsId}`,
+                      { requestStatus: 'APPROVED' },
+                      { headers: this.headers }
+                    )
+                    .toPromise();
+                }
+              }),
               distinctUntilChanged(),
               mergeMap((response: any) =>
                 // subscribe all and return response

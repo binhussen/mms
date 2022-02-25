@@ -43,18 +43,6 @@ const inventoryForm: Form = {
       defaultValue: '',
       formArrayItems: [
         {
-          name: 'weaponType',
-          type: 'select',
-          placeholder: 'Weapon Type',
-          defaultValue: 'Weapon',
-          size: 6,
-          options: [
-            { value: 'Weapon', label: 'Weapon' },
-            { value: 'Bullet', label: 'Bullet' },
-            { value: 'Other', label: 'Other' },
-          ],
-        },
-        {
           name: 'weaponItemDescription',
           type: 'text',
           placeholder: 'Weapon Item Description',

@@ -4,9 +4,9 @@ const requestForReturningWeaponForm: Form = {
   title: 'Request For Returning Weapon',
   elements: [
     {
-      name: 'returnItems',
+      name: 'returnWeaponsItems',
       type: 'formArray',
-      placeholder: 'REturn Items',
+      placeholder: 'Return Items',
       defaultValue: '',
       formArrayItems: [
         {

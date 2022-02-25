@@ -1,161 +1,4 @@
 {
-  "elements": [
-    {
-      "position": 1,
-      "name": "Hydrogen",
-      "weight": 1.0079,
-      "symbol": "H"
-    },
-    {
-      "position": 2,
-      "name": "Helium",
-      "weight": 4.0026,
-      "symbol": "He"
-    },
-    {
-      "position": 3,
-      "name": "Lithium",
-      "weight": 6.941,
-      "symbol": "Li"
-    },
-    {
-      "position": 4,
-      "name": "Beryllium",
-      "weight": 9.0122,
-      "symbol": "Be"
-    },
-    {
-      "position": 5,
-      "name": "Boron",
-      "weight": 10.811,
-      "symbol": "B"
-    },
-    {
-      "position": 6,
-      "name": "Carbon",
-      "weight": 12.0107,
-      "symbol": "C"
-    },
-    {
-      "position": 7,
-      "name": "Nitrogen",
-      "weight": 14.0067,
-      "symbol": "N"
-    },
-    {
-      "position": 8,
-      "name": "Oxygen",
-      "weight": 15.9994,
-      "symbol": "O"
-    },
-    {
-      "position": 9,
-      "name": "Fluorine",
-      "weight": 18.9984,
-      "symbol": "F"
-    },
-    {
-      "position": 10,
-      "name": "Neon",
-      "weight": 20.1797,
-      "symbol": "Ne"
-    },
-    {
-      "position": 11,
-      "name": "Sodium",
-      "weight": 22.9897,
-      "symbol": "Na"
-    },
-    {
-      "position": 12,
-      "name": "Magnesium",
-      "weight": 24.305,
-      "symbol": "Mg"
-    },
-    {
-      "position": 13,
-      "name": "Aluminum",
-      "weight": 26.9815,
-      "symbol": "Al"
-    },
-    {
-      "position": 14,
-      "name": "Silicon",
-      "weight": 28.0855,
-      "symbol": "Si"
-    },
-    {
-      "position": 15,
-      "name": "Phosphorus",
-      "weight": 30.9738,
-      "symbol": "P"
-    },
-    {
-      "position": 16,
-      "name": "Sulfur",
-      "weight": 32.065,
-      "symbol": "S"
-    },
-    {
-      "position": 17,
-      "name": "Chlorine",
-      "weight": 35.453,
-      "symbol": "Cl"
-    },
-    {
-      "position": 18,
-      "name": "Argon",
-      "weight": 39.948,
-      "symbol": "Ar"
-    },
-    {
-      "position": 19,
-      "name": "Potassium",
-      "weight": 39.0983,
-      "symbol": "K"
-    },
-    {
-      "position": 20,
-      "name": "Calcium",
-      "weight": 40.078,
-      "symbol": "Ca"
-    },
-    {
-      "position": 1,
-      "name": "Iron",
-      "weight": 78,
-      "symbol": "Fe",
-      "id": 1
-    },
-    {
-      "position": 2,
-      "name": "Hidrogen",
-      "weight": 1.0079,
-      "symbol": "H",
-      "id": 2
-    },
-    {
-      "position": 3,
-      "name": "Calcuim",
-      "weight": 66,
-      "symbol": "Ca",
-      "id": 3
-    },
-    {
-      "position": 1,
-      "name": "ezedin fedlu",
-      "weight": 44,
-      "symbol": "4",
-      "id": 4
-    },
-    {
-      "position": 2,
-      "name": "fuck",
-      "weight": 3,
-      "symbol": "ff",
-      "id": 5
-    }
-  ],
   "notifies": [
     {
       "weaponDescription": "ezedin.fedlu@gmail.com",
@@ -425,53 +268,16 @@
   ],
   "weaponItems": [
     {
-      "weaponType": "Weapon",
       "weaponAvailability": "0",
       "weaponItemDescription": "+251923275571",
-      "weaponModel": "Bullet something",
-      "weaponSerialNo": "ddd",
+      "weaponModel": "Model A",
+      "weaponSerialNo": "ddd-5555",
       "weaponType": "Weapon",
-      "weaponQuantity": 32,
+      "weaponQuantity": 1,
       "weaponUnitPrice": 33,
       "weaponTotalPrice": 1056,
-      "storeNo": "dd",
-      "shelfNo": "dd",
-      "weaponInventoriesId": 1,
-      "id": 1
-    },{
-      "weaponItemDescription": "+251923275571",
-      "weaponModel": "Bullet something",
-      "weaponSerialNo": "ddd",
-      "weaponType": "Weapon",
-      "weaponQuantity": 32,
-      "weaponUnitPrice": 33,
-      "weaponTotalPrice": 1056,
-      "storeNo": "dd",
-      "shelfNo": "dd",
-      "weaponInventoriesId": 1,
-      "id": 1
-    },{
-      "weaponItemDescription": "+251923275571",
-      "weaponModel": "Bullet something",
-      "weaponSerialNo": "ddd",
-      "weaponType": "Bullet",
-      "weaponQuantity": 32,
-      "weaponUnitPrice": 33,
-      "weaponTotalPrice": 1056,
-      "storeNo": "dd",
-      "shelfNo": "dd",
-      "weaponInventoriesId": 1,
-      "id": 1
-    },{
-      "weaponItemDescription": "+251923275571",
-      "weaponModel": "Bullet something",
-      "weaponSerialNo": "ddd",
-      "weaponType": "Other",
-      "weaponQuantity": 32,
-      "weaponUnitPrice": 33,
-      "weaponTotalPrice": 1056,
-      "storeNo": "dd",
-      "shelfNo": "dd",
+      "storeNo": "53",
+      "shelfNo": "44D",
       "weaponInventoriesId": 1,
       "id": 1
     }
@@ -488,6 +294,12 @@
       "description": "Bullet something",
       "attachments": "https://v2.convertapi.com/d/cy7a899e938r231i0fg51xk7e00wk1x6",
       "id": 2
+    },
+    {
+      "requestStatus": "APPROVED",
+      "description": "ddd",
+      "attachments": "https://v2.convertapi.com/d/k201n4yoy7sistt9yl625wz97depbte8",
+      "id": 3
     }
   ],
   "requestWeaponItems": [
@@ -506,8 +318,18 @@
       "weaponQuantity": 20,
       "requestWeaponsId": 2,
       "id": 2
+    },
+    {
+      "weaponType": "Weapon",
+      "weaponName": "model a weapon",
+      "weaponModel": "Model A",
+      "weaponQuantity": 10,
+      "requestWeaponsId": 3,
+      "id": 3
     }
   ],
+  "returnWeapons": [],
+  "returnWeaponItems": [],
   "requestWeaponApprovals": [
     {
       "requestStatus": "APPROVED",
@@ -522,6 +344,13 @@
       "attachments": "https://v2.convertapi.com/d/b4kv8k58jlza5ztcotl4m4kczmikbt7g",
       "requestWeaponsId": 2,
       "id": 2
+    },
+    {
+      "requestStatus": "PENDING",
+      "requestApprovalDescription": "i here by approved these request as material management directorate ",
+      "attachments": "https://v2.convertapi.com/d/s26i3p6hqx07t16yfbi4882ajxfd49xc",
+      "requestWeaponsId": 3,
+      "id": 3
     }
   ],
   "requestApprovedWeaponItems": [
@@ -540,6 +369,14 @@
       "weaponQuantity": 20,
       "requestWeaponApprovalsId": 2,
       "id": 2
+    },
+    {
+      "weaponType": "Weapon",
+      "weaponName": "model a weapon",
+      "weaponModel": "Model A",
+      "weaponQuantity": 1,
+      "requestWeaponApprovalsId": 3,
+      "id": 3
     }
   ],
   "weaponReceivers": [
